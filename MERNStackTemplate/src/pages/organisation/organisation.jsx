@@ -16,7 +16,7 @@ const organisation = () => {
 
   useEffect(() => {
     const fetchGrants = async () => {
-      const response = await fetch("http://localhost:4000/api/organisation", {
+      const response = await fetch("/api/organisation", {
         headers: {
           "Authorization": `Bearer ${user.token}`,
         },

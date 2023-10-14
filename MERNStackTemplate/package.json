@@ -1,4 +1,5 @@
 {
+  "proxy": "https://notts-street-aid-backend.vercel.app",
   "name": "mernstacktemplate",
   "private": true,
   "version": "0.0.0",

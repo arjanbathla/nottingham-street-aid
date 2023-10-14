@@ -80,7 +80,7 @@ export const applyGrant = () => {
     }
 
     const response = await fetch(
-      "http://localhost:4000/api/organisation/create",
+      "/api/organisation/create",
       {
         method: "POST",
         headers: {
