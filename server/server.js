@@ -12,7 +12,7 @@ const app = express();
 // allow the app to use middleware
 app.use(cors(
     {
-        origin: ["https://notts-street-aid-backend.vercel.app"],
+        origin: [""],
         methods: ["POST", "GET"],
         credentials: true
     }
