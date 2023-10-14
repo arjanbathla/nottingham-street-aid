@@ -1,0 +1,26 @@
+.sidebar{
+    position: absolute;
+    top: 7rem;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    list-style: none;
+    background-color: var(--light);
+    transition: transform 0.33s;
+}
+
+.open {
+    transform: translateY(0);
+}
+
+.close {
+    transform: translateY(-200%);
+}
+
+@media (min-width: 40em) {
+    .sidebar {
+        display: none;
+    }
+}

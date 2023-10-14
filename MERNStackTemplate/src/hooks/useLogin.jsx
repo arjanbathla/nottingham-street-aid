@@ -1,0 +1,36 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../contextStore/userStore";
+
+export const useLogin = () => {
+  const dispatch = useDispatch();
+
+  const [errorLogin, setErrorLogin] = useState(null);
+  const [isLoadingLogin, setIsLoadingLogin] = useState(null);
+
+  const login = async (username, password) => {
+    setIsLoadingLogin(true);
+    setErrorLogin(null);
+
+    const response = await fetch("http://localhost:4000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setIsLoadingLogin(false);
+      setErrorLogin(json.error);
+    }
+    if (response.ok) {
+      dispatch(loginUser(json));
+      setIsLoadingLogin(false);
+    }
+  };
+  return { login, isLoadingLogin, errorLogin };
+};

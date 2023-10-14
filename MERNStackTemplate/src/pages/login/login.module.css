@@ -1,0 +1,76 @@
+.section{
+    width: 100%;
+}
+
+.formSection{
+    padding: var(--padding-3);
+}
+
+.form{
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+    padding: var(--padding-3);
+    background-color: var(--dark);
+    color: var(--light);
+    list-style: none;
+}
+
+.form h2{
+    color: var(--accent);
+    font-size: var(--font-2);
+}
+
+
+
+
+
+.inputBlock{
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+}
+
+.passwordBlock{
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
+.buttonBlock{
+    display: flex;
+    flex-flow: row;
+    gap: 1rem;
+    width: 100%;
+}
+
+.errorMessage{
+    background-color: lightcoral;
+    padding: 1rem;
+    border: 2px solid red;
+    border-radius: 0.5rem;
+}
+
+
+
+
+
+.passwordLabel{
+    color: #ffffff80;
+}
+
+.inputBlock p {
+    color: var(--light);
+}
+
+.inputLabel{
+    color: var(--light);
+}
+
+input{
+    background-color: var(--light);
+    padding: var(--padding-1);
+    outline: none;
+    border: none;
+    width: 100%;
+}

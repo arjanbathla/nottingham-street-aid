@@ -1,0 +1,27 @@
+.footer{
+    background-color: var(--light);
+    color: var(--dark);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    gap: var(--padding-1);
+    padding: var(--padding-1);
+}
+
+.links{
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+    padding: var(--padding-1);
+    list-style: none;
+    border-left: 1px solid var(--accent);
+}
+
+.rights{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: var(--padding-1);
+    padding: var(--padding-1);
+    border-left: 1px solid var(--accent);
+}

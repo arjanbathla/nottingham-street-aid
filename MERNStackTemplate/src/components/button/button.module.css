@@ -1,0 +1,14 @@
+.button{
+    padding: var(--padding-1) var(--padding-3);
+    color: var(--light);
+    background-color: var(--accent);
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.button:hover{
+    color: var(--accent);
+    background-color: var(--light);
+    border: 3px solid var(--accent);
+}

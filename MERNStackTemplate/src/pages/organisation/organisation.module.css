@@ -1,0 +1,56 @@
+.section{
+    width: 100%;
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+}
+
+.dashboard{
+    background-color: var(--dark);
+    padding: var(--padding-3);
+    color: var(--light);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+}
+
+.dashboardHeader{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: var(--padding-3);
+}
+
+.addGrantBlock{
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--padding-1);
+}
+
+.mainTitle {
+    font-size: var(--font-2);
+    color: var(--accent);
+}
+
+.subTitle {
+    font-size: var(--font-1);
+    color: var(--accent);
+}
+
+.dashboardContent{
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--padding-3);
+}
+
+.grantItem{
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+    padding: var(--padding-1);
+    background-color: var(--light);
+    color: var(--dark);
+}

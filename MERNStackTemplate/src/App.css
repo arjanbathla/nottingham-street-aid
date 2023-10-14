@@ -1,0 +1,36 @@
+:root{
+    --dark: #393E41;
+    --light: #F6F7EB;
+    --accent: #F97432;
+    --shadow: #00000080;
+
+    --padding-1: 1em;
+    --padding-2: 2em;
+    --padding-3: 3em;
+
+    --font-1: 1em;
+    --font-2: 2em;
+    --font-3: 3em;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    text-wrap: balance;
+    box-sizing: border-box;
+    /* font-family: 'Dela Gothic One', sans-serif; */
+    /* font-family: 'Bebas Neue', sans-serif; */
+    font-family: 'Jost Variable', sans-serif;
+}
+
+@media (max-width: 60em) {
+    :root{
+        --padding-1: 0.75em;
+        --padding-2: 1.75em;
+        --padding-3: 2.75em;
+
+        --font-1: 0.75em;
+        --font-2: 1.75em;
+        --font-3: 2.75em;
+    }
+}
