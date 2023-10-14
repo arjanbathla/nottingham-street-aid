@@ -10,7 +10,13 @@ const organisationRoutes = require("./routes/organisationRoutes")
 const app = express();
 
 // allow the app to use middleware
-app.use(cors())
+app.use(cors(
+    {
+        origin: ["https://notts-street-aid-backend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+))
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
