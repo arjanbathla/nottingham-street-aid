@@ -1,5 +1,5 @@
 {
-  "proxy": "https://notts-street-aid-backend.vercel.app",
+  "proxy": "https://nottinghamstreetaid.onrender.com",
   "name": "mernstacktemplate",
   "private": true,
   "version": "0.0.0",

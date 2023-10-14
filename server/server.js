@@ -10,13 +10,12 @@ const organisationRoutes = require("./routes/organisationRoutes")
 const app = express();
 
 // allow the app to use middleware
-app.use(cors(
-    {
-        origin: [""],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-))
+app.use(cors())
+
+app.use(cors({
+    origin: "https://nottinghamstreetaid.onrender.com",
+}))
+
 app.use(express.json())
 app.use((req, res, next) => {
     console.log(req.path, req.method)
