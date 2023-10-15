@@ -16,7 +16,7 @@ const organisation = () => {
 
   useEffect(() => {
     const fetchGrants = async () => {
-      const response = await fetch("/api/organisation", {
+      const response = await fetch("https://nottinghamstreetaid.onrender.com/api/organisation", {
         headers: {
           "Authorization": `Bearer ${user.token}`,
         },

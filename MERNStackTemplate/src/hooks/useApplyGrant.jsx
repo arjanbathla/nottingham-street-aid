@@ -80,7 +80,7 @@ export const applyGrant = () => {
     }
 
     const response = await fetch(
-      "/api/organisation/create",
+      "https://nottinghamstreetaid.onrender.com/api/organisation/create",
       {
         method: "POST",
         headers: {

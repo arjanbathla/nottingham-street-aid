@@ -50,7 +50,7 @@ export const useSignup = () => {
     setIsLoadingSignup(true);
     setErrorSignup(null);
 
-    const response = await fetch("/api/signup", {
+    const response = await fetch("https://nottinghamstreetaid.onrender.com/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
