@@ -11,6 +11,17 @@ const Register = () => {
   const navigate = useNavigate();
   const { signup, isLoadingSignup, errorSignup } = useSignup();
 
+  useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+  
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
@@ -62,9 +73,8 @@ const Register = () => {
   const [otherContact1Title, setOtherContact1Title] = useState("");
   const [otherContact2Title, setOtherContact2Title] = useState("");
   const [otherContact3Title, setOtherContact3Title] = useState("");
-
+  
   const [organisations, setOrganisations] = useState([]);
-
   useEffect(() => {
     fetch("/organisations.csv")
       .then((response) => response.text())

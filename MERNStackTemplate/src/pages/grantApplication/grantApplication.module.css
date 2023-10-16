@@ -58,7 +58,7 @@
 }
 
 .multiInputBlock {
-    background-color: #424749;
+    background-color: #393e4171;
     padding: var(--padding-3);
     display: flex;
     flex-flow: column;

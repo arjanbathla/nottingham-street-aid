@@ -1,0 +1,33 @@
+.policySection{
+    background-color: var(--dark);
+    padding: var(--padding-3);
+    color: var(--light);
+}
+
+.mainTitle {
+    font-size: var(--font-2);
+    color: var(--accent);
+}
+
+.subTitle {
+    font-size: var(--font-1);
+    color: var(--accent);
+}
+
+
+
+
+.policyContent{
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+    padding: var(--padding-3);
+}
+
+.policyCard{
+    background-color: #393e4171;
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+}

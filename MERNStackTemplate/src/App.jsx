@@ -15,7 +15,7 @@ import Login from "./pages/login/login";
 import ContactUs from "./pages/contactUs/contactUs";
 import OurPolicy from "./pages/ourPolicy/ourPolicy";
 import Organisation from "./pages/organisation/organisation";
-import GrantApplication from "./pages/grantApplication/grantApplication"
+import GrantApplication from "./pages/grantApplication/grantApplication";
 
 import Layout from "./navigation/layout/layout";
 
@@ -23,9 +23,9 @@ const App = () => {
   const { user } = useSelector((state) => state.user);
   const { grants } = useSelector((state) => state.grants);
 
-  console.log(user)
-  console.log(grants)
-  
+  console.log(user);
+  console.log(grants);
+
   let routes = (
     <Routes>
       <Route
@@ -44,15 +44,15 @@ const App = () => {
         path="/ContactUs"
         element={!user ? <ContactUs /> : <Navigate to="/Organisation" />}
       />
-      <Route
-        path="/OurPolicy"
-        element={!user ? <OurPolicy /> : <Navigate to="/Organisation" />}
+      <Route 
+        path="/OurPolicy" 
+        element={<OurPolicy />} 
       />
       <Route
         path="/Organisation"
         element={user ? <Organisation /> : <Navigate to="/" />}
       />
-      <Route 
+      <Route
         path="/GrantApplication"
         element={user ? <GrantApplication /> : <Navigate to="/" />}
       />

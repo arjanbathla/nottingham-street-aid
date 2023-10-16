@@ -4,6 +4,7 @@
     gap: var(--padding-1);
     padding: var(--padding-1);
     list-style: none;
+    align-items: center;
 }
 
 
@@ -11,5 +12,6 @@
     .navlinks{
         display: flex;
         flex-flow: column;
+        align-items: start;
     }
 }

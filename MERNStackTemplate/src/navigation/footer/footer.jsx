@@ -14,7 +14,7 @@ const footer = () => {
           <Navlink link="/Register">Register</Navlink>
           <Navlink link="/Login">Login</Navlink>
           <Navlink link="/ContactUs">Contact Us</Navlink>
-          <Navlink link="/OurPolicy">Our Policy</Navlink>
+          <Navlink link="/OurPolicy">Policies & Guidance</Navlink>
         </div>
         <div className={classes.rights}>
           <p>@ {CURRENT_YEAR} All Rights Reserved</p>

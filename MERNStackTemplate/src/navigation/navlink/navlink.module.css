@@ -1,8 +1,11 @@
 .navlink a{
-    display: block;
+    display: flex;
+    flex-flow: row;
+    gap: var(--padding-1);
     text-decoration: none;
     font-weight: bold;
     color: var(--dark);
+    align-items: center;
 }
 
 .navlink a:hover,

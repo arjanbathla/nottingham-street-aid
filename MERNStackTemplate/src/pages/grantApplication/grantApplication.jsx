@@ -10,6 +10,17 @@ import Button from "../../components/button/button";
 const GrantApplication = () => {
   const { apply, isLoadingGrant, errorGrant } = applyGrant();
 
+  useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+  
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
+
   const [benTitle, setBenTitle] = useState("");
   const [benFirstName, setBenFirstName] = useState("");
   const [benLastName, setBenLastName] = useState("");
