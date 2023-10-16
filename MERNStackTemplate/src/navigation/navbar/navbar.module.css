@@ -13,6 +13,10 @@
     background-color: var(--light);
 }
 
+.logo{
+    max-width: 11rem;
+}
+
 @media (max-width: 40em) {
     .links{
         display: none;
