@@ -44,7 +44,7 @@ const login = () => {
                 placeholder="Eg. JohnDoe@email.com"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
-                pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                 required
               />
             </div>

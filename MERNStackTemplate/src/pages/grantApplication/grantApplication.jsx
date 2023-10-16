@@ -15,7 +15,11 @@ const GrantApplication = () => {
   const [benLastName, setBenLastName] = useState("");
   const [benEmail, setBenEmail] = useState("");
   const [benTelephone, setBenTelephone] = useState("");
+
+  const [declaration, setDeclaration] = useState(false);
+  const [benNotts, setBenNotts] = useState(false);
   const [benAbode, setBenAbode] = useState(false);
+
   const [benAddressLine1, setBenAddressLine1] = useState("");
   const [benAddressLine2, setBenAddressLine2] = useState("");
   const [benTown, setBenTown] = useState("");
@@ -26,12 +30,14 @@ const GrantApplication = () => {
   const [altRole, setAltRole] = useState("");
   const [altEmail, setAltEmail] = useState("");
   const [altTelephone, setAltTelephone] = useState("");
+
   const [altAddressLine1, setAltAddressLine1] = useState("");
   const [altAddressLine2, setAltAddressLine2] = useState("");
   const [altCounty, setAltCounty] = useState("");
   const [altPostcode, setAltPostcode] = useState("");
 
   const [sharedSignedLink, setSharedSignedLink] = useState("");
+  const [benConsent, setBenConsent] = useState(false);
 
   const [prefContactMethod, setPrefContactMethod] = useState("");
   const [prefCommunication, setPrefCommunication] = useState(false);
@@ -46,8 +52,8 @@ const GrantApplication = () => {
   const [benDisability, setBenDisability] = useState("");
   const [benDisabilityExtra, setBenDisabilityExtra] = useState("");
   const [benMarital, setBenMarital] = useState("");
-  const [benDependants, setBenDependants] = useState("");
   const [benPregnancy, setBenPregnancy] = useState("");
+  const [benDependants, setBenDependants] = useState("");
 
   const [numOfDependants, setNumOfDependants] = useState("");
   const [ageOfDependants, setAgeOfDependants] = useState("");
@@ -78,8 +84,10 @@ const GrantApplication = () => {
   const [grantItemCost5, setGrantItemCost5] = useState("");
   const [grantItemDetails5, setGrantItemDetails5] = useState("");
   const [grantQuoteLink, setGrantQuoteLink] = useState("");
-  const [submissionDate, setSubmissionDate] = useState("");
 
+  const [submissionDate, setSubmissionDate] = useState("");
+  const [confirmApplication, setConfirmApplication] = useState(false)
+  
   const [otherBenTitle, setOtherBenTitle] = useState("");
   const [otherAltTitle, setOtherAltTitle] = useState("");
   const [otherAltRole, setOtherAltRole] = useState("");
@@ -293,13 +301,13 @@ const GrantApplication = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    if (otherBenTitle) {setBenTitle(otherBenTitle);}
-    if (otherAltTitle) {setAltTitle(otherAltTitle);}
-    if (otherAltRole) {setAltRole(otherAltRole);}
-    if (otherBenGen) {setBenGen(otherBenGen);}
-    if (otherBenSex) {setBenSex(otherBenSex);}
-    if (otherCurrentAccom) {setBenTitle(otherCurrentAccom);}
-    if (otherBenGrantReason) {setBenGrantReason(otherBenGrantReason);}
+    if (otherBenTitle) { setBenTitle(otherBenTitle); }
+    if (otherAltTitle) { setAltTitle(otherAltTitle); }
+    if (otherAltRole) { setAltRole(otherAltRole); }
+    if (otherBenGen) { setBenGen(otherBenGen); }
+    if (otherBenSex) { setBenSex(otherBenSex); }
+    if (otherCurrentAccom) { setBenTitle(otherCurrentAccom); }
+    if (otherBenGrantReason) { setBenGrantReason(otherBenGrantReason); }
     await apply(
       benTitle,
       benFirstName,
@@ -363,7 +371,7 @@ const GrantApplication = () => {
       submissionDate,
     );
     setCurrentSection(1);
-    if(!errorGrant){
+    if (!errorGrant) {
       navigate("/Organisation")
     }
   };
@@ -534,14 +542,14 @@ const GrantApplication = () => {
                         value={benEmail}
                         onChange={(e) => setBenEmail(e.target.value)}
                         placeholder="Eg. JohnDoe@email.com"
-                        pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                       />
                     </div>
 
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone</label>
                       <input
-                        type="tel"
+                        type="number"
                         value={benTelephone}
                         onChange={(e) => setBenTelephone(e.target.value)}
                         placeholder="Eg. 07654 321 234"
@@ -559,6 +567,8 @@ const GrantApplication = () => {
                         className={classes.checkbox}
                         type="checkbox"
                         id="no_relations"
+                        checked={declaration}
+                        onChange={() => setDeclaration(!declaration)}
                         required
                       />
                       <label htmlFor="no_relations">
@@ -570,21 +580,41 @@ const GrantApplication = () => {
                 </div>
 
                 <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>County</h3>
+                  <div className={classes.inputBlock}>
+                    <div className={classes.checkboxGroup}>
+                      <input
+                        className={classes.checkbox}
+                        type="checkbox"
+                        id="from_nottinghamshire"
+                        checked={benNotts}
+                        onChange={() => setBenNotts(!benNotts)}
+                        required
+                      />
+                      <label htmlFor="from_nottinghamshire">
+                        I confirm the beneficiary is living in Nottinghamshire
+                        *
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>
                     Beneficiary Address Situation
                   </h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Please select if the beneficiary has no fixed address e.g.
                       they are sofa surfing, camping, emergency overnight hostel
                       etc.
-                    </p>
+                    </label>
 
                     <div className={classes.radioGroup}>
                       <div>
                         <input
                           type="radio"
-                          value={benAbode}
+                          checked={benAbode}
                           onChange={(e) => setBenAbode(true)}
                           required
                           id="yes_fixed_abode"
@@ -595,7 +625,7 @@ const GrantApplication = () => {
                       <div>
                         <input
                           type="radio"
-                          value={benAbode}
+                          checked={!benAbode}
                           onChange={(e) => setBenAbode(false)}
                           required
                           id="no_fixed_abode"
@@ -655,25 +685,6 @@ const GrantApplication = () => {
                   </div>
                 )}
 
-                {benAbode === true && (
-                  <div className={classes.multiInputBlock}>
-                    <h3 className={classes.subTitle}>County</h3>
-                    <div className={classes.inputBlock}>
-                      <div className={classes.checkboxGroup}>
-                        <input
-                          className={classes.checkbox}
-                          type="checkbox"
-                          id="from_nottinghamshire"
-                          required
-                        />
-                        <label htmlFor="from_nottinghamshire">
-                          I confirm the beneficiary is living in Nottinghamshire
-                          *
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                )}
                 {buttons}
               </div>
             </form>
@@ -683,11 +694,11 @@ const GrantApplication = () => {
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>3. Alternative Contact</h2>
-                <p>
+                <label className={classes.inputLabel}>
                   Please provide an alternative address which we can contact the
                   beneficiary via. This could be their GP or a supporting
                   organisation.
-                </p>
+                </label>
               </div>
 
               <div className={classes.formContent}>
@@ -789,7 +800,7 @@ const GrantApplication = () => {
                         value={altEmail}
                         onChange={(e) => setAltEmail(e.target.value)}
                         placeholder="Eg. JohnDoe@email.com"
-                        pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                         required
                       />
                     </div>
@@ -797,7 +808,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="tel"
+                        type="number"
                         value={altTelephone}
                         onChange={(e) => setAltTelephone(e.target.value)}
                         placeholder="Eg. 07654 321 234"
@@ -875,11 +886,11 @@ const GrantApplication = () => {
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Signed Declaration File</h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Please provide a copy of the beneficiary's signed
                       declaration. Handwritten, printed, video or audio files
                       accepted *
-                    </p>
+                    </label>
                     <input
                       type="text"
                       value={sharedSignedLink}
@@ -898,6 +909,8 @@ const GrantApplication = () => {
                         className={classes.checkbox}
                         type="checkbox"
                         id="beneficiary_consent"
+                        checked={benConsent}
+                        onChange={() => setBenConsent(!benConsent)}
                       />
                       <label htmlFor="beneficiary_consent">
                         I hereby confirm that the beneficiary is aware of and
@@ -945,16 +958,16 @@ const GrantApplication = () => {
                     Communication Preference *
                   </h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Please indicate if the beneficiary is happy for us to
                       contact them for further information relating to their
                       application or follow-up.
-                    </p>
+                    </label>
                     <div className={classes.radioGroup}>
                       <div>
                         <input
                           type="radio"
-                          value={prefCommunication}
+                          checked={prefCommunication}
                           onChange={(e) => setPrefCommunication(true)}
                           id="yes_communication"
                           name="pref_communication"
@@ -964,7 +977,7 @@ const GrantApplication = () => {
                       <div>
                         <input
                           type="radio"
-                          value={prefCommunication}
+                          checked={!prefCommunication}
                           onChange={(e) => setPrefCommunication(false)}
                           id="no_communication"
                           name="pref_communication"
@@ -980,17 +993,17 @@ const GrantApplication = () => {
                     GDPR Settings & Data Sharing *
                   </h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Nottingham Street Aid will hold personal information about
                       the beneficiary in line with the Data Sharing Agreement
                       and Privacy Statement [INSERT LINK GDPR LINK AND PRIVACY
                       STATEMENT]
-                    </p>
+                    </label>
                     <div className={classes.radioGroup}>
                       <div>
                         <input
                           type="radio"
-                          value={prefDataSharing}
+                          checked={prefDataSharing}
                           onChange={(e) => setPrefDataSharing(true)}
                           id="agree_to_gdpr"
                           name="gdpr_declaration"
@@ -1000,7 +1013,7 @@ const GrantApplication = () => {
                       <div>
                         <input
                           type="radio"
-                          value={prefDataSharing}
+                          checked={!prefDataSharing}
                           onChange={(e) => setPrefDataSharing(false)}
                           id="deny_gdpr"
                           name="gdpr_declaration"
@@ -1021,13 +1034,13 @@ const GrantApplication = () => {
                 <h2 className={classes.mainTitle}>
                   6. Beneficiary's Protected Characteristics
                 </h2>
-                <p>
+                <label className={classes.inputLabel}>
                   We would like to collect the below data for reporting and
                   analytics. Certain information may also help with the
                   application and award process. This information will remain
                   anonymous. If the beneficiary prefers not to answer any of the
                   questions, please indicate so.{" "}
-                </p>
+                </label>
               </div>
 
               <div className={classes.formContent}>
@@ -1053,7 +1066,7 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <p htmlFor="dob">Date Of Birth</p>
+                      <label className={classes.inputLabel} htmlFor="dob">Date Of Birth</label>
                       <input
                         type="date"
                         id="dob"
@@ -1154,12 +1167,12 @@ const GrantApplication = () => {
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Disability</h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       This could be where the person has been diagnosed as
                       disabled or considers themselves to be disabled (Includes
                       long term illnesses and temp disability expected to last
                       12 months or more.)
-                    </p>
+                    </label>
                     <select
                       value={benDisability}
                       onChange={(e) => setBenDisability(e.target.value)}
@@ -1176,7 +1189,7 @@ const GrantApplication = () => {
 
                   {benDisability == "Yes" && (
                     <div className={classes.inputBlock}>
-                      <p htmlFor="disability">Disability Description</p>
+                      <label className={classes.inputLabel} htmlFor="disability">Disability Description</label>
                       <textarea
                         id="disability"
                         rows="4"
@@ -1271,9 +1284,9 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <p htmlFor="Dependant Information">
+                      <label className={classes.inputLabel} htmlFor="Dependant Information">
                         Dependant Information
-                      </p>
+                      </label>
                       <textarea
                         id="Dependant Information"
                         rows="4"
@@ -1371,11 +1384,11 @@ const GrantApplication = () => {
 
                   {benHistOfHomelessness == "Yes" && (
                     <div className={classes.inputBlock}>
-                      <p htmlFor="History">History *</p>
-                      <p>
+                      <label className={classes.inputLabel} htmlFor="History">History *</label>
+                      <label className={classes.inputLabel}>
                         Please provide details e.g. number of times homeless,
                         time period, accommodation status.
-                      </p>
+                      </label>
                       <textarea
                         id="History"
                         rows="4"
@@ -1412,9 +1425,9 @@ const GrantApplication = () => {
                     <label className={classes.inputLabel}>
                       Link to Nottingham *
                     </label>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Does the beneficiary have links to Nottingham e.g. family?
-                    </p>
+                    </label>
                     <select
                       value={benLinktoNottingham}
                       onChange={(e) => setBenLinkToNottingham(e.target.value)}
@@ -1428,12 +1441,12 @@ const GrantApplication = () => {
 
                   {benLinktoNottingham === "Yes" && (
                     <div className={classes.inputBlock}>
-                      <p htmlFor="Link Details">Link Details *</p>
-                      <p>
+                      <label className={classes.inputLabel} htmlFor="Link Details">Link Details *</label>
+                      <label className={classes.inputLabel}>
                         Please provide details of the beneficiaries link to
                         Nottingham e.g. grew up here, family, friends, partner
                         etc.
-                      </p>
+                      </label>
                       <textarea
                         id="Link Details"
                         rows="4"
@@ -1454,24 +1467,24 @@ const GrantApplication = () => {
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>8. Reason for Application</h2>
-                <p>
+                <label className={classes.inputLabel}>
                   Please let us know why you are making this application and the
                   impact the grant will have to the beneficiary. Please provide
                   as much pertinent information as possible.
-                </p>
+                </label>
               </div>
 
               <div className={classes.formContent}>
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Grant Reason & Details</h3>
                   <div className={classes.inputBlock}>
-                    <p htmlFor="Grant Reason">Grant Reason *</p>
-                    <p>
+                    <label className={classes.inputLabel} htmlFor="Grant Reason">Grant Reason *</label>
+                    <label className={classes.inputLabel}>
                       A Street Aid grant can be used for or towards anything, as
                       long as it's used to fund whatever an individual needs to
                       help prevent them or gets them off, and stay off, the
                       streets.
-                    </p>
+                    </label>
                     <select
                       value={benGrantReason}
                       onChange={(e) => setBenGrantReason(e.target.value)}
@@ -1496,12 +1509,12 @@ const GrantApplication = () => {
                   </div>
 
                   <div className={classes.inputBlock}>
-                    <p htmlFor="Grant Details">Grant Details *</p>
-                    <p>
+                    <label className={classes.inputLabel} htmlFor="Grant Details">Grant Details *</label>
+                    <label className={classes.inputLabel}>
                       Where necessary please provide further details for grant
                       application reason i.e. what it will fund, if it is part
                       funding etc.
-                    </p>
+                    </label>
                     <textarea
                       id="Grant Details"
                       rows="4"
@@ -1513,13 +1526,13 @@ const GrantApplication = () => {
                   </div>
 
                   <div className={classes.inputBlock}>
-                    <p htmlFor="Beneficiary's Story">Beneficiary's Story *</p>
-                    <p className={classes.normalText}>
+                    <label className={classes.inputLabel} htmlFor="Beneficiary's Story">Beneficiary's Story *</label>
+                    <label className={classes.inputLabel}>
                       Please explain how the award will help the recipient get
                       off or stay off the street. If the award is part of some
                       larger plan to assist the individual, please explain the
                       part the award will play.
-                    </p>
+                    </label>
                     <textarea
                       id="Beneficiary's Story"
                       rows="4"
@@ -1539,12 +1552,12 @@ const GrantApplication = () => {
             <form className={classes.formLayout} onSubmit={submitForm}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>9. Grant Amount</h2>
-                <p>
+                <label className={classes.inputLabel}>
                   Please indicate the grant amount being applied for and where
                   possible provide quotes. The maximum amount is £750 per grant
                   and £2k per person over their lifetime. Only one grant will be
                   awarded per person in a 6 month period.
-                </p>
+                </label>
               </div>
 
               <div className={classes.formContent}>
@@ -1554,7 +1567,9 @@ const GrantApplication = () => {
                     <div className={classes.moneyInputContainer}>
                       <p className={classes.currencySymbol}>£</p>
                       <input
-                        type="text"
+                        type="number"
+                        min="1.00"
+                        max="750.00"
                         value={grantAmountTotal}
                         onChange={(e) => setGrantAmountTotal(e.target.value)}
                         placeholder="750 (maximum per grant)"
@@ -1567,10 +1582,10 @@ const GrantApplication = () => {
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Cost Breakdown *</h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Please provide the cost estimate for each item including
                       in your application. Up to 5 items are permitted.
-                    </p>
+                    </label>
                   </div>
 
                   <div className={classes.relatedInputBlock}>
@@ -1578,7 +1593,9 @@ const GrantApplication = () => {
                       <div className={classes.moneyInputContainer}>
                         <p className={classes.currencySymbol}>£</p>
                         <input
-                          type="text"
+                          type="number"
+                          min="1.00"
+                          max="750.00"
                           value={grantItemCost1}
                           onChange={(e) => setGrantItemCost1(e.target.value)}
                           placeholder="Cost"
@@ -1603,7 +1620,9 @@ const GrantApplication = () => {
                       <div className={classes.moneyInputContainer}>
                         <p className={classes.currencySymbol}>£</p>
                         <input
-                          type="text"
+                          type="number"
+                          min="1.00"
+                          max="750.00"
                           value={grantItemCost2}
                           onChange={(e) => setGrantItemCost2(e.target.value)}
                           placeholder="Cost"
@@ -1628,7 +1647,9 @@ const GrantApplication = () => {
                       <div className={classes.moneyInputContainer}>
                         <p className={classes.currencySymbol}>£</p>
                         <input
-                          type="text"
+                          type="number"
+                          min="1.00"
+                          max="750.00"
                           value={grantItemCost3}
                           onChange={(e) => setGrantItemCost3(e.target.value)}
                           placeholder="Cost"
@@ -1653,7 +1674,9 @@ const GrantApplication = () => {
                       <div className={classes.moneyInputContainer}>
                         <p className={classes.currencySymbol}>£</p>
                         <input
-                          type="text"
+                          type="number"
+                          min="1.00"
+                          max="750.00"
                           value={grantItemCost4}
                           onChange={(e) => setGrantItemCost4(e.target.value)}
                           placeholder="Cost"
@@ -1678,7 +1701,9 @@ const GrantApplication = () => {
                       <div className={classes.moneyInputContainer}>
                         <p className={classes.currencySymbol}>£</p>
                         <input
-                          type="text"
+                          type="number"
+                          min="1.00"
+                          max="750.00"
                           value={grantItemCost5}
                           onChange={(e) => setGrantItemCost5(e.target.value)}
                           placeholder="Cost"
@@ -1704,11 +1729,11 @@ const GrantApplication = () => {
                     Quotes File for Large Items
                   </h3>
                   <div className={classes.inputBlock}>
-                    <p>
+                    <label className={classes.inputLabel}>
                       Please provide quotes for higher cost items, above £xxx
                       attaching copies where possible. Up to 5 quotes can be
                       provided.
-                    </p>
+                    </label>
                     <input
                       type="text"
                       value={grantQuoteLink}
@@ -1725,12 +1750,12 @@ const GrantApplication = () => {
                   </h3>
 
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
+                    <label className={classes.inputLabel} htmlFor="subbmission_date">
                       Submission Date *
                     </label>
                     <input
                       type="date"
-                      id="11_submission_date"
+                      id="subbmission_date"
                       value={submissionDate}
                       onChange={(e) => setSubmissionDate(e.target.value)}
                       required
@@ -1745,6 +1770,8 @@ const GrantApplication = () => {
                         className={classes.checkbox}
                         type="checkbox"
                         id="grant_confirmation"
+                        check={confirmApplication}
+                        onChange={() => setConfirmApplication(!confirmApplication)}
                         required
                       />
                       <label htmlFor="grant_confirmation">

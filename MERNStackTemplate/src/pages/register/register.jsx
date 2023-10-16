@@ -245,7 +245,7 @@ const Register = () => {
                     placeholder="Eg. JohnDoe@email.com"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                     required
                   />
                 </div>
@@ -378,7 +378,7 @@ const Register = () => {
                         placeholder="Eg. JohnDoe@email.com"
                         value={orgEmail}
                         onChange={(e) => setOrgEmail(e.target.value)}
-                        pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                         required
                       />
                     </div>
@@ -386,7 +386,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="tel"
+                        type="number"
                         placeholder="Eg. 07654 321 234"
                         value={orgPhone}
                         onChange={(e) => setOrgPhone(e.target.value)}
@@ -467,22 +467,6 @@ const Register = () => {
                       />
                     </div>
                   )}
-
-                  {/* {orgType === "Other" && (
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>
-                        Company Verification Details *
-                      </label>
-                      <input
-                        type="text"
-                        value={orgExtraVerifyNumber}
-                        onChange={(e) =>
-                          setOrgExtraVerifyNumber(e.target.value)
-                        }
-                        required
-                      />
-                    </div>
-                  )} */}
                 </div>
                 {buttons}
               </div>
@@ -557,7 +541,7 @@ const Register = () => {
                         placeholder="Eg. JohnDoe@email.com"
                         value={contact1Email}
                         onChange={(e) => setContact1Email(e.target.value)}
-                        pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                         required
                       />
                     </div>
@@ -565,7 +549,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="tel"
+                        type="number"
                         placeholder="Eg. 07654 321 234"
                         value={contact1Phone}
                         onChange={(e) => setContact1Phone(e.target.value)}
@@ -650,7 +634,7 @@ const Register = () => {
                         placeholder="Eg. JohnDoe@email.com"
                         value={contact2Email}
                         onChange={(e) => setContact2Email(e.target.value)}
-                        pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                         required
                       />
                     </div>
@@ -658,7 +642,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="tel"
+                        type="number"
                         placeholder="Eg. 07654 321 234"
                         value={contact2Phone}
                         onChange={(e) => setContact2Phone(e.target.value)}
@@ -743,7 +727,7 @@ const Register = () => {
                         placeholder="Eg. JohnDoe@email.com"
                         value={contact3Email}
                         onChange={(e) => setContact3Email(e.target.value)}
-                        pattern="^((([!#$%&'+-/=?^_`{|}~\w])|([!#$%&'+-/=?^`{|}~\w][!#$%&'*+-/=?^{|}~\.\w]{0,}[!#$%&'*+\-/=?^_{|}~\w]))[@]\w+([-.]\w+).\w+([-.]\w+))$"
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                         required
                       />
                     </div>
@@ -751,7 +735,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="tel"
+                        type="number"
                         placeholder="Eg. 07654 321 234"
                         value={contact3Phone}
                         onChange={(e) => setContact3Phone(e.target.value)}
@@ -792,7 +776,7 @@ const Register = () => {
                   <div className={classes.relatedInputBlock}>
                     <div className={classes.inputBlock}>
                       <h2 className={classes.subTitle}>
-                        Stay up-to-date and receive emails?
+                        Stay up-to-date & receive emails?
                       </h2>
                       <div className={classes.radioGroup}>
                         <div>
@@ -800,6 +784,7 @@ const Register = () => {
                             type="radio"
                             id="yes_comms"
                             name="comms"
+                            checked={commsPref}
                             onChange={(e) => setCommsPref(true)}
                           />
                           <label htmlFor="yes_comms">Yes</label>
@@ -809,6 +794,7 @@ const Register = () => {
                             type="radio"
                             id="no_comms"
                             name="comms"
+                            checked={!commsPref}
                             onChange={(e) => setCommsPref(false)}
                           />
                           <label htmlFor="no_comms">No</label>
@@ -823,6 +809,7 @@ const Register = () => {
                             type="radio"
                             id="yes_newsletter"
                             name="newsletter"
+                            checked={newsletterPref}
                             onChange={(e) => setNewsletterPref(true)}
                           />
                           <label htmlFor="yes_newsletter">Yes</label>
@@ -832,6 +819,7 @@ const Register = () => {
                             type="radio"
                             id="no_newsletter"
                             name="newsletter"
+                            checked={!newsletterPref}
                             onChange={(e) => setNewsletterPref(false)}
                           />
                           <label htmlFor="no_newsletter">No</label>
@@ -847,6 +835,7 @@ const Register = () => {
                             type="radio"
                             id="yes_bulletin"
                             name="bulletin"
+                            checked={bulletinPref}
                             onChange={(e) => setBulletinPref(true)}
                           />
                           <label htmlFor="yes_bulletin">Yes</label>
@@ -856,6 +845,7 @@ const Register = () => {
                             type="radio"
                             id="no_bulletin"
                             name="bulletin"
+                            checked={!bulletinPref}
                             onChange={(e) => setBulletinPref(false)}
                           />
                           <label htmlFor="no_bulletin">No</label>
@@ -880,6 +870,7 @@ const Register = () => {
                           type="radio"
                           id="yes_share"
                           name="share"
+                          checked={dataPref}
                           onChange={(e) => setDataPref(true)}
                         />
                         <label htmlFor="yes_share">Yes</label>
@@ -889,6 +880,7 @@ const Register = () => {
                           type="radio"
                           id="no_share"
                           name="share"
+                          checked={!dataPref}
                           onChange={(e) => setDataPref(false)}
                         />
                         <label htmlFor="no_share">No</label>
@@ -906,6 +898,7 @@ const Register = () => {
                       className={classes.checkbox}
                       type="checkbox"
                       id="ts&cs"
+                      checked={tsAndCs}
                       onChange={(e) => setTsAndCs(!tsAndCs)}
                       required
                     />
