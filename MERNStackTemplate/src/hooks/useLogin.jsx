@@ -12,7 +12,7 @@ export const useLogin = () => {
     setIsLoadingLogin(true);
     setErrorLogin(null);
 
-    const response = await fetch("https://nottinghamstreetaid.onrender.com/api/login", {
+    const response = await fetch("https://notts-street-aid-backend.vercel.app/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

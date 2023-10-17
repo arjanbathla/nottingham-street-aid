@@ -16,7 +16,7 @@ const organisation = () => {
 
   useEffect(() => {
     const fetchGrants = async () => {
-      const response = await fetch("https://nottinghamstreetaid.onrender.com/api/organisation", {
+      const response = await fetch("https://notts-street-aid-backend.vercel.app/api/organisation", {
         headers: {
           "Authorization": `Bearer ${user.token}`,
         },

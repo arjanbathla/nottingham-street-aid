@@ -50,7 +50,7 @@ export const useSignup = () => {
     setIsLoadingSignup(true);
     setErrorSignup(null);
 
-    const response = await fetch("https://nottinghamstreetaid.onrender.com/api/signup", {
+    const response = await fetch("https://notts-street-aid-backend.vercel.app/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

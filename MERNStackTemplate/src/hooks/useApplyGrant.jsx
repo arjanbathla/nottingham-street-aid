@@ -80,7 +80,7 @@ export const applyGrant = () => {
     }
 
     const response = await fetch(
-      "https://nottinghamstreetaid.onrender.com/api/organisation/create",
+      "https://notts-street-aid-backend.vercel.app/api/organisation/create",
       {
         method: "POST",
         headers: {

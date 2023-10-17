@@ -453,7 +453,7 @@ const Register = () => {
                         Charity Number *
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         value={orgCharityNumber}
                         onChange={(e) => setOrgCharityNumber(e.target.value)}
                         placeholder="Eg. AA 11111"
@@ -469,7 +469,7 @@ const Register = () => {
                         CRN Companies House Number *
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         value={orgHouseNumber}
                         onChange={(e) => setOrgHouseNumber(e.target.value)}
                         placeholder="Eg. GB-C0H 12345678"
