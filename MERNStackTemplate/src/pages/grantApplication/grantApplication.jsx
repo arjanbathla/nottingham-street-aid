@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import classes from "./grantApplication.module.css";
 
 import { applyGrant } from "../../hooks/useApplyGrant";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
+
+import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
+import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
 const GrantApplication = () => {
   const { apply, isLoadingGrant, errorGrant } = applyGrant();
@@ -16,7 +19,7 @@ const GrantApplication = () => {
       event.returnValue = "";
       return "";
     };
-  
+
     window.addEventListener("beforeunload", unloadCallback);
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
@@ -97,8 +100,8 @@ const GrantApplication = () => {
   const [grantQuoteLink, setGrantQuoteLink] = useState("");
 
   const [submissionDate, setSubmissionDate] = useState("");
-  const [confirmApplication, setConfirmApplication] = useState(false)
-  
+  const [confirmApplication, setConfirmApplication] = useState(false);
+
   const [otherBenTitle, setOtherBenTitle] = useState("");
   const [otherAltTitle, setOtherAltTitle] = useState("");
   const [otherAltRole, setOtherAltRole] = useState("");
@@ -308,17 +311,31 @@ const GrantApplication = () => {
     return sectionButtons;
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const submitForm = async (e) => {
     e.preventDefault();
-    if (otherBenTitle) { setBenTitle(otherBenTitle); }
-    if (otherAltTitle) { setAltTitle(otherAltTitle); }
-    if (otherAltRole) { setAltRole(otherAltRole); }
-    if (otherBenGen) { setBenGen(otherBenGen); }
-    if (otherBenSex) { setBenSex(otherBenSex); }
-    if (otherCurrentAccom) { setBenTitle(otherCurrentAccom); }
-    if (otherBenGrantReason) { setBenGrantReason(otherBenGrantReason); }
+    if (otherBenTitle) {
+      setBenTitle(otherBenTitle);
+    }
+    if (otherAltTitle) {
+      setAltTitle(otherAltTitle);
+    }
+    if (otherAltRole) {
+      setAltRole(otherAltRole);
+    }
+    if (otherBenGen) {
+      setBenGen(otherBenGen);
+    }
+    if (otherBenSex) {
+      setBenSex(otherBenSex);
+    }
+    if (otherCurrentAccom) {
+      setBenTitle(otherCurrentAccom);
+    }
+    if (otherBenGrantReason) {
+      setBenGrantReason(otherBenGrantReason);
+    }
     await apply(
       benTitle,
       benFirstName,
@@ -379,11 +396,11 @@ const GrantApplication = () => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      submissionDate,
+      submissionDate
     );
     setCurrentSection(1);
     if (!errorGrant) {
-      navigate("/Organisation")
+      navigate("/Organisation");
     }
   };
 
@@ -454,27 +471,16 @@ const GrantApplication = () => {
                       <li>
                         For further details on the grant application process,
                         please refer to the{" "}
-                        <a href="[INSERT LINK FOR APPLICATION GUIDELINES]">
+                        <a
+                          href="[INSERT LINK FOR APPLICATION GUIDELINES]"
+                          target="_blank"
+                        >
                           Nottingham Street Aid Application Guidelines
                         </a>
                       </li>
                       <li>
-                        This form should be completed by referral organizations
+                        This form should be completed by referral organisations
                         registered with Nottingham Street Aid.
-                      </li>
-                      <li>
-                        If your organization is not registered, please complete
-                        the registration form first.
-                      </li>
-                      <li>
-                        This is available through{" "}
-                        <a href="mailtoenquiries.nottingham@streetsupport.net">
-                          enquiries.nottingham@streetsupport.net
-                        </a>{" "}
-                        or visiting{" "}
-                        <a href="https//streetsupport.net/nottingham/">
-                          Nottingham StreetSupport.net
-                        </a>
                       </li>
                     </ul>
                   </div>
@@ -603,8 +609,7 @@ const GrantApplication = () => {
                         required
                       />
                       <label htmlFor="from_nottinghamshire">
-                        I confirm the beneficiary is living in Nottinghamshire
-                        *
+                        I confirm the beneficiary is living in Nottinghamshire *
                       </label>
                     </div>
                   </div>
@@ -680,18 +685,13 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Town *</label>
-                      <select
+                      <input
+                        type="text"
                         value={benTown}
                         onChange={(e) => setBenTown(e.target.value)}
+                        placeholder="Eg. Town Name"
                         required
-                      >
-                        <option value="">Select Town</option>
-                        {towns.map((town, index) => (
-                          <option key={index} value={town}>
-                            {town}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
                   </div>
                 )}
@@ -903,10 +903,9 @@ const GrantApplication = () => {
                       accepted *
                     </label>
                     <input
-                      type="text"
+                      type="file"
                       value={sharedSignedLink}
                       onChange={(e) => setSharedSignedLink(e.target.value)}
-                      placeholder="Paste link here"
                       required
                     />
                   </div>
@@ -1004,12 +1003,6 @@ const GrantApplication = () => {
                     GDPR Settings & Data Sharing *
                   </h3>
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
-                      Nottingham Street Aid will hold personal information about
-                      the beneficiary in line with the Data Sharing Agreement
-                      and Privacy Statement [INSERT LINK GDPR LINK AND PRIVACY
-                      STATEMENT]
-                    </label>
                     <div className={classes.radioGroup}>
                       <div>
                         <input
@@ -1032,6 +1025,9 @@ const GrantApplication = () => {
                         <label htmlFor="deny_gdpr">No</label>
                       </div>
                     </div>
+                    <a href={GDPR_PDF} target="_blank">
+                      Click here to read full GDPR Statement.
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1077,7 +1073,9 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel} htmlFor="dob">Date Of Birth</label>
+                      <label className={classes.inputLabel} htmlFor="dob">
+                        Date Of Birth
+                      </label>
                       <input
                         type="date"
                         id="dob"
@@ -1200,7 +1198,12 @@ const GrantApplication = () => {
 
                   {benDisability == "Yes" && (
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel} htmlFor="disability">Disability Description</label>
+                      <label
+                        className={classes.inputLabel}
+                        htmlFor="disability"
+                      >
+                        Disability Description
+                      </label>
                       <textarea
                         id="disability"
                         rows="4"
@@ -1295,7 +1298,10 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel} htmlFor="Dependant Information">
+                      <label
+                        className={classes.inputLabel}
+                        htmlFor="Dependant Information"
+                      >
                         Dependant Information
                       </label>
                       <textarea
@@ -1395,7 +1401,9 @@ const GrantApplication = () => {
 
                   {benHistOfHomelessness == "Yes" && (
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel} htmlFor="History">History *</label>
+                      <label className={classes.inputLabel} htmlFor="History">
+                        History *
+                      </label>
                       <label className={classes.inputLabel}>
                         Please provide details e.g. number of times homeless,
                         time period, accommodation status.
@@ -1452,7 +1460,12 @@ const GrantApplication = () => {
 
                   {benLinktoNottingham === "Yes" && (
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel} htmlFor="Link Details">Link Details *</label>
+                      <label
+                        className={classes.inputLabel}
+                        htmlFor="Link Details"
+                      >
+                        Link Details *
+                      </label>
                       <label className={classes.inputLabel}>
                         Please provide details of the beneficiaries link to
                         Nottingham e.g. grew up here, family, friends, partner
@@ -1489,7 +1502,12 @@ const GrantApplication = () => {
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Grant Reason & Details</h3>
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel} htmlFor="Grant Reason">Grant Reason *</label>
+                    <label
+                      className={classes.inputLabel}
+                      htmlFor="Grant Reason"
+                    >
+                      Grant Reason *
+                    </label>
                     <label className={classes.inputLabel}>
                       A Street Aid grant can be used for or towards anything, as
                       long as it's used to fund whatever an individual needs to
@@ -1520,7 +1538,12 @@ const GrantApplication = () => {
                   </div>
 
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel} htmlFor="Grant Details">Grant Details *</label>
+                    <label
+                      className={classes.inputLabel}
+                      htmlFor="Grant Details"
+                    >
+                      Grant Details *
+                    </label>
                     <label className={classes.inputLabel}>
                       Where necessary please provide further details for grant
                       application reason i.e. what it will fund, if it is part
@@ -1537,7 +1560,12 @@ const GrantApplication = () => {
                   </div>
 
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel} htmlFor="Beneficiary's Story">Beneficiary's Story *</label>
+                    <label
+                      className={classes.inputLabel}
+                      htmlFor="Beneficiary's Story"
+                    >
+                      Beneficiary's Story *
+                    </label>
                     <label className={classes.inputLabel}>
                       Please explain how the award will help the recipient get
                       off or stay off the street. If the award is part of some
@@ -1746,10 +1774,9 @@ const GrantApplication = () => {
                       provided.
                     </label>
                     <input
-                      type="text"
+                      type="file"
                       value={grantQuoteLink}
                       onChange={(e) => setGrantQuoteLink(e.target.value)}
-                      placeholder="Paste the link here"
                       required
                     />
                   </div>
@@ -1761,7 +1788,10 @@ const GrantApplication = () => {
                   </h3>
 
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel} htmlFor="subbmission_date">
+                    <label
+                      className={classes.inputLabel}
+                      htmlFor="subbmission_date"
+                    >
                       Submission Date *
                     </label>
                     <input
@@ -1782,7 +1812,9 @@ const GrantApplication = () => {
                         type="checkbox"
                         id="grant_confirmation"
                         check={confirmApplication}
-                        onChange={() => setConfirmApplication(!confirmApplication)}
+                        onChange={() =>
+                          setConfirmApplication(!confirmApplication)
+                        }
                         required
                       />
                       <label htmlFor="grant_confirmation">

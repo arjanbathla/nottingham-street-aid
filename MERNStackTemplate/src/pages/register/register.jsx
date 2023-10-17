@@ -7,6 +7,9 @@ import { useSignup } from "../../hooks/useSignup";
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
 
+import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf"
+import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf"
+
 const Register = () => {
   const navigate = useNavigate();
   const { signup, isLoadingSignup, errorSignup } = useSignup();
@@ -868,12 +871,6 @@ const Register = () => {
                 <div className={classes.multiInputBlock}>
                   <div className={classes.inputBlock}>
                     <h2 className={classes.subTitle}>Data Sharing</h2>
-                    <a href="mailtoNottingham@streetsupport.net">
-                      Click here to read full terms and conditions.
-                    </a>
-                    <a href="mailtoenquiries.nottingham@streetsupport.net">
-                      enquiries.nottingham@streetsupport.net to revoke consent
-                    </a>
                     <div className={classes.radioGroup}>
                       <div>
                         <input
@@ -896,6 +893,12 @@ const Register = () => {
                         <label htmlFor="no_share">No</label>
                       </div>
                     </div>
+                    <a href={GDPR_PDF} target="_blank">
+                      Click here to read full terms and conditions.
+                    </a>
+                    <a href="mailtoenquiries.nottingham@streetsupport.net">
+                      enquiries.nottingham@streetsupport.net to revoke consent
+                    </a>
                   </div>
                 </div>
 
@@ -914,7 +917,7 @@ const Register = () => {
                     />
                     <label htmlFor="ts&cs">Accept terms and conditions</label>
                   </div>
-                  <a href="mailtoNottingham@streetsupport.net">
+                  <a href={PN_PDF} target="_blank">
                     Click here to read full terms and conditions.
                   </a>
                 </div>
