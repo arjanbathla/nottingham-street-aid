@@ -57,7 +57,7 @@ const login = () => {
                   placeholder="Eg. Password123#"
                   value={pass}
                   onChange={(e) => setPass(e.target.value)}
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                  // pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
                   required
                 />
                 <Button clicked={handleClickShowPassword}>

@@ -22,7 +22,7 @@ const home = () => {
                       Street Aid in order to apply for grants to help their
                       beneficiaries
                     </p>
-                    <Navlink>
+                    <Navlink to="/Register">
                       <Button>Register Today</Button>
                     </Navlink>
                   </div>
@@ -32,7 +32,7 @@ const home = () => {
                       £750 to support individuals to move away from life on the
                       streets
                     </p>
-                    <Navlink>
+                    <Navlink to="/Login">
                       <Button>Apply For A Grant</Button>
                     </Navlink>
                   </div>

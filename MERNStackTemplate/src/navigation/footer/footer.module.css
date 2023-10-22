@@ -10,7 +10,7 @@
 
 .links{
     display: flex;
-    flex-flow: column;
+    flex-flow: row wrap;
     gap: var(--padding-1);
     padding: var(--padding-1);
     list-style: none;

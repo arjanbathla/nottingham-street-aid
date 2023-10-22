@@ -243,7 +243,7 @@ textarea {
 
 .progressButton:hover {
     color: var(--light);
-    background-color: #009B77;
+    background-color: var(--accent);
 }
 
 .fillButton {
@@ -251,6 +251,6 @@ textarea {
     cursor: pointer;
     width: 100%;
     color: var(--light);
-    background-color: #009B77;
+    background-color: var(--accent);
     transition: background-color 0.5s ease-in-out;
 }

@@ -7,8 +7,8 @@ import { useSignup } from "../../hooks/useSignup";
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
 
-import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf"
-import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf"
+import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
+import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Register = () => {
       event.returnValue = "";
       return "";
     };
-  
+
     window.addEventListener("beforeunload", unloadCallback);
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
@@ -52,6 +52,9 @@ const Register = () => {
   const [contact1Email, setContact1Email] = useState("");
   const [contact1Phone, setContact1Phone] = useState("");
 
+  const [financeContact, setFinanceContact] = useState(false);
+  const [secondContact, setSecondContact] = useState(false);
+
   const [contact2Title, setContact2Title] = useState("");
   const [contact2Fname, setContact2Fname] = useState("");
   const [contact2Lname, setContact2Lname] = useState("");
@@ -71,12 +74,12 @@ const Register = () => {
   const [newsletterPref, setNewsletterPref] = useState(false);
   const [bulletinPref, setBulletinPref] = useState(false);
   const [tsAndCs, setTsAndCs] = useState(false);
-  
+
   const [otherOrgType, setOtherOrgType] = useState("");
   const [otherContact1Title, setOtherContact1Title] = useState("");
   const [otherContact2Title, setOtherContact2Title] = useState("");
   const [otherContact3Title, setOtherContact3Title] = useState("");
-  
+
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
     fetch("/organisations.csv")
@@ -167,10 +170,18 @@ const Register = () => {
 
   const submitRegistration = async (e) => {
     e.preventDefault();
-    if (otherOrgType) {setOrgType(otherOrgType);}
-    if (otherContact1Title) {setContact1Title(otherContact1Title);}
-    if (otherContact2Title) {setContact2Title(otherContact2Title);}
-    if (otherContact3Title) {setContact3Title(otherContact3Title);}
+    if (otherOrgType) {
+      setOrgType(otherOrgType);
+    }
+    if (otherContact1Title) {
+      setContact1Title(otherContact1Title);
+    }
+    if (otherContact2Title) {
+      setContact2Title(otherContact2Title);
+    }
+    if (otherContact3Title) {
+      setContact3Title(otherContact3Title);
+    }
     await signup(
       username,
       password,
@@ -271,7 +282,7 @@ const Register = () => {
                       placeholder="Eg. Password123#"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                      pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
                       required
                     />
                     <Button clicked={handleClickShowPassword}>
@@ -290,9 +301,10 @@ const Register = () => {
                 <div className={classes.buttonBlock}>
                   <Button type="submit">Continue Registration</Button>
                 </div>
-                
-                {errorSignup && <p className={classes.errorMessage}>{errorSignup}</p>}
 
+                {errorSignup && (
+                  <p className={classes.errorMessage}>{errorSignup}</p>
+                )}
               </div>
             </form>
           )}
@@ -459,7 +471,8 @@ const Register = () => {
                         type="text"
                         value={orgCharityNumber}
                         onChange={(e) => setOrgCharityNumber(e.target.value)}
-                        placeholder="Eg. AA 11111"
+                        placeholder="Eg. AB12345"
+                        pattern="^[A-Z]{2}\d{5}$"
                         required
                       />
                     </div>
@@ -472,12 +485,16 @@ const Register = () => {
                         CRN Companies House Number *
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         value={orgHouseNumber}
                         onChange={(e) => setOrgHouseNumber(e.target.value)}
-                        placeholder="Eg. GB-C0H 12345678"
+                        placeholder="Eg. 12345678"
+                        max={99999999}
                         required
                       />
+                      <label className={classes.passwordLabel}>
+                        Last 8 Digits Only
+                      </label>
                     </div>
                   )}
                 </div>
@@ -587,190 +604,236 @@ const Register = () => {
                 </div>
 
                 <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>2nd Point Of Contact</h3>
-                  <div className={classes.relatedInputBlock}>
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Title *</label>
-                      <select
-                        value={contact2Title}
-                        onChange={(e) => setContact2Title(e.target.value)}
-                        required
-                      >
-                        <option value="">Select Title</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Ms">Ms</option>
-                        <option value="Other">Other</option>
-                      </select>
-                      {contact2Title === "Other" && (
-                        <input
-                          type="text"
-                          value={otherContact2Title}
-                          onChange={(e) =>
-                            setOtherContact2Title(e.target.value)
-                          }
-                          placeholder="Other Title"
-                          required
-                        />
-                      )}
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>First Name *</label>
-                      <input
-                        type="text"
-                        placeholder="Eg. John"
-                        value={contact2Fname}
-                        onChange={(e) => setContact2Fname(e.target.value)}
-                        required
-                      />
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Last Name *</label>
-                      <input
-                        type="text"
-                        placeholder="Eg. Doe"
-                        value={contact2Lname}
-                        onChange={(e) => setContact2Lname(e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className={classes.relatedInputBlock}>
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Email *</label>
-                      <input
-                        type="email"
-                        placeholder="Eg. JohnDoe@email.com"
-                        value={contact2Email}
-                        onChange={(e) => setContact2Email(e.target.value)}
-                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                        required
-                      />
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Telephone *</label>
-                      <input
-                        type="number"
-                        placeholder="Eg. 07654 321 234"
-                        value={contact2Phone}
-                        onChange={(e) => setContact2Phone(e.target.value)}
-                        pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
-                      Role In Organisation *
-                    </label>
+                  <div className={classes.checkboxGroup}>
                     <input
-                      type="text"
-                      placeholder="Eg. Management"
-                      value={contact2Role}
-                      onChange={(e) => setContact2Role(e.target.value)}
-                      required
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="secondContact"
+                      checked={secondContact}
+                      onChange={(e) => setSecondContact(!secondContact)}
                     />
+                    <label htmlFor="secondContact">
+                      {secondContact ? "Remove" : "Add"} Second Point Of Contact
+                    </label>
                   </div>
                 </div>
+
+                {secondContact && (
+                  <div className={classes.multiInputBlock}>
+                    <h3 className={classes.subTitle}>2nd Point Of Contact</h3>
+                    <div className={classes.relatedInputBlock}>
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Title *</label>
+                        <select
+                          value={contact2Title}
+                          onChange={(e) => setContact2Title(e.target.value)}
+                          required
+                        >
+                          <option value="">Select Title</option>
+                          <option value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                          <option value="Ms">Ms</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        {contact2Title === "Other" && (
+                          <input
+                            type="text"
+                            value={otherContact2Title}
+                            onChange={(e) =>
+                              setOtherContact2Title(e.target.value)
+                            }
+                            placeholder="Other Title"
+                            required
+                          />
+                        )}
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>
+                          First Name *
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Eg. John"
+                          value={contact2Fname}
+                          onChange={(e) => setContact2Fname(e.target.value)}
+                          required
+                        />
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>
+                          Last Name *
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Eg. Doe"
+                          value={contact2Lname}
+                          onChange={(e) => setContact2Lname(e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className={classes.relatedInputBlock}>
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Email *</label>
+                        <input
+                          type="email"
+                          placeholder="Eg. JohnDoe@email.com"
+                          value={contact2Email}
+                          onChange={(e) => setContact2Email(e.target.value)}
+                          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                          required
+                        />
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>
+                          Telephone *
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="Eg. 07654 321 234"
+                          value={contact2Phone}
+                          onChange={(e) => setContact2Phone(e.target.value)}
+                          pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className={classes.inputBlock}>
+                      <label className={classes.inputLabel}>
+                        Role In Organisation *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Eg. Management"
+                        value={contact2Role}
+                        onChange={(e) => setContact2Role(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>Finance Contact</h3>
-                  <div className={classes.relatedInputBlock}>
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Title *</label>
-                      <select
-                        value={contact3Title}
-                        onChange={(e) => setContact3Title(e.target.value)}
-                        required
-                      >
-                        <option value="">Select Title</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Ms">Ms</option>
-                        <option value="Other">Other</option>
-                      </select>
-                      {contact3Title === "Other" && (
-                        <input
-                          type="text"
-                          value={otherContact3Title}
-                          onChange={(e) =>
-                            setOtherContact3Title(e.target.value)
-                          }
-                          placeholder="Other Title"
-                          required
-                        />
-                      )}
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>First Name *</label>
-                      <input
-                        type="text"
-                        placeholder="Eg. John"
-                        value={contact3Fname}
-                        onChange={(e) => setContact3Fname(e.target.value)}
-                        required
-                      />
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Last Name *</label>
-                      <input
-                        type="text"
-                        placeholder="Eg. Doe"
-                        value={contact3Lname}
-                        onChange={(e) => setContact3Lname(e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className={classes.relatedInputBlock}>
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Email *</label>
-                      <input
-                        type="email"
-                        placeholder="Eg. JohnDoe@email.com"
-                        value={contact3Email}
-                        onChange={(e) => setContact3Email(e.target.value)}
-                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                        required
-                      />
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Telephone *</label>
-                      <input
-                        type="number"
-                        placeholder="Eg. 07654 321 234"
-                        value={contact3Phone}
-                        onChange={(e) => setContact3Phone(e.target.value)}
-                        pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
-                      Role In Organisation *
-                    </label>
+                  <div className={classes.checkboxGroup}>
                     <input
-                      type="text"
-                      placeholder="Eg. Finance manager"
-                      value={contact3Role}
-                      onChange={(e) => setContact3Role(e.target.value)}
-                      required
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="financeContact"
+                      checked={financeContact}
+                      onChange={(e) => setFinanceContact(!financeContact)}
                     />
+                    <label htmlFor="financeContact">
+                      {secondContact ? "Remove" : "Add"} Finance Contact
+                    </label>
                   </div>
                 </div>
+
+                {financeContact && (
+                  <div className={classes.multiInputBlock}>
+                    <h3 className={classes.subTitle}>Finance Contact</h3>
+                    <div className={classes.relatedInputBlock}>
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Title *</label>
+                        <select
+                          value={contact3Title}
+                          onChange={(e) => setContact3Title(e.target.value)}
+                          required
+                        >
+                          <option value="">Select Title</option>
+                          <option value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                          <option value="Ms">Ms</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        {contact3Title === "Other" && (
+                          <input
+                            type="text"
+                            value={otherContact3Title}
+                            onChange={(e) =>
+                              setOtherContact3Title(e.target.value)
+                            }
+                            placeholder="Other Title"
+                            required
+                          />
+                        )}
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>
+                          First Name *
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Eg. John"
+                          value={contact3Fname}
+                          onChange={(e) => setContact3Fname(e.target.value)}
+                          required
+                        />
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>
+                          Last Name *
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Eg. Doe"
+                          value={contact3Lname}
+                          onChange={(e) => setContact3Lname(e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className={classes.relatedInputBlock}>
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Email *</label>
+                        <input
+                          type="email"
+                          placeholder="Eg. JohnDoe@email.com"
+                          value={contact3Email}
+                          onChange={(e) => setContact3Email(e.target.value)}
+                          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                          required
+                        />
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>
+                          Telephone *
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="Eg. 07654 321 234"
+                          value={contact3Phone}
+                          onChange={(e) => setContact3Phone(e.target.value)}
+                          pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className={classes.inputBlock}>
+                      <label className={classes.inputLabel}>
+                        Role In Organisation *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Eg. Finance manager"
+                        value={contact3Role}
+                        onChange={(e) => setContact3Role(e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
                 {buttons}
               </div>
             </form>

@@ -50,7 +50,7 @@ const GrantApplication = () => {
   const [altCounty, setAltCounty] = useState("");
   const [altPostcode, setAltPostcode] = useState("");
 
-  const [sharedSignedLink, setSharedSignedLink] = useState("");
+  const [sharedSignedLink, setSharedSignedLink] = useState();
   const [benConsent, setBenConsent] = useState(false);
 
   const [prefContactMethod, setPrefContactMethod] = useState("");
@@ -242,6 +242,7 @@ const GrantApplication = () => {
 
   const totalSections = 9;
   const [currentSection, setCurrentSection] = useState(1);
+  const [latestSection, setLatestSection] = useState();
 
   const handleContinue = () => {
     if (currentSection < totalSections) {
@@ -285,9 +286,13 @@ const GrantApplication = () => {
 
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
-    setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
-    //eg. input on page 2 disappears only if go back to 1 not 3
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setLatestSection(currentSection)
+    // setLatestSection(section)
+    if(latestSection >= section){
+      setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
+      //eg. input on page 2 disappears only if go back to 1 not 3
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   // Create section buttons for the progress bar
@@ -902,12 +907,17 @@ const GrantApplication = () => {
                       declaration. Handwritten, printed, video or audio files
                       accepted *
                     </label>
-                    <input
-                      type="file"
-                      value={sharedSignedLink}
-                      onChange={(e) => setSharedSignedLink(e.target.value)}
-                      required
-                    />
+                    <div className={classes.relatedInputBlock}>
+                      <input
+                        type="file"
+                        value={sharedSignedLink}
+                        onChange={(e) => setSharedSignedLink(e.target.value)}
+                        required
+                      />
+                      <label className={classes.inputLabel}>
+                        {sharedSignedLink}
+                      </label>
+                    </div>
                   </div>
                 </div>
 
@@ -921,6 +931,7 @@ const GrantApplication = () => {
                         id="beneficiary_consent"
                         checked={benConsent}
                         onChange={() => setBenConsent(!benConsent)}
+                        required
                       />
                       <label htmlFor="beneficiary_consent">
                         I hereby confirm that the beneficiary is aware of and
@@ -1081,6 +1092,7 @@ const GrantApplication = () => {
                         id="dob"
                         value={benDob}
                         onChange={(e) => setBenDob(e.target.value)}
+                        max="2005-01-01"
                         required
                       />
                     </div>
@@ -1297,7 +1309,7 @@ const GrantApplication = () => {
                       />
                     </div>
 
-                    <div className={classes.inputBlock}>
+                    {/* <div className={classes.inputBlock}>
                       <label
                         className={classes.inputLabel}
                         htmlFor="Dependant Information"
@@ -1314,7 +1326,7 @@ const GrantApplication = () => {
                         placeholder="Eg. Brief Description"
                         required
                       ></textarea>
-                    </div>
+                    </div> */}
                   </div>
                 )}
               </div>
@@ -1514,6 +1526,9 @@ const GrantApplication = () => {
                       help prevent them or gets them off, and stay off, the
                       streets.
                     </label>
+                    <label className={classes.inputLabel}>
+                      Select "Other" and Describe If Multiple Reasons
+                    </label>
                     <select
                       value={benGrantReason}
                       onChange={(e) => setBenGrantReason(e.target.value)}
@@ -1531,7 +1546,7 @@ const GrantApplication = () => {
                         type="text"
                         value={otherBenGrantReason}
                         onChange={(e) => setOtherBenGrantReason(e.target.value)}
-                        placeholder="Other Reason"
+                        placeholder="Other Reason(s)"
                         required
                       />
                     )}
@@ -1665,7 +1680,6 @@ const GrantApplication = () => {
                           value={grantItemCost2}
                           onChange={(e) => setGrantItemCost2(e.target.value)}
                           placeholder="Cost"
-                          required
                         />
                       </div>
                     </div>
@@ -1676,7 +1690,6 @@ const GrantApplication = () => {
                         value={grantItemDetails2}
                         onChange={(e) => setGrantItemDetails2(e.target.value)}
                         placeholder="Item Description"
-                        required
                       />
                     </div>
                   </div>
@@ -1692,7 +1705,6 @@ const GrantApplication = () => {
                           value={grantItemCost3}
                           onChange={(e) => setGrantItemCost3(e.target.value)}
                           placeholder="Cost"
-                          required
                         />
                       </div>
                     </div>
@@ -1703,7 +1715,6 @@ const GrantApplication = () => {
                         value={grantItemDetails3}
                         onChange={(e) => setGrantItemDetails3(e.target.value)}
                         placeholder="Item Description"
-                        required
                       />
                     </div>
                   </div>
@@ -1719,7 +1730,6 @@ const GrantApplication = () => {
                           value={grantItemCost4}
                           onChange={(e) => setGrantItemCost4(e.target.value)}
                           placeholder="Cost"
-                          required
                         />
                       </div>
                     </div>
@@ -1730,7 +1740,6 @@ const GrantApplication = () => {
                         value={grantItemDetails4}
                         onChange={(e) => setGrantItemDetails4(e.target.value)}
                         placeholder="Item Description"
-                        required
                       />
                     </div>
                   </div>
@@ -1746,7 +1755,6 @@ const GrantApplication = () => {
                           value={grantItemCost5}
                           onChange={(e) => setGrantItemCost5(e.target.value)}
                           placeholder="Cost"
-                          required
                         />
                       </div>
                     </div>
@@ -1757,7 +1765,6 @@ const GrantApplication = () => {
                         value={grantItemDetails5}
                         onChange={(e) => setGrantItemDetails5(e.target.value)}
                         placeholder="Item Description"
-                        required
                       />
                     </div>
                   </div>
@@ -1777,29 +1784,6 @@ const GrantApplication = () => {
                       type="file"
                       value={grantQuoteLink}
                       onChange={(e) => setGrantQuoteLink(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    Confirm Grant Application Submission
-                  </h3>
-
-                  <div className={classes.inputBlock}>
-                    <label
-                      className={classes.inputLabel}
-                      htmlFor="subbmission_date"
-                    >
-                      Submission Date *
-                    </label>
-                    <input
-                      type="date"
-                      id="subbmission_date"
-                      value={submissionDate}
-                      onChange={(e) => setSubmissionDate(e.target.value)}
-                      required
                     />
                   </div>
                 </div>
@@ -1811,7 +1795,7 @@ const GrantApplication = () => {
                         className={classes.checkbox}
                         type="checkbox"
                         id="grant_confirmation"
-                        check={confirmApplication}
+                        checked={confirmApplication}
                         onChange={() =>
                           setConfirmApplication(!confirmApplication)
                         }

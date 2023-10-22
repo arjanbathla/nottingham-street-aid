@@ -25,7 +25,7 @@ const EmailForm = () => {
             <form ref={form} className={classes.form}>
                 <input className={classes.input} type='text' name='fullname' placeholder='Full Name *' required/>
                 <input className={classes.input} type='integer' name='phone' placeholder='Phone Number *' pattern="[0-9]{11}" required/>
-                <input className={classes.input} type='text' name='email' placeholder='Email *' pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" required/>
+                <input className={classes.input} type='text' name='email' placeholder='Email *' pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required/>
                 <select className={classes.input} name='subject' required>
                     <option className={classes.option} value="Select_A_Subject" default hidden>Select A Subject *</option>
                     <option className={classes.option} value="Learn More">Learn More</option>
@@ -33,10 +33,10 @@ const EmailForm = () => {
                     <option className={classes.option} value="Other">Other</option>
                 </select>
                 <textarea className={classes.input} style={{minHeight:'20vh'}} type='text' name='message' placeholder='Message *' required/>
-                <div className={classes.checkboxBlock}>
+                {/* <div className={classes.checkboxBlock}>
                     <input type="checkbox" id="Policy_Check" name="Policy_Check" className={classes.checkbox} required/>
                     <label for="Policy_Check">Share Form Information With Our Admin Team.</label>
-                </div>
+                </div> */}
                 <button className={classes.button} value="Send">Submit Form</button>
             </form>
         </div>
