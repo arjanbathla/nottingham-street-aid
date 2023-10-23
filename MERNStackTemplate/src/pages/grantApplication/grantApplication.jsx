@@ -10,6 +10,8 @@ import Button from "../../components/button/button";
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
+import { EighteenLim } from "../../config";
+
 const GrantApplication = () => {
   const { apply, isLoadingGrant, errorGrant } = applyGrant();
 
@@ -286,14 +288,16 @@ const GrantApplication = () => {
 
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
-    setLatestSection(currentSection)
-    // setLatestSection(section)
+    // setLatestSection(currentSection)
+    setLatestSection(section)
     if(latestSection >= section){
       setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
       //eg. input on page 2 disappears only if go back to 1 not 3
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  const titles = ["1. Grant Application", "2. Beneficiary Details", "3. Alternative Contact", "4. Beneficiary Declaration", "5. GDPR SETTINGS & PREFERENCES", "6. Beneficiary's Protected Characteristics", "7. Beneficiary's Current Situation", "8. Reason for Application", "9. Grant Amount"]
 
   // Create section buttons for the progress bar
   const renderSectionButtons = () => {
@@ -309,7 +313,7 @@ const GrantApplication = () => {
               : classes.fillButton
           }
         >
-          {section}
+          {titles[section-1]}
         </button>
       );
     }
@@ -1068,7 +1072,7 @@ const GrantApplication = () => {
                   </h3>
                   <div className={classes.relatedInputBlock}>
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Age Range</label>
+                      <label className={classes.inputLabel}>Age Range *</label>
                       <select
                         value={benAgeRange}
                         onChange={(e) => setBenAgeRange(e.target.value)}
@@ -1085,14 +1089,14 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel} htmlFor="dob">
-                        Date Of Birth
+                        Date Of Birth *
                       </label>
                       <input
                         type="date"
                         id="dob"
                         value={benDob}
                         onChange={(e) => setBenDob(e.target.value)}
-                        max="2005-01-01"
+                        max={EighteenLim}
                         required
                       />
                     </div>
@@ -1100,7 +1104,7 @@ const GrantApplication = () => {
 
                   <div className={classes.relatedInputBlock}>
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Gender</label>
+                      <label className={classes.inputLabel}>Gender *</label>
                       <select
                         value={benGen}
                         onChange={(e) => setBenGen(e.target.value)}
@@ -1125,7 +1129,7 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Sexuality</label>
+                      <label className={classes.inputLabel}>Sexuality *</label>
                       <select
                         value={benSex}
                         onChange={(e) => setBenSex(e.target.value)}
@@ -1152,7 +1156,7 @@ const GrantApplication = () => {
 
                   <div className={classes.relatedInputBlock}>
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Ethnicity</label>
+                      <label className={classes.inputLabel}>Ethnicity *</label>
                       <select
                         value={benEthnicity}
                         onChange={(e) => setBenEthnicity(e.target.value)}
@@ -1168,7 +1172,7 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Religion</label>
+                      <label className={classes.inputLabel}>Religion *</label>
                       <select
                         value={benReligion}
                         onChange={(e) => setBenReligion(e.target.value)}
@@ -1186,7 +1190,7 @@ const GrantApplication = () => {
                 </div>
 
                 <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>Disability</h3>
+                  <h3 className={classes.subTitle}>Disability *</h3>
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
                       This could be where the person has been diagnosed as
@@ -1214,7 +1218,7 @@ const GrantApplication = () => {
                         className={classes.inputLabel}
                         htmlFor="disability"
                       >
-                        Disability Description
+                        Disability Description *
                       </label>
                       <textarea
                         id="disability"
@@ -1231,7 +1235,7 @@ const GrantApplication = () => {
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Relations</h3>
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Marital Status</label>
+                    <label className={classes.inputLabel}>Marital Status *</label>
                     <select
                       value={benMarital}
                       onChange={(e) => setBenMarital(e.target.value)}
@@ -1248,7 +1252,7 @@ const GrantApplication = () => {
 
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
-                      Pregnancy Status
+                      Pregnancy Status *
                     </label>
                     <select
                       value={benPregnancy}
@@ -1265,7 +1269,7 @@ const GrantApplication = () => {
                   </div>
 
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Dependants</label>
+                    <label className={classes.inputLabel}>Dependants *</label>
                     <select
                       value={benDependants}
                       onChange={(e) => setBenDependants(e.target.value)}
@@ -1285,7 +1289,7 @@ const GrantApplication = () => {
                     </h3>
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>
-                        Number of dependants
+                        Number of dependents *
                       </label>
                       <input
                         type="text"
@@ -1298,7 +1302,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>
-                        Age of dependants
+                        Age of dependents *
                       </label>
                       <input
                         type="text"

@@ -141,6 +141,8 @@ const Register = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const titles = ["1. Register", "2. Organisation Details", "3. Contact Details", "4. GDPR SETTINGS & PREFERENCES"]
+
   const renderSectionButtons = () => {
     const sectionButtons = [];
     for (let i = 1; i <= totalSections; i++) {
@@ -152,7 +154,7 @@ const Register = () => {
             currentSection < i ? classes.progressButton : classes.fillButton
           }
         >
-          {i}
+          {titles[i-1]}
         </button>
       );
     }

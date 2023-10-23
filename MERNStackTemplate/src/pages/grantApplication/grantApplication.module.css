@@ -229,7 +229,7 @@ textarea {
 
 .progressFill {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
 }
 
 .progressButton {

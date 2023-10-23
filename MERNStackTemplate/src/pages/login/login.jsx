@@ -70,7 +70,7 @@ const login = () => {
               <Button type="submit" disable={isLoadingLogin}>
                 Login
               </Button>
-              <Button clicked={handleRegister}>Register With Us Today</Button>
+              <Button clicked={handleRegister}>Register</Button>
               <div>
                 <p>Demo user</p>
                 <p>asd@asd.com</p>

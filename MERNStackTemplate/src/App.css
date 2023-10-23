@@ -16,21 +16,17 @@
 *{
     margin: 0;
     padding: 0;
-    text-wrap: balance;
+    text-wrap: pretty;
     box-sizing: border-box;
     /* font-family: 'Dela Gothic One', sans-serif; */
     /* font-family: 'Bebas Neue', sans-serif; */
     font-family: 'Jost Variable', sans-serif;
 }
 
-@media (max-width: 60em) {
+@media (max-width: 40em) {
     :root{
-        --padding-1: 0.75em;
-        --padding-2: 1.75em;
-        --padding-3: 2.75em;
-
-        --font-1: 0.75em;
-        --font-2: 1.75em;
-        --font-3: 2.75em;
+        --padding-1: 0.5em;
+        --padding-2: 1em;
+        --padding-3: 1.5em;
     }
 }

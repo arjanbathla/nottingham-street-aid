@@ -1,3 +1,10 @@
-const CURRENT_YEAR = (new Date()).getFullYear()
+const CURRENT = (new Date())
 
-export {CURRENT_YEAR} 
+const CURRENT_YEAR = (CURRENT).getFullYear()
+const CURRENT_MONTH = (CURRENT).getMonth()
+const CURRENT_DATE = (CURRENT).getDate()
+
+const EighteenLim = (`${CURRENT_YEAR - 18}-${CURRENT_MONTH}-${CURRENT_DATE}`).toString()
+
+export {CURRENT_YEAR, CURRENT_MONTH, CURRENT_DATE, EighteenLim}
+console.log(EighteenLim)
