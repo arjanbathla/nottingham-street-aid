@@ -28,8 +28,8 @@ export const useLogin = () => {
       setErrorLogin(json.error);
     }
     if (response.ok) {
-      dispatch(loginUser(json));
       setIsLoadingLogin(false);
+      dispatch(loginUser(json));
     }
   };
   return { login, isLoadingLogin, errorLogin };

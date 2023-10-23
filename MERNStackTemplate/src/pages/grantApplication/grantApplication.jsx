@@ -407,7 +407,7 @@ const GrantApplication = () => {
       grantQuoteLink,
       submissionDate
     );
-    setCurrentSection(1);
+    // setCurrentSection(1);
     if (!errorGrant) {
       navigate("/Organisation");
     }
@@ -914,9 +914,9 @@ const GrantApplication = () => {
                     <div className={classes.relatedInputBlock}>
                       <input
                         type="file"
-                        value={sharedSignedLink}
+                        // value={sharedSignedLink}
                         onChange={(e) => setSharedSignedLink(e.target.value)}
-                        required
+                        // required
                       />
                       <label className={classes.inputLabel}>
                         {sharedSignedLink}
@@ -1679,7 +1679,7 @@ const GrantApplication = () => {
                         <p className={classes.currencySymbol}>£</p>
                         <input
                           type="number"
-                          min="1.00"
+                          min="0.00"
                           max="750.00"
                           value={grantItemCost2}
                           onChange={(e) => setGrantItemCost2(e.target.value)}
@@ -1704,7 +1704,7 @@ const GrantApplication = () => {
                         <p className={classes.currencySymbol}>£</p>
                         <input
                           type="number"
-                          min="1.00"
+                          min="0.00"
                           max="750.00"
                           value={grantItemCost3}
                           onChange={(e) => setGrantItemCost3(e.target.value)}
@@ -1729,7 +1729,7 @@ const GrantApplication = () => {
                         <p className={classes.currencySymbol}>£</p>
                         <input
                           type="number"
-                          min="1.00"
+                          min="0.00"
                           max="750.00"
                           value={grantItemCost4}
                           onChange={(e) => setGrantItemCost4(e.target.value)}
@@ -1754,7 +1754,7 @@ const GrantApplication = () => {
                         <p className={classes.currencySymbol}>£</p>
                         <input
                           type="number"
-                          min="1.00"
+                          min="0.00"
                           max="750.00"
                           value={grantItemCost5}
                           onChange={(e) => setGrantItemCost5(e.target.value)}
@@ -1784,11 +1784,18 @@ const GrantApplication = () => {
                       attaching copies where possible. Up to 5 quotes can be
                       provided.
                     </label>
-                    <input
-                      type="file"
-                      value={grantQuoteLink}
-                      onChange={(e) => setGrantQuoteLink(e.target.value)}
-                    />
+
+                    <div className={classes.relatedInputBlock}>
+                      <input
+                        type="file"
+                        // value={grantQuoteLink}
+                        onChange={(e) => setGrantQuoteLink(e.target.value)}
+                        // required
+                      />
+                      <label className={classes.inputLabel}>
+                        {grantQuoteLink}
+                      </label>
+                    </div>
                   </div>
                 </div>
 
