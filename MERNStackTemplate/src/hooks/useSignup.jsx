@@ -104,8 +104,8 @@ export const useSignup = () => {
       setErrorSignup(json.error);
     }
     if (response.ok) {
-      dispatch(loginUser(json));
       setIsLoadingSignup(false);
+      dispatch(loginUser(json));
     }
   };
   return { signup, isLoadingSignup, errorSignup };

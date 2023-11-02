@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const applyGrant = () => {
   const { user } = useSelector((state) => state.user);
+  const { grants } = useSelector((state) => state.grants);
   const dispatch = useDispatch();
 
   const [errorGrant, setErrorGrant] = useState(null);
@@ -164,7 +165,7 @@ export const applyGrant = () => {
     }
     if (response.ok) {
       setIsLoadingGrant(false);
-      dispatch(setGrants(json));
+      dispatch(setGrants(...grants, json));
     }
   };
   return { apply, isLoadingGrant, errorGrant };
