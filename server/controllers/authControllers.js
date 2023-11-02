@@ -55,7 +55,7 @@ const signupAuth = async (req, res) => {
     dataPref,
     newsletterPref,
     bulletinPref,
-    tsAndCs
+    tsAndCs,
   } = req.body;
   try {
     const auth = await Auth.signup(

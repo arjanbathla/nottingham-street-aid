@@ -15,6 +15,8 @@ export const applyGrant = () => {
     benLastName,
     benEmail,
     benTelephone,
+    declaration,
+    benNotts,
     benAbode,
     benAddressLine1,
     benAddressLine2,
@@ -30,6 +32,7 @@ export const applyGrant = () => {
     altCounty,
     altPostcode,
     sharedSignedLink,
+    benConsent,
     prefContactMethod,
     prefCommunication,
     prefDataSharing,
@@ -42,11 +45,10 @@ export const applyGrant = () => {
     benDisability,
     benDisabilityExtra,
     benMarital,
-    benDependants,
     benPregnancy,
+    benDependants,
     numOfDependants,
     ageOfDependants,
-    dependantInformation,
     currentAccom,
     benCurrentAccomLength,
     benHistOfHomelessness,
@@ -69,7 +71,7 @@ export const applyGrant = () => {
     grantItemCost5,
     grantItemDetails5,
     grantQuoteLink,
-    submissionDate
+    confirmApplication
   ) => {
     setIsLoadingGrant(true);
     setErrorGrant(null);
@@ -84,7 +86,7 @@ export const applyGrant = () => {
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -93,6 +95,8 @@ export const applyGrant = () => {
           benLastName,
           benEmail,
           benTelephone,
+          declaration,
+          benNotts,
           benAbode,
           benAddressLine1,
           benAddressLine2,
@@ -108,6 +112,7 @@ export const applyGrant = () => {
           altCounty,
           altPostcode,
           sharedSignedLink,
+          benConsent,
           prefContactMethod,
           prefCommunication,
           prefDataSharing,
@@ -120,11 +125,10 @@ export const applyGrant = () => {
           benDisability,
           benDisabilityExtra,
           benMarital,
-          benDependants,
           benPregnancy,
+          benDependants,
           numOfDependants,
           ageOfDependants,
-          dependantInformation,
           currentAccom,
           benCurrentAccomLength,
           benHistOfHomelessness,
@@ -147,7 +151,7 @@ export const applyGrant = () => {
           grantItemCost5,
           grantItemDetails5,
           grantQuoteLink,
-          submissionDate,
+          confirmApplication,
         }),
       }
     );

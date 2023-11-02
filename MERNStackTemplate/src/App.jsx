@@ -23,8 +23,8 @@ const App = () => {
   const { user } = useSelector((state) => state.user);
   const { grants } = useSelector((state) => state.grants);
 
-  console.log(user);
-  console.log(grants);
+  // console.log(user);
+  // console.log(grants);
 
   let routes = (
     <Routes>

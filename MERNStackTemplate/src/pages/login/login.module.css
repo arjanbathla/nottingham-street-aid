@@ -31,6 +31,14 @@
     gap: var(--padding-1);
 }
 
+.multiInputBlock{
+    background-color: #393e4171;
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+}
+
 .passwordBlock{
     display: flex;
     flex-flow: row;
@@ -55,6 +63,21 @@
 
 
 
+.mainTitle{
+    font-size: var(--font-2);
+    color: var(--accent);
+}
+
+.subTitle{
+    font-size: var(--font-1);
+    color: var(--accent);
+}
+
+
+
+
+
+
 .passwordLabel{
     color: #ffffff80;
 }
@@ -73,4 +96,15 @@ input{
     outline: none;
     border: none;
     width: 100%;
+}
+
+.link{
+    color: #ffffff80;
+    cursor: pointer;
+    transition: 0.33s ease-in-out;
+}
+
+.link:hover{
+    color: var(--accent);
+    cursor: pointer;
 }

@@ -16,6 +16,8 @@ const createGrant = async (req, res) => {
     benLastName,
     benEmail,
     benTelephone,
+    declaration,
+    benNotts,
     benAbode,
     benAddressLine1,
     benAddressLine2,
@@ -31,6 +33,7 @@ const createGrant = async (req, res) => {
     altCounty,
     altPostcode,
     sharedSignedLink,
+    benConsent,
     prefContactMethod,
     prefCommunication,
     prefDataSharing,
@@ -43,11 +46,10 @@ const createGrant = async (req, res) => {
     benDisability,
     benDisabilityExtra,
     benMarital,
-    benDependants,
     benPregnancy,
+    benDependants,
     numOfDependants,
     ageOfDependants,
-    dependantInformation,
     currentAccom,
     benCurrentAccomLength,
     benHistOfHomelessness,
@@ -70,7 +72,7 @@ const createGrant = async (req, res) => {
     grantItemCost5,
     grantItemDetails5,
     grantQuoteLink,
-    submissionDate,
+    confirmApplication,
   } = req.body;
   try {
     const userId = req.auth._id;
@@ -83,6 +85,8 @@ const createGrant = async (req, res) => {
       benLastName,
       benEmail,
       benTelephone,
+      declaration,
+      benNotts,
       benAbode,
       benAddressLine1,
       benAddressLine2,
@@ -98,6 +102,7 @@ const createGrant = async (req, res) => {
       altCounty,
       altPostcode,
       sharedSignedLink,
+      benConsent,
       prefContactMethod,
       prefCommunication,
       prefDataSharing,
@@ -110,11 +115,10 @@ const createGrant = async (req, res) => {
       benDisability,
       benDisabilityExtra,
       benMarital,
-      benDependants,
       benPregnancy,
+      benDependants,
       numOfDependants,
       ageOfDependants,
-      dependantInformation,
       currentAccom,
       benCurrentAccomLength,
       benHistOfHomelessness,
@@ -137,7 +141,7 @@ const createGrant = async (req, res) => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      submissionDate
+      confirmApplication,
     );
     res.status(200).json({ grant });
   } catch (error) {

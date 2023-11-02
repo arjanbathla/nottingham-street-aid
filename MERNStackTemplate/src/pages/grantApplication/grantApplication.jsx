@@ -73,7 +73,6 @@ const GrantApplication = () => {
 
   const [numOfDependants, setNumOfDependants] = useState("");
   const [ageOfDependants, setAgeOfDependants] = useState("");
-  const [dependantInformation, setDependantInformation] = useState("");
 
   const [currentAccom, setCurrentAccom] = useState("");
   const [benCurrentAccomLength, setBenCurrentAccomLength] = useState("");
@@ -101,7 +100,6 @@ const GrantApplication = () => {
   const [grantItemDetails5, setGrantItemDetails5] = useState("");
   const [grantQuoteLink, setGrantQuoteLink] = useState("");
 
-  const [submissionDate, setSubmissionDate] = useState("");
   const [confirmApplication, setConfirmApplication] = useState(false);
 
   const [otherBenTitle, setOtherBenTitle] = useState("");
@@ -112,18 +110,19 @@ const GrantApplication = () => {
   const [otherCurrentAccom, setOtherCurrentAccom] = useState("");
   const [otherBenGrantReason, setOtherBenGrantReason] = useState("");
 
-  const [towns, setTowns] = useState([]);
-  useEffect(() => {
-    fetch("/towns.csv")
-      .then((response) => response.text())
-      .then((csvData) => {
-        const townList = csvData.split("\n").map((row) => row.trim());
-        setTowns(townList);
-      })
-      .catch((error) => {
-        console.error("Error fetching or parsing CSV data", error);
-      });
-  }, []);
+  // if we every get a list of acceptable towns
+  // const [towns, setTowns] = useState([]);
+  // useEffect(() => {
+  //   fetch("/towns.csv")
+  //     .then((response) => response.text())
+  //     .then((csvData) => {
+  //       const townList = csvData.split("\n").map((row) => row.trim());
+  //       setTowns(townList);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching or parsing CSV data", error);
+  //     });
+  // }, []);
 
   const [genders, setGenders] = useState([]);
   useEffect(() => {
@@ -289,15 +288,25 @@ const GrantApplication = () => {
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
     // setLatestSection(currentSection)
-    setLatestSection(section)
-    if(latestSection >= section){
+    setLatestSection(section);
+    if (latestSection >= section) {
       setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
       //eg. input on page 2 disappears only if go back to 1 not 3
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
-  const titles = ["1. Grant Application", "2. Beneficiary Details", "3. Alternative Contact", "4. Beneficiary Declaration", "5. GDPR SETTINGS & PREFERENCES", "6. Beneficiary's Protected Characteristics", "7. Beneficiary's Current Situation", "8. Reason for Application", "9. Grant Amount"]
+  const titles = [
+    "1. Grant",
+    "2. Details",
+    "3. Contacts",
+    "4. Declaration",
+    "5. Privacy Policy",
+    "6. Characteristics",
+    "7. Situations",
+    "8. Reason",
+    "9. Grant Amount",
+  ];
 
   // Create section buttons for the progress bar
   const renderSectionButtons = () => {
@@ -313,7 +322,7 @@ const GrantApplication = () => {
               : classes.fillButton
           }
         >
-          {titles[section-1]}
+          {titles[section - 1]}
         </button>
       );
     }
@@ -351,6 +360,8 @@ const GrantApplication = () => {
       benLastName,
       benEmail,
       benTelephone,
+      declaration,
+      benNotts,
       benAbode,
       benAddressLine1,
       benAddressLine2,
@@ -366,6 +377,7 @@ const GrantApplication = () => {
       altCounty,
       altPostcode,
       sharedSignedLink,
+      benConsent,
       prefContactMethod,
       prefCommunication,
       prefDataSharing,
@@ -378,11 +390,10 @@ const GrantApplication = () => {
       benDisability,
       benDisabilityExtra,
       benMarital,
-      benDependants,
       benPregnancy,
+      benDependants,
       numOfDependants,
       ageOfDependants,
-      dependantInformation,
       currentAccom,
       benCurrentAccomLength,
       benHistOfHomelessness,
@@ -405,7 +416,7 @@ const GrantApplication = () => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      submissionDate
+      confirmApplication,
     );
     setCurrentSection(1);
     if (!errorGrant) {
@@ -419,6 +430,9 @@ const GrantApplication = () => {
     buttons = (
       <div className={classes.buttonBlock}>
         <Button clicked={handlePrevious}>Previous</Button>
+
+        {isLoadingGrant && <Loader loading={isLoadingGrant} />}
+
         {currentSection === 9 ? (
           <Button type="submit" disabled={isLoadingGrant}>
             Submit Grant Application
@@ -483,6 +497,7 @@ const GrantApplication = () => {
                         <a
                           href="[INSERT LINK FOR APPLICATION GUIDELINES]"
                           target="_blank"
+                          className={classes.link}
                         >
                           Nottingham Street Aid Application Guidelines
                         </a>
@@ -1040,7 +1055,7 @@ const GrantApplication = () => {
                         <label htmlFor="deny_gdpr">No</label>
                       </div>
                     </div>
-                    <a href={GDPR_PDF} target="_blank">
+                    <a href={GDPR_PDF} target="_blank" className={classes.link}>
                       Click here to read full GDPR Statement.
                     </a>
                   </div>
@@ -1235,7 +1250,9 @@ const GrantApplication = () => {
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Relations</h3>
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Marital Status *</label>
+                    <label className={classes.inputLabel}>
+                      Marital Status *
+                    </label>
                     <select
                       value={benMarital}
                       onChange={(e) => setBenMarital(e.target.value)}
@@ -1312,25 +1329,6 @@ const GrantApplication = () => {
                         required
                       />
                     </div>
-
-                    {/* <div className={classes.inputBlock}>
-                      <label
-                        className={classes.inputLabel}
-                        htmlFor="Dependant Information"
-                      >
-                        Dependant Information
-                      </label>
-                      <textarea
-                        id="Dependant Information"
-                        rows="4"
-                        value={dependantInformation}
-                        onChange={(e) =>
-                          setDependantInformation(e.target.value)
-                        }
-                        placeholder="Eg. Brief Description"
-                        required
-                      ></textarea>
-                    </div> */}
                   </div>
                 )}
               </div>

@@ -6,6 +6,7 @@ import { useSignup } from "../../hooks/useSignup";
 
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
+import Loader from "../../components/loader/loader";
 
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
@@ -43,7 +44,6 @@ const Register = () => {
   const [orgType, setOrgType] = useState("");
   const [orgCharityNumber, setOrgCharityNumber] = useState("");
   const [orgHouseNumber, setOrgHouseNumber] = useState("");
-  const [orgExtraVerifyNumber, setOrgExtraVerifyNumber] = useState("");
 
   const [contact1Title, setContact1Title] = useState("");
   const [contact1Fname, setContact1Fname] = useState("");
@@ -110,6 +110,9 @@ const Register = () => {
     }
   };
 
+  // optional code to save the current section of the form
+  // so that users can revisit the specific page they left on and continue
+
   // useEffect(() => {
   //   getLocalCurrentSection();
   // }, []);
@@ -141,7 +144,12 @@ const Register = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const titles = ["1. Register", "2. Organisation Details", "3. Contact Details", "4. GDPR SETTINGS & PREFERENCES"]
+  const titles = [
+    "1. Register",
+    "2. Organisation",
+    "3. Contacts",
+    "4. Data Privacy",
+  ];
 
   const renderSectionButtons = () => {
     const sectionButtons = [];
@@ -154,7 +162,7 @@ const Register = () => {
             currentSection < i ? classes.progressButton : classes.fillButton
           }
         >
-          {titles[i-1]}
+          {titles[i - 1]}
         </button>
       );
     }
@@ -167,6 +175,7 @@ const Register = () => {
   };
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     navigate("/Login");
   };
 
@@ -232,6 +241,9 @@ const Register = () => {
     buttons = (
       <div className={classes.buttonBlock}>
         <Button clicked={handlePrevious}>Previous</Button>
+
+        {isLoadingSignup && <Loader loading={isLoadingSignup} />}
+
         {currentSection === 4 ? (
           <Button type="submit" disabled={isLoadingSignup}>
             Submit Registration
@@ -262,52 +274,56 @@ const Register = () => {
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>1. Register</h2>
               </div>
-
               <div className={classes.formContent}>
-                <div className={classes.inputBlock}>
-                  <label className={classes.inputLabel}>Email *</label>
-                  <input
-                    type="email"
-                    placeholder="Eg. JohnDoe@email.com"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                    required
-                  />
-                </div>
-
-                <div className={classes.inputBlock}>
-                  <label className={classes.inputLabel}>Password *</label>
-                  <div className={classes.passwordBlock}>
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>
+                    Organisation Registration Details
+                  </h3>
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>Email *</label>
                     <input
-                      type={showPass ? "text" : "password"}
-                      placeholder="Eg. Password123#"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
+                      type="email"
+                      placeholder="Eg. JohnDoe@email.com"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                       required
                     />
-                    <Button clicked={handleClickShowPassword}>
-                      {showPass ? "Hide" : "Show"}
-                    </Button>
                   </div>
-                  <label className={classes.passwordLabel}>
-                    Atleast 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8
-                    Characters
-                  </label>
-                  <a onClick={handleLogin} className={classes.loginLink}>
-                    Already registered? Click here to Login.
-                  </a>
-                </div>
 
-                <div className={classes.buttonBlock}>
-                  <Button type="submit">Continue Registration</Button>
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>Password *</label>
+                    <div className={classes.passwordBlock}>
+                      <input
+                        type={showPass ? "text" : "password"}
+                        placeholder="Eg. Password123#"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
+                        required
+                      />
+                      <Button clicked={handleClickShowPassword}>
+                        {showPass ? "Hide" : "Show"}
+                      </Button>
+                    </div>
+                    <label className={classes.passwordLabel}>
+                      Atleast 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8
+                      Characters
+                    </label>
+                    <a onClick={handleLogin} className={classes.link}>
+                      Already Registered? Click Here To Login.
+                    </a>
+                  </div>
                 </div>
-
-                {errorSignup && (
-                  <p className={classes.errorMessage}>{errorSignup}</p>
-                )}
               </div>
+
+              <div className={classes.buttonBlock}>
+                <Button type="submit">Continue Registration</Button>
+              </div>
+
+              {errorSignup && (
+                <p className={classes.errorMessage}>{errorSignup}</p>
+              )}
             </form>
           )}
 
@@ -731,7 +747,7 @@ const Register = () => {
                       onChange={(e) => setFinanceContact(!financeContact)}
                     />
                     <label htmlFor="financeContact">
-                      {secondContact ? "Remove" : "Add"} Finance Contact
+                      {financeContact ? "Remove" : "Add"} Finance Contact
                     </label>
                   </div>
                 </div>
@@ -853,9 +869,7 @@ const Register = () => {
                 <div className={classes.multiInputBlock}>
                   <div className={classes.relatedInputBlock}>
                     <div className={classes.inputBlock}>
-                      <h2 className={classes.subTitle}>
-                        Stay up-to-date & receive emails?
-                      </h2>
+                      <h2 className={classes.subTitle}>Receive Emails</h2>
                       <div className={classes.radioGroup}>
                         <div>
                           <input
@@ -958,11 +972,15 @@ const Register = () => {
                         <label htmlFor="no_share">No</label>
                       </div>
                     </div>
-                    <a href={GDPR_PDF} target="_blank">
+                    <a href={GDPR_PDF} target="_blank" className={classes.link}>
                       Click here to read full terms and conditions.
                     </a>
-                    <a href="mailtoenquiries.nottingham@streetsupport.net">
-                      enquiries.nottingham@streetsupport.net to revoke consent
+                    <a
+                      href="mailtoenquiries.nottingham@streetsupport.net"
+                      className={classes.link}
+                    >
+                      Contact enquiries.nottingham@streetsupport.net to revoke
+                      consent
                     </a>
                   </div>
                 </div>
@@ -982,7 +1000,7 @@ const Register = () => {
                     />
                     <label htmlFor="ts&cs">Accept terms and conditions</label>
                   </div>
-                  <a href={PN_PDF} target="_blank">
+                  <a href={PN_PDF} target="_blank" className={classes.link}>
                     Click here to read full terms and conditions.
                   </a>
                 </div>

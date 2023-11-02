@@ -31,3 +31,14 @@
     flex-flow: column;
     gap: var(--padding-1);
 }
+
+.link{
+    color: #ffffff80;
+    cursor: pointer;
+    transition: 0.33s ease-in-out;
+}
+
+.link:hover{
+    color: var(--accent);
+    cursor: pointer;
+}

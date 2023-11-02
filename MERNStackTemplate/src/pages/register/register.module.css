@@ -91,6 +91,7 @@
     padding: 1rem;
     border: 2px solid red;
     border-radius: 0.5rem;
+    color: var(--light);
 }
 
 
@@ -124,8 +125,14 @@ select{
     border: none;
 }
 
-.loginLink{
+.link{
     color: #ffffff80;
+    cursor: pointer;
+    transition: 0.33s ease-in-out;
+}
+
+.link:hover{
+    color: var(--accent);
     cursor: pointer;
 }
 
@@ -138,7 +145,7 @@ select{
     flex-flow: row;
     overflow: hidden;
     align-items: center;
-    height: 3rem;
+    height: var(--padding-3);
 }
 
 .radioGroup input {
@@ -152,7 +159,7 @@ select{
     color: var(--dark);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease-in-out;
-    padding: 0.33rem 2rem;
+    padding: var(--padding-1) var(--padding-2);
 }
 
 .radioGroup label:hover {
@@ -160,7 +167,7 @@ select{
 }
 
 .radioGroup input:checked+label {
-    background-color: #009B77;
+    background-color: var(--accent);
     color: var(--light);
     box-shadow: none;
 }
@@ -184,23 +191,25 @@ select{
 
 
 
+
 .progressBar {
     width: 100%;
-    background-color: #ccc;
+    display: flex;
+    justify-content: center;
 }
 
 .progressFill {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
 }
 
 .progressButton {
     border: solid 1px var(--light);
     cursor: pointer;
-    width: 100%;
     color: var(--dark);
     background-color: #ccc;
     transition: background-color 0.5s ease-in-out;
+    padding: 0 var(--padding-1);
 }
 
 .progressButton:hover {
@@ -209,10 +218,10 @@ select{
 }
 
 .fillButton {
-    border: solid 1px var(--dark);
+    border: solid 1px var(--light);
     cursor: pointer;
-    width: 100%;
     color: var(--light);
     background-color: var(--accent);
     transition: background-color 0.5s ease-in-out;
+    padding: 0 var(--padding-1);
 }

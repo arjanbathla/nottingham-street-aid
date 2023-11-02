@@ -15,17 +15,17 @@ const ourPolicy = () => {
             <div className={classes.policyCard}>
               <h3 className={classes.subTitle}>GDPR</h3>
               <p>How we follow GDPR regulations and keep our users safe.</p>
-              <a href={GDPR_PDF} target="_blank">Link to our GDPR policy.</a>
+              <a href={GDPR_PDF} target="_blank" className={classes.link}>Link To Our GDPR Policy.</a>
             </div>
             <div className={classes.policyCard}>
               <h3 className={classes.subTitle}>Privacy Policy</h3>
               <p>How we handle your data and ensure privacy.</p>
-              <a href={PN_PDF} target="_blank">Link to our privacy policy notice.</a>
+              <a href={PN_PDF} target="_blank" className={classes.link}>Link To Our Privacy Policy Statement.</a>
             </div>
             <div className={classes.policyCard}>
               <h3 className={classes.subTitle}>Apply Guide</h3>
               <p>Step by step guide on how to apply for a grant.</p>
-              <a href={""} target="_blank">Link to our step by step grant application guide.</a>
+              <a href={""} target="_blank" className={classes.link}>Link To Our Grant Application Guide.</a>
             </div>
           </div>
         </div>
