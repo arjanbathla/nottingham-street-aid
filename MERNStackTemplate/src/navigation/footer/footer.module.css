@@ -1,11 +1,11 @@
 .footer{
-    background-color: var(--light);
+    background-color: var(--neutral);
     color: var(--dark);
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     gap: var(--padding-1);
-    padding: var(--padding-1);
+    padding: var(--padding-3) var(--padding-1);
 }
 
 .links{

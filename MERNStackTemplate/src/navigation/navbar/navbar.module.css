@@ -10,7 +10,7 @@
     justify-content: space-between;
     list-style: none;
     padding: var(--padding-1);
-    background-color: var(--light);
+    background-color: var(--neutral);
 }
 
 .logo{

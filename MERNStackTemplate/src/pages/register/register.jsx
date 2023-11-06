@@ -308,7 +308,7 @@ const Register = () => {
                     </div>
                     <label className={classes.passwordLabel}>
                       Atleast 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8
-                      Characters
+                      Characters.
                     </label>
                     <a onClick={handleLogin} className={classes.link}>
                       Already Registered? Click Here To Login.
@@ -317,13 +317,14 @@ const Register = () => {
                 </div>
               </div>
 
-              <div className={classes.buttonBlock}>
-                <Button type="submit">Continue Registration</Button>
-              </div>
-
               {errorSignup && (
                 <p className={classes.errorMessage}>{errorSignup}</p>
               )}
+
+              <div className={classes.buttonBlock}>
+                <Button type="submit">Continue Registration</Button>
+              </div>
+              
             </form>
           )}
 
@@ -869,7 +870,7 @@ const Register = () => {
                 <div className={classes.multiInputBlock}>
                   <div className={classes.relatedInputBlock}>
                     <div className={classes.inputBlock}>
-                      <h2 className={classes.subTitle}>Receive Emails</h2>
+                      <h3 className={classes.subTitle}>Receive Emails</h3>
                       <div className={classes.radioGroup}>
                         <div>
                           <input
@@ -894,7 +895,7 @@ const Register = () => {
                       </div>
                     </div>
                     <div className={classes.inputBlock}>
-                      <h2 className={classes.subTitle}>Newsletter</h2>
+                      <h3 className={classes.subTitle}>Newsletter</h3>
                       <div className={classes.radioGroup}>
                         <div>
                           <input
@@ -920,7 +921,7 @@ const Register = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <h2 className={classes.subTitle}>Grant Bulletin</h2>
+                      <h3 className={classes.subTitle}>Grant Bulletin</h3>
                       <div className={classes.radioGroup}>
                         <div>
                           <input
@@ -949,7 +950,7 @@ const Register = () => {
 
                 <div className={classes.multiInputBlock}>
                   <div className={classes.inputBlock}>
-                    <h2 className={classes.subTitle}>Data Sharing</h2>
+                    <h3 className={classes.subTitle}>Data Sharing</h3>
                     <div className={classes.radioGroup}>
                       <div>
                         <input
@@ -987,7 +988,7 @@ const Register = () => {
 
                 <div className={classes.multiInputBlock}>
                   <div className={classes.inputBlock}>
-                    <h2 className={classes.subTitle}>Terms & Conditions *</h2>
+                    <h3 className={classes.subTitle}>Terms & Conditions</h3>
                   </div>
                   <div className={classes.checkboxGroup}>
                     <input
@@ -998,7 +999,7 @@ const Register = () => {
                       onChange={(e) => setTsAndCs(!tsAndCs)}
                       required
                     />
-                    <label htmlFor="ts&cs">Accept terms and conditions</label>
+                    <label htmlFor="ts&cs">Accept terms and conditions *</label>
                   </div>
                   <a href={PN_PDF} target="_blank" className={classes.link}>
                     Click here to read full terms and conditions.

@@ -28,11 +28,11 @@ const EmailForm = () => {
                 <input className={classes.input} type='text' name='email' placeholder='Email *' pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required/>
                 <select className={classes.input} name='subject' required>
                     <option className={classes.option} value="Select_A_Subject" default hidden>Select A Subject *</option>
-                    <option className={classes.option} value="Learn More">Learn More</option>
+                    <option className={classes.option} value="Registration">Registration</option>
                     <option className={classes.option} value="Grant Application">Grant Application</option>
                     <option className={classes.option} value="Other">Other</option>
                 </select>
-                <textarea className={classes.input} style={{minHeight:'20vh'}} type='text' name='message' placeholder='Message *' required/>
+                <textarea className={classes.input} style={{minHeight:'11rem'}} type='text' name='message' placeholder='Message *' required/>
                 {/* <div className={classes.checkboxBlock}>
                     <input type="checkbox" id="Policy_Check" name="Policy_Check" className={classes.checkbox} required/>
                     <label for="Policy_Check">Share Form Information With Our Admin Team.</label>

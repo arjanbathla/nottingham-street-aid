@@ -1,15 +1,16 @@
 .section {
     width: 100%;
-    padding: var(--padding-2);
+    padding: var(--padding-3);
 }
 
 .form {
-    background-color: var(--dark);
+    background-color: var(--neutral);
     padding: var(--padding-3);
     display: flex;
     flex-flow: column;
     gap: var(--padding-3);
-    color: var(--light);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: var(--padding-1);
 }
 
 .formLayout {
@@ -24,45 +25,19 @@
     gap: var(--padding-1);
 }
 
-
-
-
-
-
-.mainTitle {
-    font-size: var(--font-2);
-    color: var(--accent);
-}
-
-.subTitle {
-    font-size: var(--font-1);
-    color: var(--accent);
-}
-
-
-
-
-
-
-
 .formContent {
     display: flex;
     flex-flow: column;
     gap: var(--padding-3);
 }
 
-.formContent ul {
-    list-style: none;
-    border-left: 3px solid var(--accent);
-    padding-left: 1rem;
-}
-
 .multiInputBlock {
-    background-color: #393e4171;
+    background-color: var(--light);
     padding: var(--padding-3);
     display: flex;
     flex-flow: column;
     gap: var(--padding-1);
+    color: var(--dark);
 }
 
 .relatedInputBlock {
@@ -71,7 +46,7 @@
 
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--padding-1);
 }
 
@@ -95,70 +70,43 @@
 
 .errorMessage {
     background-color: lightcoral;
-    padding: 1rem;
-    border: 2px solid red;
-    border-radius: 0.5rem;
-}
-
-
-
-
-
-.passwordLabel {
-    color: #ffffff80;
-}
-
-.inputBlock p {
-    color: var(--light);
-}
-
-.inputLabel {
-    color: var(--light);
-}
-
-input {
-    background-color: var(--light);
     padding: var(--padding-1);
-    outline: none;
-    border: none;
+    border: 3px solid red;
+    color: var(--light);
+}
+
+.inputBlock input {
+    padding: var(--padding-1);
+    border: 3px solid var(--neutral);
     width: 100%;
-}
-
-select {
-    background-color: var(--light);
-    padding: var(--padding-1);
-    outline: none;
-    border: none;
-}
-
-textarea {
-    background-color: var(--light);
-    padding: var(--padding-1);
-    outline: none;
-    border: none;
-}
-
-.link{
-    color: #ffffff80;
-    cursor: pointer;
     transition: 0.33s ease-in-out;
 }
 
-.link:hover{
-    color: var(--accent);
-    cursor: pointer;
+.inputBlock input:active,
+.inputBlock input:focus,
+.inputBlock input:hover{
+    border: 3px solid var(--dark);
 }
 
+.inputBlock select {
+    padding: var(--padding-1);
+    outline: none;
+    border: 3px solid var(--neutral);
+    transition: 1s ease-in-out;
+}
 
-
-
+.inputBlock select:active,
+.inputBlock select:focus,
+.inputBlock select:hover{
+    border: 3px solid var(--dark);
+}
 
 .radioGroup {
     display: flex;
     flex-flow: row;
     overflow: hidden;
     align-items: center;
-    height: var(--padding-3);
+    height: var(--padding-2);
 }
 
 .radioGroup input {
@@ -168,9 +116,8 @@ textarea {
 }
 
 .radioGroup label {
-    background-color: var(--light);
+    background-color: var(--neutral);
     color: var(--dark);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease-in-out;
     padding: var(--padding-1) var(--padding-2);
 }
@@ -185,24 +132,63 @@ textarea {
     box-shadow: none;
 }
 
-
-
-
-
 .checkboxGroup {
     display: flex;
     flex-flow: row;
     gap: 1rem;
-    color: var(--light);
+    color: var(--dark);
 }
 
 .checkbox {
     width: unset;
 }
 
+.progressBar {
+    width: 100%;
+}
 
+.progressFill {
+    display: flex;
+    flex-flow: row wrap;
+}
 
+.progressButton {
+    height: var(--padding-3);
+    border: solid 3px var(--neutral);
+    cursor: pointer;
+    color: var(--dark);
+    background-color: #ccc;
+    transition: background-color 0.5s ease-in-out;
+    padding: 0 var(--padding-1);
+    transition: 0.5s ease-in-out;
+}
 
+.progressButton:hover {
+    color: var(--light);
+    background-color: var(--accent);
+}
+
+.fillButton {
+    height: var(--padding-3);
+    border: solid 1px var(--neutral);
+    cursor: pointer;
+    color: var(--light);
+    background-color: var(--accent);
+    transition: background-color 0.5s ease-in-out;
+    padding: 0 var(--padding-1);
+}
+
+.formContent ul {
+    list-style: none;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+}
+
+textarea {
+    padding: var(--padding-1);
+    outline: none;
+    border: 3px solid var(--neutral);
+}
 
 .moneyInputContainer {
     display: flex;
@@ -215,49 +201,10 @@ textarea {
     background-color: #009B77;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem 0rem 0rem 0.25rem;
+    color: var(--light);
 }
 
 .moneyInputContainer input {
     border-radius: 0rem 0.25rem 0.25rem 0rem;
     width: 100%;
-}
-
-
-
-
-
-
-
-.progressBar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.progressFill {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-.progressButton {
-    border: solid 1px var(--light);
-    cursor: pointer;
-    color: var(--dark);
-    background-color: #ccc;
-    transition: background-color 0.5s ease-in-out;
-    padding: 0 var(--padding-1);
-}
-
-.progressButton:hover {
-    color: var(--light);
-    background-color: var(--accent);
-}
-
-.fillButton {
-    border: solid 1px var(--light);
-    cursor: pointer;
-    color: var(--light);
-    background-color: var(--accent);
-    transition: background-color 0.5s ease-in-out;
-    padding: 0 var(--padding-1);
 }

@@ -70,9 +70,11 @@ const home = () => {
           </div>
         </section>
 
-        <section className={classes.sectionAbout}>
-          <h3 className={classes.subTitle}>How We Work.</h3>
-          <img src={img1} alt={img1} className={classes.aboutImage} />
+        <section className={classes.section}>
+          <div className={classes.sectionAbout}>
+            <h3 className={classes.subTitle}>How We Work.</h3>
+            <img src={img1} alt={img1} className={classes.aboutImage} />
+          </div>
         </section>
       </Container>
     </div>

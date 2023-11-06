@@ -1,6 +1,7 @@
 :root{
     --dark: #686A6C;
     --light: #F6F7EB;
+    --neutral: #DCE0D9;
     --accent: #F97432;
     --shadow: #00000080;
 
@@ -21,6 +22,27 @@
     /* font-family: 'Dela Gothic One', sans-serif; */
     /* font-family: 'Bebas Neue', sans-serif; */
     font-family: 'Jost Variable', sans-serif;
+}
+
+h2{
+    font-size: var(--font-2);
+    color: var(--accent);
+}
+
+h3{
+    font-size: var(--font-1);
+    color: var(--accent);
+}
+
+a {
+    color: var(--dark);
+    cursor: pointer;
+    transition: 0.33s ease-in-out;
+}
+
+a:hover{
+    color: var(--accent);
+    cursor: pointer;
 }
 
 @media (max-width: 40em) {

@@ -72,9 +72,9 @@ const organisation = () => {
                     {grant.benTitle} {grant.benFirstName} {grant.benLastName}
                   </h3>
                   <p>Status - {grant.grantStatus}</p>
-                  <Button clicked={(e) => viewMoreHandler(grant._id)}>
+                  {/* <Button clicked={(e) => viewMoreHandler(grant._id)}>
                     View More
-                  </Button>
+                  </Button> */}
                 </div>
               ))}
           </div>

@@ -1,8 +1,7 @@
 .content{
-    background-color: var(--light);
+    background-color: var(--neutral);
 }
 
 .mainContent{
     background-color: var(--light);
-    min-height: 66vh;
 }

@@ -1,4 +1,4 @@
-.section{
+.section {
     width: 100%;
     padding: var(--padding-3);
     display: flex;
@@ -6,16 +6,17 @@
     gap: var(--padding-3);
 }
 
-.dashboard{
-    background-color: var(--dark);
+.dashboard {
+    background-color: var(--neutral);
     padding: var(--padding-3);
-    color: var(--light);
     display: flex;
     flex-flow: column;
     gap: var(--padding-3);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: var(--padding-1);
 }
 
-.dashboardHeader{
+.dashboardHeader {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -24,29 +25,22 @@
     gap: var(--padding-3);
 }
 
-.addGrantBlock{
+.addGrantBlock {
     display: flex;
     flex-flow: row wrap;
     gap: var(--padding-1);
 }
 
-.mainTitle {
-    font-size: var(--font-2);
-    color: var(--accent);
-}
-
-.subTitle {
-    font-size: var(--font-1);
-    color: var(--accent);
-}
-
-.dashboardContent{
-    display: flex;
-    flex-flow: row wrap;
+.dashboardContent {
+    /* display: flex;
+    flex-flow: row wrap; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-flow: columns;
     gap: var(--padding-3);
 }
 
-.grantItem{
+.grantItem {
     display: flex;
     flex-flow: column;
     gap: var(--padding-1);

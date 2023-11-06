@@ -7,7 +7,7 @@
     display: flex;
     flex-flow: column;
     list-style: none;
-    background-color: var(--light);
+    background-color: var(--neutral);
     transition: transform 0.33s;
 }
 

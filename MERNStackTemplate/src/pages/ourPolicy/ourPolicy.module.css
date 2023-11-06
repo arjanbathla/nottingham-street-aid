@@ -1,21 +1,9 @@
 .policySection{
-    background-color: var(--dark);
+    background-color: var(--neutral);
     padding: var(--padding-3);
-    color: var(--light);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: var(--padding-1);
 }
-
-.mainTitle {
-    font-size: var(--font-2);
-    color: var(--accent);
-}
-
-.subTitle {
-    font-size: var(--font-1);
-    color: var(--accent);
-}
-
-
-
 
 .policyContent{
     display: flex;
@@ -25,20 +13,10 @@
 }
 
 .policyCard{
-    background-color: #393e4171;
+    background-color: var(--light);
     padding: var(--padding-3);
     display: flex;
     flex-flow: column;
     gap: var(--padding-1);
-}
-
-.link{
-    color: #ffffff80;
-    cursor: pointer;
-    transition: 0.33s ease-in-out;
-}
-
-.link:hover{
-    color: var(--accent);
-    cursor: pointer;
+    color: var(--dark);
 }

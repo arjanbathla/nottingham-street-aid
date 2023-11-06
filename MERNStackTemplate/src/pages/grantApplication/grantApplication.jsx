@@ -416,7 +416,7 @@ const GrantApplication = () => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      confirmApplication,
+      confirmApplication
     );
     // setCurrentSection(1);
     if (!errorGrant) {
@@ -602,40 +602,36 @@ const GrantApplication = () => {
 
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Declaration</h3>
-                  <div className={classes.inputBlock}>
-                    <div className={classes.checkboxGroup}>
-                      <input
-                        className={classes.checkbox}
-                        type="checkbox"
-                        id="no_relations"
-                        checked={declaration}
-                        onChange={() => setDeclaration(!declaration)}
-                        required
-                      />
-                      <label htmlFor="no_relations">
-                        I confirm that I do not have a family or personal
-                        relationship with the beneficiary *
-                      </label>
-                    </div>
+                  <div className={classes.checkboxGroup}>
+                    <input
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="no_relations"
+                      checked={declaration}
+                      onChange={() => setDeclaration(!declaration)}
+                      required
+                    />
+                    <label htmlFor="no_relations">
+                      I confirm that I do not have a family or personal
+                      relationship with the beneficiary *
+                    </label>
                   </div>
                 </div>
 
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>County</h3>
-                  <div className={classes.inputBlock}>
-                    <div className={classes.checkboxGroup}>
-                      <input
-                        className={classes.checkbox}
-                        type="checkbox"
-                        id="from_nottinghamshire"
-                        checked={benNotts}
-                        onChange={() => setBenNotts(!benNotts)}
-                        required
-                      />
-                      <label htmlFor="from_nottinghamshire">
-                        I confirm the beneficiary is living in Nottinghamshire *
-                      </label>
-                    </div>
+                  <div className={classes.checkboxGroup}>
+                    <input
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="from_nottinghamshire"
+                      checked={benNotts}
+                      onChange={() => setBenNotts(!benNotts)}
+                      required
+                    />
+                    <label htmlFor="from_nottinghamshire">
+                      I confirm the beneficiary is living in Nottinghamshire *
+                    </label>
                   </div>
                 </div>
 
@@ -644,12 +640,6 @@ const GrantApplication = () => {
                     Beneficiary Address Situation
                   </h3>
                   <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
-                      Please select if the beneficiary has no fixed address e.g.
-                      they are sofa surfing, camping, emergency overnight hostel
-                      etc.
-                    </label>
-
                     <div className={classes.radioGroup}>
                       <div>
                         <input
@@ -942,21 +932,19 @@ const GrantApplication = () => {
 
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Beneficiary Consent</h3>
-                  <div className={classes.inputBlock}>
-                    <div className={classes.checkboxGroup}>
-                      <input
-                        className={classes.checkbox}
-                        type="checkbox"
-                        id="beneficiary_consent"
-                        checked={benConsent}
-                        onChange={() => setBenConsent(!benConsent)}
-                        required
-                      />
-                      <label htmlFor="beneficiary_consent">
-                        I hereby confirm that the beneficiary is aware of and
-                        supports this application *
-                      </label>
-                    </div>
+                  <div className={classes.checkboxGroup}>
+                    <input
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="beneficiary_consent"
+                      checked={benConsent}
+                      onChange={() => setBenConsent(!benConsent)}
+                      required
+                    />
+                    <label htmlFor="beneficiary_consent">
+                      I hereby confirm that the beneficiary is aware of and
+                      supports this application *
+                    </label>
                   </div>
                 </div>
               </div>
@@ -1295,6 +1283,7 @@ const GrantApplication = () => {
                       <option value="">Select</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
+                      <option value="PreferNotToSay">Prefer not to say</option>
                     </select>
                   </div>
                 </div>
@@ -1418,16 +1407,13 @@ const GrantApplication = () => {
                       <label className={classes.inputLabel} htmlFor="History">
                         History *
                       </label>
-                      <label className={classes.inputLabel}>
-                        Please provide details e.g. number of times homeless,
-                        time period, accommodation status.
-                      </label>
+
                       <textarea
                         id="History"
                         rows="4"
                         value={benHistDetails}
                         onChange={(e) => setBenHistDetails(e.target.value)}
-                        placeholder="Eg. Brief Description"
+                        placeholder="Eg. Brief Description, Please provide details e.g. number of times homeless, time period, accommodation status."
                         required
                       ></textarea>
                     </div>
@@ -1480,17 +1466,12 @@ const GrantApplication = () => {
                       >
                         Link Details *
                       </label>
-                      <label className={classes.inputLabel}>
-                        Please provide details of the beneficiaries link to
-                        Nottingham e.g. grew up here, family, friends, partner
-                        etc.
-                      </label>
                       <textarea
                         id="Link Details"
                         rows="4"
                         value={benLinkDetails}
                         onChange={(e) => setBenLinkDetails(e.target.value)}
-                        placeholder="Eg. Brief Description"
+                        placeholder="Eg. Brief Description, Please provide details of the beneficiaries link to Nottingham e.g. grew up here, family, friends, partner etc."
                         required
                       ></textarea>
                     </div>
@@ -1510,6 +1491,11 @@ const GrantApplication = () => {
                   impact the grant will have to the beneficiary. Please provide
                   as much pertinent information as possible.
                 </label>
+                <label className={classes.inputLabel}>
+                  A Street Aid grant can be used for or towards anything, as
+                  long as it's used to fund whatever an individual needs to help
+                  prevent them or gets them off, and stay off, the streets.
+                </label>
               </div>
 
               <div className={classes.formContent}>
@@ -1523,14 +1509,9 @@ const GrantApplication = () => {
                       Grant Reason *
                     </label>
                     <label className={classes.inputLabel}>
-                      A Street Aid grant can be used for or towards anything, as
-                      long as it's used to fund whatever an individual needs to
-                      help prevent them or gets them off, and stay off, the
-                      streets.
+                      If Multiple Reasons, Select "Other" and Describe.
                     </label>
-                    <label className={classes.inputLabel}>
-                      Select "Other" and Describe If Multiple Reasons
-                    </label>
+
                     <select
                       value={benGrantReason}
                       onChange={(e) => setBenGrantReason(e.target.value)}
@@ -1561,17 +1542,13 @@ const GrantApplication = () => {
                     >
                       Grant Details *
                     </label>
-                    <label className={classes.inputLabel}>
-                      Where necessary please provide further details for grant
-                      application reason i.e. what it will fund, if it is part
-                      funding etc.
-                    </label>
+
                     <textarea
                       id="Grant Details"
                       rows="4"
                       value={grantDetails}
                       onChange={(e) => setGrantDetails(e.target.value)}
-                      placeholder="Eg. Brief Description"
+                      placeholder="Eg. Brief Description, Where necessary please provide further details for grant application reason i.e. what it will fund, if it is part funding etc."
                       required
                     ></textarea>
                   </div>
@@ -1583,18 +1560,13 @@ const GrantApplication = () => {
                     >
                       Beneficiary's Story *
                     </label>
-                    <label className={classes.inputLabel}>
-                      Please explain how the award will help the recipient get
-                      off or stay off the street. If the award is part of some
-                      larger plan to assist the individual, please explain the
-                      part the award will play.
-                    </label>
+
                     <textarea
                       id="Beneficiary's Story"
                       rows="4"
                       value={benStory}
                       onChange={(e) => setBenStory(e.target.value)}
-                      placeholder="Eg. Brief Description"
+                      placeholder="Eg. Brief Description, Please explain how the award will help the recipient get off or stay off the street. If the award is part of some larger plan to assist the individual, please explain the part the award will play."
                       required
                     ></textarea>
                   </div>
@@ -1798,23 +1770,21 @@ const GrantApplication = () => {
                 </div>
 
                 <div className={classes.multiInputBlock}>
-                  <div className={classes.inputBlock}>
-                    <div className={classes.checkboxGroup}>
-                      <input
-                        className={classes.checkbox}
-                        type="checkbox"
-                        id="grant_confirmation"
-                        checked={confirmApplication}
-                        onChange={() =>
-                          setConfirmApplication(!confirmApplication)
-                        }
-                        required
-                      />
-                      <label htmlFor="grant_confirmation">
-                        I confirm that both the organisation and beneficiary is
-                        aware of and consents of this grant application *
-                      </label>
-                    </div>
+                  <div className={classes.checkboxGroup}>
+                    <input
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="grant_confirmation"
+                      checked={confirmApplication}
+                      onChange={() =>
+                        setConfirmApplication(!confirmApplication)
+                      }
+                      required
+                    />
+                    <label htmlFor="grant_confirmation">
+                      I confirm that both the organisation and beneficiary is
+                      aware of and consents of this grant application *
+                    </label>
                   </div>
                 </div>
               </div>
