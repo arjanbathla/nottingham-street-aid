@@ -55,7 +55,7 @@ const createGrant = async (req, res) => {
     benHistOfHomelessness,
     benHistDetails,
     benTimeInNottingham,
-    benLinktoNottingham,
+    benLinkToNottingham,
     benLinkDetails,
     benGrantReason,
     grantDetails,
@@ -124,7 +124,7 @@ const createGrant = async (req, res) => {
       benHistOfHomelessness,
       benHistDetails,
       benTimeInNottingham,
-      benLinktoNottingham,
+      benLinkToNottingham,
       benLinkDetails,
       benGrantReason,
       grantDetails,
@@ -141,7 +141,7 @@ const createGrant = async (req, res) => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      confirmApplication,
+      confirmApplication
     );
     res.status(200).json({ grant });
   } catch (error) {

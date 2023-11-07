@@ -81,7 +81,7 @@ const GrantApplication = () => {
   const [benHistOfHomelessness, setBenHistOfHomelessness] = useState("");
   const [benHistDetails, setBenHistDetails] = useState("");
   const [benTimeInNottingham, setBenTimeInNottingham] = useState("");
-  const [benLinktoNottingham, setBenLinkToNottingham] = useState("");
+  const [benLinkToNottingham, setBenLinkToNottingham] = useState("");
   const [benLinkDetails, setBenLinkDetails] = useState("");
 
   const [benGrantReason, setBenGrantReason] = useState("");
@@ -400,7 +400,7 @@ const GrantApplication = () => {
       benHistOfHomelessness,
       benHistDetails,
       benTimeInNottingham,
-      benLinktoNottingham,
+      benLinkToNottingham,
       benLinkDetails,
       benGrantReason,
       grantDetails,
@@ -417,73 +417,10 @@ const GrantApplication = () => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      confirmApplication,
+      confirmApplication
     );
     setCurrentSection(1);
-    console.log(benTitle,
-      benFirstName,
-      benLastName,
-      benEmail,
-      benTelephone,
-      declaration,
-      benNotts,
-      benAbode,
-      benAddressLine1,
-      benAddressLine2,
-      benTown,
-      altTitle,
-      altFirstName,
-      altLastName,
-      altRole,
-      altEmail,
-      altTelephone,
-      altAddressLine1,
-      altAddressLine2,
-      altCounty,
-      altPostcode,
-      sharedSignedLink,
-      benConsent,
-      prefContactMethod,
-      prefCommunication,
-      prefDataSharing,
-      benAgeRange,
-      benDob,
-      benGen,
-      benSex,
-      benEthnicity,
-      benReligion,
-      benDisability,
-      benDisabilityExtra,
-      benMarital,
-      benPregnancy,
-      benDependants,
-      numOfDependants,
-      ageOfDependants,
-      currentAccom,
-      benCurrentAccomLength,
-      benHistOfHomelessness,
-      benHistDetails,
-      benTimeInNottingham,
-      benLinktoNottingham,
-      benLinkDetails,
-      benGrantReason,
-      grantDetails,
-      benStory,
-      grantAmountTotal,
-      grantItemCost1,
-      grantItemDetails1,
-      grantItemCost2,
-      grantItemDetails2,
-      grantItemCost3,
-      grantItemDetails3,
-      grantItemCost4,
-      grantItemDetails4,
-      grantItemCost5,
-      grantItemDetails5,
-      grantQuoteLink,
-      confirmApplication,
-      )
-    if (!errorGrant) {
+    if (errorGrant==null) {
       navigate("/Organisation");
     }
   };
@@ -1512,7 +1449,7 @@ const GrantApplication = () => {
                       Does the beneficiary have links to Nottingham e.g. family?
                     </label>
                     <select
-                      value={benLinktoNottingham}
+                      value={benLinkToNottingham}
                       onChange={(e) => setBenLinkToNottingham(e.target.value)}
                       required
                     >
@@ -1522,7 +1459,7 @@ const GrantApplication = () => {
                     </select>
                   </div>
 
-                  {benLinktoNottingham === "Yes" && (
+                  {benLinkToNottingham === "Yes" && (
                     <div className={classes.inputBlock}>
                       <label
                         className={classes.inputLabel}

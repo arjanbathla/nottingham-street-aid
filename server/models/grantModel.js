@@ -60,7 +60,7 @@ const grantSchema = new Schema(
     benHistOfHomelessness: { type: String, required: true },
     benHistDetails: { type: String, required: true },
     benTimeInNottingham: { type: String, required: true },
-    benLinktoNottingham: { type: String, required: true },
+    benLinkToNottingham: { type: String, required: true },
     benLinkDetails: { type: String, required: true },
 
     benGrantReason: { type: String, required: true },
@@ -133,7 +133,7 @@ grantSchema.statics.applyGrant = async function (
   benHistOfHomelessness,
   benHistDetails,
   benTimeInNottingham,
-  benLinktoNottingham,
+  benLinkToNottingham,
   benLinkDetails,
   benGrantReason,
   grantDetails,
@@ -152,60 +152,60 @@ grantSchema.statics.applyGrant = async function (
   grantQuoteLink,
   confirmApplication
 ) {
-  if (
-    !userId ||
-    !grantStatus ||
-    !benTitle ||
-    !benFirstName ||
-    !benLastName ||
-    !benEmail ||
-    !benTelephone ||
-    !declaration ||
-    !benNotts ||
-    !benAbode ||
-    !altTitle ||
-    !altFirstName ||
-    !altLastName ||
-    !altRole ||
-    !altEmail ||
-    !altTelephone ||
-    !altAddressLine1 ||
-    !altAddressLine2 ||
-    !altCounty ||
-    !altPostcode ||
-    !sharedSignedLink ||
-    !benConsent ||
-    !prefContactMethod ||
-    !prefCommunication ||
-    !prefDataSharing ||
-    !benAgeRange ||
-    !benDob ||
-    !benGen ||
-    !benSex ||
-    !benEthnicity ||
-    !benReligion ||
-    !benDisability ||
-    !benMarital ||
-    !benPregnancy ||
-    !numOfDependants ||
-    !ageOfDependants ||
-    !currentAccom ||
-    !benCurrentAccomLength ||
-    !benHistOfHomelessness ||
-    !benHistDetails ||
-    !benTimeInNottingham ||
-    !benLinktoNottingham ||
-    !benLinkDetails ||
-    !benGrantReason ||
-    !grantDetails ||
-    !benStory ||
-    !grantAmountTotal ||
-    !grantItemCost1 ||
-    !grantItemDetails1 ||
-    !confirmApplication
-  ) {
-    throw Error("All fields must be filled");
-  }
+  // if (
+  //   !userId ||
+  //   !grantStatus ||
+  //   !benTitle ||
+  //   !benFirstName ||
+  //   !benLastName ||
+  //   !benEmail ||
+  //   !benTelephone ||
+  //   !declaration ||
+  //   !benNotts ||
+  //   !benAbode ||
+  //   !altTitle ||
+  //   !altFirstName ||
+  //   !altLastName ||
+  //   !altRole ||
+  //   !altEmail ||
+  //   !altTelephone ||
+  //   !altAddressLine1 ||
+  //   !altAddressLine2 ||
+  //   !altCounty ||
+  //   !altPostcode ||
+  //   !sharedSignedLink ||
+  //   !benConsent ||
+  //   !prefContactMethod ||
+  //   !prefCommunication ||
+  //   !prefDataSharing ||
+  //   !benAgeRange ||
+  //   !benDob ||
+  //   !benGen ||
+  //   !benSex ||
+  //   !benEthnicity ||
+  //   !benReligion ||
+  //   !benDisability ||
+  //   !benMarital ||
+  //   !benPregnancy ||
+  //   !numOfDependants ||
+  //   !ageOfDependants ||
+  //   !currentAccom ||
+  //   !benCurrentAccomLength ||
+  //   !benHistOfHomelessness ||
+  //   !benHistDetails ||
+  //   !benTimeInNottingham ||
+  //   !benLinkToNottingham ||
+  //   !benLinkDetails ||
+  //   !benGrantReason ||
+  //   !grantDetails ||
+  //   !benStory ||
+  //   !grantAmountTotal ||
+  //   !grantItemCost1 ||
+  //   !grantItemDetails1 ||
+  //   !confirmApplication
+  // ) {
+  //   throw Error("All fields must be filled");
+  // }
 
   const grant = await this.create({
     userId,
@@ -254,7 +254,7 @@ grantSchema.statics.applyGrant = async function (
     benHistOfHomelessness,
     benHistDetails,
     benTimeInNottingham,
-    benLinktoNottingham,
+    benLinkToNottingham,
     benLinkDetails,
     benGrantReason,
     grantDetails,
@@ -271,7 +271,7 @@ grantSchema.statics.applyGrant = async function (
     grantItemCost5,
     grantItemDetails5,
     grantQuoteLink,
-    confirmApplication,
+    confirmApplication
   });
 
   return grant;

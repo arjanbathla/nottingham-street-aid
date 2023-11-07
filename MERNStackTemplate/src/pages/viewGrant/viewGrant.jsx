@@ -105,7 +105,7 @@ const viewGrant = () => {
               <p>History: {grant.benHistOfHomelessness}</p>
               <p>History Details: {grant.benHistDetails}</p>
               <p>Time in Nottingham:{grant.benTimeInNottingham}</p>
-              <p>Links to Nottingham: {grant.benLinktoNottingham}</p>
+              <p>Links to Nottingham: {grant.benLinkToNottingham}</p>
               <p>Link details: {grant.benLinkDetails}</p>
             </div>
 

@@ -138,7 +138,7 @@ const organisation = () => {
                         <p>History: {grant.benHistOfHomelessness}</p>
                         <p>HistoryDetails: {grant.benHistDetails}</p>
                         <p>TimeInNottingham: {grant.benTimeInNottingham}</p>
-                        <p>LinkToNottingham: {grant.benLinktoNottingham}</p>
+                        <p>LinkToNottingham: {grant.benLinkToNottingham}</p>
                         <p>LinkDetails: {grant.benLinkDetails}</p>
                         <p>Reason: {grant.benGrantReason}</p>
                         <p>Details: {grant.grantDetails}</p>
