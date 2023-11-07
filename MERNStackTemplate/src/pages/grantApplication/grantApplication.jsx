@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
+import Loader from "../../components/loader/loader";
 
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
@@ -287,8 +288,8 @@ const GrantApplication = () => {
 
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
-    // setLatestSection(currentSection)
-    setLatestSection(section);
+    setLatestSection(currentSection)
+    // setLatestSection(section);
     if (latestSection >= section) {
       setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
       //eg. input on page 2 disappears only if go back to 1 not 3
@@ -416,9 +417,72 @@ const GrantApplication = () => {
       grantItemCost5,
       grantItemDetails5,
       grantQuoteLink,
-      confirmApplication
+      confirmApplication,
     );
-    // setCurrentSection(1);
+    setCurrentSection(1);
+    console.log(benTitle,
+      benFirstName,
+      benLastName,
+      benEmail,
+      benTelephone,
+      declaration,
+      benNotts,
+      benAbode,
+      benAddressLine1,
+      benAddressLine2,
+      benTown,
+      altTitle,
+      altFirstName,
+      altLastName,
+      altRole,
+      altEmail,
+      altTelephone,
+      altAddressLine1,
+      altAddressLine2,
+      altCounty,
+      altPostcode,
+      sharedSignedLink,
+      benConsent,
+      prefContactMethod,
+      prefCommunication,
+      prefDataSharing,
+      benAgeRange,
+      benDob,
+      benGen,
+      benSex,
+      benEthnicity,
+      benReligion,
+      benDisability,
+      benDisabilityExtra,
+      benMarital,
+      benPregnancy,
+      benDependants,
+      numOfDependants,
+      ageOfDependants,
+      currentAccom,
+      benCurrentAccomLength,
+      benHistOfHomelessness,
+      benHistDetails,
+      benTimeInNottingham,
+      benLinktoNottingham,
+      benLinkDetails,
+      benGrantReason,
+      grantDetails,
+      benStory,
+      grantAmountTotal,
+      grantItemCost1,
+      grantItemDetails1,
+      grantItemCost2,
+      grantItemDetails2,
+      grantItemCost3,
+      grantItemDetails3,
+      grantItemCost4,
+      grantItemDetails4,
+      grantItemCost5,
+      grantItemDetails5,
+      grantQuoteLink,
+      confirmApplication,
+      )
     if (!errorGrant) {
       navigate("/Organisation");
     }
@@ -916,17 +980,17 @@ const GrantApplication = () => {
                       declaration. Handwritten, printed, video or audio files
                       accepted *
                     </label>
-                    <div className={classes.relatedInputBlock}>
+                    {/* <div className={classes.relatedInputBlock}> */}
                       <input
                         type="file"
                         // value={sharedSignedLink}
                         onChange={(e) => setSharedSignedLink(e.target.value)}
                         // required
                       />
-                      <label className={classes.inputLabel}>
+                      {/* <label className={classes.inputLabel}>
                         {sharedSignedLink}
-                      </label>
-                    </div>
+                      </label> */}
+                    {/* </div> */}
                   </div>
                 </div>
 
@@ -1755,17 +1819,17 @@ const GrantApplication = () => {
                       provided.
                     </label>
 
-                    <div className={classes.relatedInputBlock}>
+                    {/* <div className={classes.relatedInputBlock}> */}
                       <input
                         type="file"
                         // value={grantQuoteLink}
                         onChange={(e) => setGrantQuoteLink(e.target.value)}
                         // required
                       />
-                      <label className={classes.inputLabel}>
+                      {/* <label className={classes.inputLabel}>
                         {grantQuoteLink}
-                      </label>
-                    </div>
+                      </label> */}
+                    {/* </div> */}
                   </div>
                 </div>
 

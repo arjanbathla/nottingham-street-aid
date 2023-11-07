@@ -16,6 +16,7 @@ import ContactUs from "./pages/contactUs/contactUs";
 import OurPolicy from "./pages/ourPolicy/ourPolicy";
 import Organisation from "./pages/organisation/organisation";
 import GrantApplication from "./pages/grantApplication/grantApplication";
+import ViewGrant from "./pages/viewGrant/viewGrant";
 
 import Layout from "./navigation/layout/layout";
 
@@ -55,6 +56,10 @@ const App = () => {
       <Route
         path="/GrantApplication"
         element={user ? <GrantApplication /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/ViewGrant"
+        element={user ? <ViewGrant /> : <Navigate to="/" />}
       />
     </Routes>
   );

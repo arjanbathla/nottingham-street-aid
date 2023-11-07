@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 
 const authSchema = new Schema(
   {
+    userStatus: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
 
@@ -44,17 +45,18 @@ const authSchema = new Schema(
     contact3Email: { type: String, required: false },
     contact3Phone: { type: Number, required: false },
 
-    commsPref: { type: Boolean, required: true },
-    dataPref: { type: Boolean, required: true },
-    newsletterPref: { type: Boolean, required: true },
-    bulletinPref: { type: Boolean, required: true },
-    tsAndCs: { type: Boolean, required: true },
+    commsPref: { type: String, required: false },
+    dataPref: { type: String, required: false },
+    newsletterPref: { type: String, required: false },
+    bulletinPref: { type: String, required: false },
+    tsAndCs: { type: String, required: false },
   },
   { timestamps: true }
 );
 
 //static signup method
 authSchema.statics.signup = async function (
+  userStatus,
   username,
   password,
   orgName,
@@ -94,6 +96,7 @@ authSchema.statics.signup = async function (
   tsAndCs
 ) {
   if (
+    !userStatus ||
     !username ||
     !password ||
     !orgName ||

@@ -4,16 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setGrants } from "../../contextStore/grantsStore";
+import { setGrant } from "../../contextStore/grantStore";
 
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
+import Button2 from "../../components/button2/button2";
 
 const organisation = () => {
   const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
   const { grants } = useSelector((state) => state.grants);
-  const [grantViewKey, setGrantViewKey] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchGrants = async () => {
@@ -43,11 +44,11 @@ const organisation = () => {
     navigate("/GrantApplication");
   };
 
-  const viewMoreHandler = (key) => {
-    if (grantViewKey != false) {
-      setGrantViewKey(false);
+  const viewMoreHandler = (grant) => {
+    if(grant){
+      dispatch(setGrant(grant))
+      navigate("/ViewGrant")
     }
-    setGrantViewKey(key);
   };
 
   return (
@@ -72,9 +73,9 @@ const organisation = () => {
                     {grant.benTitle} {grant.benFirstName} {grant.benLastName}
                   </h3>
                   <p>Status - {grant.grantStatus}</p>
-                  {/* <Button clicked={(e) => viewMoreHandler(grant._id)}>
+                  <Button2 clicked={(e) => viewMoreHandler(grant)}>
                     View More
-                  </Button> */}
+                  </Button2>
                 </div>
               ))}
           </div>

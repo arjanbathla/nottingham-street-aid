@@ -58,7 +58,9 @@ const signupAuth = async (req, res) => {
     tsAndCs,
   } = req.body;
   try {
+    const userStatus = "Pending";
     const auth = await Auth.signup(
+      userStatus,
       username,
       password,
       orgName,

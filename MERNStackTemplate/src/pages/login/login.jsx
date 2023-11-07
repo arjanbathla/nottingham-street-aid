@@ -82,7 +82,7 @@ const login = () => {
               </Button>
               <div>
                 <p>asd@asd.com</p>
-                <p>ASDasd_123</p>
+                <p>ASDasd_123#</p>
               </div>
               {isLoadingLogin && <Loader loading={isLoadingLogin} />}
             </div>

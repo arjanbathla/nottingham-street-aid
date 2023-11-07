@@ -507,13 +507,10 @@ const Register = () => {
                         type="number"
                         value={orgHouseNumber}
                         onChange={(e) => setOrgHouseNumber(e.target.value)}
-                        placeholder="Eg. 12345678"
+                        placeholder="Eg. 12345678, Last 8 Digits Only"
                         max={99999999}
                         required
                       />
-                      <label className={classes.passwordLabel}>
-                        Last 8 Digits Only
-                      </label>
                     </div>
                   )}
                 </div>
