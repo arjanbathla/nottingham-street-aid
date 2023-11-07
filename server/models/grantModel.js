@@ -4,72 +4,72 @@ const Schema = mongoose.Schema;
 
 const grantSchema = new Schema(
   {
-    userId: { type: String, required: false },
-    grantStatus: { type: String, required: false },
+    userId: { type: String, required: true },
+    grantStatus: { type: String, required: true },
 
-    benTitle: { type: String, required: false },
-    benFirstName: { type: String, required: false },
-    benLastName: { type: String, required: false },
+    benTitle: { type: String, required: true },
+    benFirstName: { type: String, required: true },
+    benLastName: { type: String, required: true },
     benEmail: { type: String, required: false },
     benTelephone: { type: Number, required: false },
 
-    declaration: { type: Boolean, required: false },
-    benNotts: { type: Boolean, required: false },
-    benAbode: { type: Boolean, required: false },
+    declaration: { type: Boolean, required: true },
+    benNotts: { type: Boolean, required: true },
+    benAbode: { type: Boolean, required: true },
     benAddressLine1: { type: String, required: false },
     benAddressLine2: { type: String, required: false },
     benTown: { type: String, required: false },
 
-    altTitle: { type: String, required: false },
-    altFirstName: { type: String, required: false },
-    altLastName: { type: String, required: false },
-    altRole: { type: String, required: false },
-    altEmail: { type: String, required: false },
-    altTelephone: { type: Number, required: false },
+    altTitle: { type: String, required: true },
+    altFirstName: { type: String, required: true },
+    altLastName: { type: String, required: true },
+    altRole: { type: String, required: true },
+    altEmail: { type: String, required: true },
+    altTelephone: { type: Number, required: true },
 
-    altAddressLine1: { type: String, required: false },
+    altAddressLine1: { type: String, required: true },
     altAddressLine2: { type: String, required: false },
-    altCounty: { type: String, required: false },
-    altPostcode: { type: String, required: false },
+    altCounty: { type: String, required: true },
+    altPostcode: { type: String, required: true },
 
-    sharedSignedLink: { type: String, required: false },
-    benConsent: { type: Boolean, required: false },
+    sharedSignedLink: { type: String, required: true },
+    benConsent: { type: Boolean, required: true },
 
-    prefContactMethod: { type: String, required: false },
-    prefCommunication: { type: Boolean, required: false },
-    prefDataSharing: { type: Boolean, required: false },
+    prefContactMethod: { type: String, required: true },
+    prefCommunication: { type: Boolean, required: true },
+    prefDataSharing: { type: Boolean, required: true },
 
-    benAgeRange: { type: String, required: false },
-    benDob: { type: String, required: false },
-    benGen: { type: String, required: false },
-    benSex: { type: String, required: false },
-    benEthnicity: { type: String, required: false },
-    benReligion: { type: String, required: false },
+    benAgeRange: { type: String, required: true },
+    benDob: { type: String, required: true },
+    benGen: { type: String, required: true },
+    benSex: { type: String, required: true },
+    benEthnicity: { type: String, required: true },
+    benReligion: { type: String, required: true },
 
-    benDisability: { type: String, required: false },
+    benDisability: { type: String, required: true },
     benDisabilityExtra: { type: String, required: false },
 
-    benMarital: { type: String, required: false },
-    benPregnancy: { type: String, required: false },
-    benDependants: { type: String, required: false },
+    benMarital: { type: String, required: true },
+    benPregnancy: { type: String, required: true },
+    benDependants: { type: String, required: true },
     numOfDependants: { type: String, required: false },
     ageOfDependants: { type: String, required: false },
 
-    currentAccom: { type: String, required: false },
-    benCurrentAccomLength: { type: String, required: false },
-    benHistOfHomelessness: { type: String, required: false },
+    currentAccom: { type: String, required: true },
+    benCurrentAccomLength: { type: String, required: true },
+    benHistOfHomelessness: { type: String, required: true },
     benHistDetails: { type: String, required: false },
-    benTimeInNottingham: { type: String, required: false },
-    benLinkToNottingham: { type: String, required: false },
+    benTimeInNottingham: { type: String, required: true },
+    benLinkToNottingham: { type: String, required: true },
     benLinkDetails: { type: String, required: false },
 
-    benGrantReason: { type: String, required: false },
-    grantDetails: { type: String, required: false },
-    benStory: { type: String, required: false },
+    benGrantReason: { type: String, required: true },
+    grantDetails: { type: String, required: true },
+    benStory: { type: String, required: true },
 
-    grantAmountTotal: { type: String, required: false },
-    grantItemCost1: { type: Number, required: false },
-    grantItemDetails1: { type: String, required: false },
+    grantAmountTotal: { type: String, required: true },
+    grantItemCost1: { type: Number, required: true },
+    grantItemDetails1: { type: String, required: true },
     grantItemCost2: { type: Number, required: false },
     grantItemDetails2: { type: String, required: false },
     grantItemCost3: { type: Number, required: false },
@@ -80,9 +80,9 @@ const grantSchema = new Schema(
     grantItemDetails5: { type: String, required: false },
 
     grantQuoteLink: { type: String, required: false },
-    confirmApplication: { type: String, required: false },
+    confirmApplication: { type: String, required: true },
   },
-  { timestamps: false }
+  { timestamps: true }
 );
 
 //static signup method
@@ -152,60 +152,54 @@ grantSchema.statics.applyGrant = async function (
   grantQuoteLink,
   confirmApplication
 ) {
-  // if (
-  //   !userId ||
-  //   !grantStatus ||
-  //   !benTitle ||
-  //   !benFirstName ||
-  //   !benLastName ||
-  //   !benEmail ||
-  //   !benTelephone ||
-  //   !declaration ||
-  //   !benNotts ||
-  //   !benAbode ||
-  //   !altTitle ||
-  //   !altFirstName ||
-  //   !altLastName ||
-  //   !altRole ||
-  //   !altEmail ||
-  //   !altTelephone ||
-  //   !altAddressLine1 ||
-  //   !altAddressLine2 ||
-  //   !altCounty ||
-  //   !altPostcode ||
-  //   !sharedSignedLink ||
-  //   !benConsent ||
-  //   !prefContactMethod ||
-  //   !prefCommunication ||
-  //   !prefDataSharing ||
-  //   !benAgeRange ||
-  //   !benDob ||
-  //   !benGen ||
-  //   !benSex ||
-  //   !benEthnicity ||
-  //   !benReligion ||
-  //   !benDisability ||
-  //   !benMarital ||
-  //   !benPregnancy ||
-  //   !numOfDependants ||
-  //   !ageOfDependants ||
-  //   !currentAccom ||
-  //   !benCurrentAccomLength ||
-  //   !benHistOfHomelessness ||
-  //   !benHistDetails ||
-  //   !benTimeInNottingham ||
-  //   !benLinkToNottingham ||
-  //   !benLinkDetails ||
-  //   !benGrantReason ||
-  //   !grantDetails ||
-  //   !benStory ||
-  //   !grantAmountTotal ||
-  //   !grantItemCost1 ||
-  //   !grantItemDetails1 ||
-  //   !confirmApplication
-  // ) {
-  //   throw Error("All fields must be filled");
-  // }
+  if (
+    !userId ||
+    !grantStatus ||
+    !benTitle ||
+    !benFirstName ||
+    !benLastName ||
+    !declaration ||
+    !benNotts ||
+    !benAbode ||
+    !altTitle ||
+    !altFirstName ||
+    !altLastName ||
+    !altRole ||
+    !altEmail ||
+    !altTelephone ||
+    !altAddressLine1 ||
+    !altCounty ||
+    !altPostcode ||
+    !sharedSignedLink ||
+    !benConsent ||
+    !prefContactMethod ||
+    !prefCommunication ||
+    !prefDataSharing ||
+    !benAgeRange ||
+    !benDob ||
+    !benGen ||
+    !benSex ||
+    !benEthnicity ||
+    !benReligion ||
+    !benDisability ||
+    !benMarital ||
+    !benPregnancy ||
+    !benDependants ||
+    !currentAccom ||
+    !benCurrentAccomLength ||
+    !benHistOfHomelessness ||
+    !benTimeInNottingham ||
+    !benLinkToNottingham ||
+    !benGrantReason ||
+    !grantDetails ||
+    !benStory ||
+    !grantAmountTotal ||
+    !grantItemCost1 ||
+    !grantItemDetails1 ||
+    !confirmApplication
+  ) {
+    throw Error("All fields must be filled");
+  }
 
   const grant = await this.create({
     userId,

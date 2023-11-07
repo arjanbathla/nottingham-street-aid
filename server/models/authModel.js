@@ -45,11 +45,11 @@ const authSchema = new Schema(
     contact3Email: { type: String, required: false },
     contact3Phone: { type: Number, required: false },
 
-    commsPref: { type: String, required: false },
-    dataPref: { type: String, required: false },
-    newsletterPref: { type: String, required: false },
-    bulletinPref: { type: String, required: false },
-    tsAndCs: { type: String, required: false },
+    commsPref: { type: Boolean, required: true },
+    dataPref: { type: Boolean, required: true },
+    newsletterPref: { type: Boolean, required: true },
+    bulletinPref: { type: Boolean, required: true },
+    tsAndCs: { type: Boolean, required: true },
   },
   { timestamps: true }
 );
