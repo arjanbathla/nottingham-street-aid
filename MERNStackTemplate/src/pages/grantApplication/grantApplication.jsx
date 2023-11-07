@@ -420,7 +420,7 @@ const GrantApplication = () => {
       confirmApplication
     );
     setCurrentSection(1);
-    if (!!isLoadingGrant && errorGrant==null) {
+    if (!isLoadingGrant && errorGrant===null) {
       navigate("/Organisation");
     }
   };
