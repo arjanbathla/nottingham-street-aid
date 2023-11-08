@@ -13,9 +13,9 @@ const grantSchema = new Schema(
     benEmail: { type: String, required: false },
     benTelephone: { type: Number, required: false },
 
-    declaration: { type: Boolean, required: true },
-    benNotts: { type: Boolean, required: true },
-    benAbode: { type: Boolean, required: true },
+    declaration: { type: String, required: true },
+    benNotts: { type: String, required: true },
+    benAbode: { type: String, required: true },
     benAddressLine1: { type: String, required: false },
     benAddressLine2: { type: String, required: false },
     benTown: { type: String, required: false },
@@ -33,11 +33,11 @@ const grantSchema = new Schema(
     altPostcode: { type: String, required: true },
 
     sharedSignedLink: { type: String, required: true },
-    benConsent: { type: Boolean, required: true },
+    benConsent: { type: String, required: true },
 
     prefContactMethod: { type: String, required: true },
-    prefCommunication: { type: Boolean, required: true },
-    prefDataSharing: { type: Boolean, required: true },
+    prefCommunication: { type: String, required: true },
+    prefDataSharing: { type: String, required: true },
 
     benAgeRange: { type: String, required: true },
     benDob: { type: String, required: true },
