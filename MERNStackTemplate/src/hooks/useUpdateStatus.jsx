@@ -4,7 +4,7 @@ import { setGrants } from "../contextStore/grantsStore";
 
 export const useUpdateStatus = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { admin } = useSelector((state) => state.admin);
 
   const [errorUpdateStatus, setErrorUpdateStatus] = useState(null);
   const [isLoadingUpdateStatus, setIsLoadingUpdateStatus] = useState(null);
@@ -18,7 +18,7 @@ export const useUpdateStatus = () => {
       {
         method: "PATCH",
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${admin.token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -28,7 +28,7 @@ export const useUpdateStatus = () => {
       }
     );
 
-    console.log(status)
+    // console.log(status)
 
     const json = await response.json();
 

@@ -14,7 +14,7 @@ import Loader from "../../components/loader/loader";
 import CryptoJS from "crypto-js";
 
 const admin = () => {
-  const { user } = useSelector((state) => state.user);
+  const { admin } = useSelector((state) => state.admin);
   const { grants } = useSelector((state) => state.grants);
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const admin = () => {
         "https://notts-street-aid-backend.vercel.app/api/admin",
         {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${admin.token}`,
           },
         }
       );
@@ -36,10 +36,10 @@ const admin = () => {
       }
     };
 
-    if (user) {
+    if (admin) {
       fetchGrants();
     }
-  }, [dispatch, user]);
+  }, [dispatch, admin]);
 
   const navigate = useNavigate();
 

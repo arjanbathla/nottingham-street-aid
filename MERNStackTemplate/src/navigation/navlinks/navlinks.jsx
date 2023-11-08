@@ -3,6 +3,7 @@ import classes from "./navlinks.module.css";
 
 import { useSelector } from "react-redux";
 import { useLogout } from "../../hooks/useLogout";
+import { useAdminLogout } from "../../hooks/useAdminLogout";
 
 import Button from "../../components/button/button";
 import Navlink from "../navlink/navlink";
@@ -11,11 +12,13 @@ import { MdOutlinePolicy } from "react-icons/md";
 
 const navlinks = () => {
   const { user } = useSelector((state) => state.user);
+  const { admin } = useSelector((state) => state.admin);
   const { logout } = useLogout();
+  const { adminLogout } = useAdminLogout();
 
   return (
     <div>
-      {!user && (
+      {!user && !admin && (
         <ul className={classes.navlinks}>
           <Navlink link="/">Home</Navlink>
           <Navlink link="/Register">Register</Navlink>
@@ -37,6 +40,18 @@ const navlinks = () => {
             <MdOutlinePolicy /> Policies & Guidance 
           </Navlink>
           <Button clicked={() => logout()}>Logout - {user.username}</Button>
+        </ul>
+      )}
+
+      {admin && (
+        <ul className={classes.navlinks}>
+          <Navlink link="/Admin">
+            <AiOutlineHome /> Dashboard 
+          </Navlink>
+          <Navlink link="/OurPolicy">
+            <MdOutlinePolicy /> Policies & Guidance 
+          </Navlink>
+          <Button clicked={() => adminLogout()}>Logout - {admin.username}</Button>
         </ul>
       )}
     </div>
