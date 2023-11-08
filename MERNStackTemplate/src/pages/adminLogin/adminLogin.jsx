@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import classes from "./adminLogin.module.css";
 
-import { useNavigate } from "react-router-dom";
 import { useAdminLogin } from "../../hooks/useAdminLogin";
 
 import Container from "@mui/material/Container";
@@ -74,7 +73,7 @@ const adminAdminLogin = () => {
               {isLoadingAdminLogin && <Loader loading={isLoadingAdminLogin} />}
               
               <div>
-                <p>asd@asd.com</p>
+                <p>nsa@nsa.com</p>
                 <p>ASDasd_123#</p>
               </div>
             </div>

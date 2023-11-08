@@ -21,7 +21,7 @@ const loginAuth = async (req, res) => {
 const adminLoginAuth = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const auth = await AdminAuth.signup(username, password);
+    const auth = await AdminAuth.login(username, password);
     const token = createToken(auth._id);
     res.status(200).json({ username, token });
   } catch (error) {
