@@ -1,31 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./viewAdminGrant.module.css";
 
 import { Container } from "@mui/material";
 import Button from "../../components/button/button";
 
 import { useSelector } from "react-redux";
+import { useUpdateStatus } from "../../hooks/useUpdateStatus";
+
+import { useNavigate } from "react-router-dom";
 
 const viewAdminGrant = () => {
   const { grant } = useSelector((state) => state.grant);
+  const { updateStatus, isLoadingUpdateStatus, errorUpdateStatus } = useUpdateStatus();
 
-  const handleAccept = () => {
+  const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+
+  const handleAccept = async (e) => {
     const confirmation = window.confirm(
       "Are you sure you want to accept the application?"
     );
     if (confirmation) {
-      setIsAccepted(true);
-    } else {
-      // User canceled the confirmation
+      setStatus("Approved")
+      await updateStatus(
+        grant._id,
+        status,
+      )
+      if(errorUpdateStatus == null){navigate("/Admin")}
     }
   };
-  const handleReject = () => {
+  const handleReject = async (e) => {
     const confirmation = window.confirm(
       "Are you sure you want to reject the application?"
     );
     if (confirmation) {
-      setIsRejected(true);
-    } else {
+      setStatus("Rejected");
+      await updateStatus(
+        grant._id,
+        status,
+      )
+      if(errorUpdateStatus == null){navigate("/Admin")}
     }
   };
 

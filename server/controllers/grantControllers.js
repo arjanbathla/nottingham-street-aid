@@ -14,6 +14,14 @@ const fetchAllGrants = async (req, res) => {
   res.status(200).json(grants);
 };
 
+const updateStatus = async (req, res) => {
+  const {grantId, status} = req.body
+  const grants = await Grant.findOneAndUpdate({_id: grantId},{
+    status
+  })
+  res.status(200).json(grants);
+};
+
 //apply grants
 const createGrant = async (req, res) => {
   const {
@@ -158,5 +166,6 @@ const createGrant = async (req, res) => {
 module.exports = {
   fetchGrants,
   fetchAllGrants,
+  updateStatus,
   createGrant,
 };
