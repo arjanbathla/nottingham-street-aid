@@ -80,11 +80,12 @@ const login = () => {
               <Button type="submit" disable={isLoadingLogin}>
                 Login
               </Button>
+              {isLoadingLogin && <Loader loading={isLoadingLogin} />}
+              
               <div>
                 <p>asd@asd.com</p>
                 <p>ASDasd_123#</p>
               </div>
-              {isLoadingLogin && <Loader loading={isLoadingLogin} />}
             </div>
             {errorLogin && <p className={classes.errorMessage}>{errorLogin}</p>}
           </form>

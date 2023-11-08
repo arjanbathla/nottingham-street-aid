@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes")
 const organisationRoutes = require("./routes/organisationRoutes")
+const adminRoutes = require("./routes/adminRoutes")
 
 // init express node app
 const app = express();
@@ -16,7 +17,7 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
-app.use("/api", authRoutes, organisationRoutes)
+app.use("/api", authRoutes, organisationRoutes, adminRoutes)
 
 // connect the app to a database
 mongoose.connect(process.env.MONGO_URI)

@@ -4,4 +4,5 @@
 
 .mainContent{
     background-color: var(--light);
+    min-height: 100vh;
 }

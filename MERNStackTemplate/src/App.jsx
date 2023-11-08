@@ -18,6 +18,9 @@ import Organisation from "./pages/organisation/organisation";
 import GrantApplication from "./pages/grantApplication/grantApplication";
 import ViewGrant from "./pages/viewGrant/viewGrant";
 
+import Admin from "./pages/admin/admin";
+import ViewAdminGrant from "./pages/viewAdminGrant/viewAdminGrant";
+
 import Layout from "./navigation/layout/layout";
 
 const App = () => {
@@ -60,6 +63,14 @@ const App = () => {
       <Route
         path="/ViewGrant"
         element={user ? <ViewGrant /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/Admin"
+        element={user ? <Admin /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/ViewAdminGrant"
+        element={user ? <ViewAdminGrant /> : <Navigate to="/" />}
       />
     </Routes>
   );

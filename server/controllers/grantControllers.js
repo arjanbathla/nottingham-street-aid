@@ -8,6 +8,12 @@ const fetchGrants = async (req, res) => {
   res.status(200).json(grants);
 };
 
+//get grants
+const fetchAllGrants = async (req, res) => {
+  const grants = await Grant.find({  }).sort({ createdAt: -1 });
+  res.status(200).json(grants);
+};
+
 //apply grants
 const createGrant = async (req, res) => {
   const {
@@ -151,5 +157,6 @@ const createGrant = async (req, res) => {
 
 module.exports = {
   fetchGrants,
+  fetchAllGrants,
   createGrant,
 };

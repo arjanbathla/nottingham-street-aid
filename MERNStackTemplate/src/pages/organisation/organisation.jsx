@@ -56,7 +56,7 @@ const organisation = () => {
       <section className={classes.section}>
         <div className={classes.dashboard}>
           <div className={classes.dashboardHeader}>
-            <h2 className={classes.mainTitle}>All Grants</h2>
+            <h2 className={classes.mainTitle}>Organisation Dashboard</h2>
             <div className={classes.addGrantBlock}>
               <Button clicked={startNewGrant}>Start New Grant</Button>
               <a href={""} target="_blank">

@@ -1,0 +1,24 @@
+.section {
+    width: 100%;
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column wrap;
+    gap: var(--padding-3);
+}
+
+.grant{
+    background-color: var(--neutral);
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+    grid-auto-flow: column;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: var(--padding-1);
+}
+
+.buttonContainer{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}

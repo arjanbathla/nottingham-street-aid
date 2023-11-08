@@ -1,0 +1,59 @@
+.section {
+    width: 100%;
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+}
+
+.dashboard {
+    background-color: var(--neutral);
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: var(--padding-1);
+}
+
+.dashboardHeader {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: var(--padding-3);
+}
+
+.addGrantBlock {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--padding-1);
+}
+
+.dashboardContent {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--padding-3);
+}
+
+.grantItem {
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+    padding: var(--padding-1);
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.kanban{
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+}
+
+.kanbanContent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--padding-3);
+}
