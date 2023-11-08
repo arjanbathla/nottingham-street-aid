@@ -13,7 +13,8 @@ import Loader from "../../components/loader/loader";
 
 const organisation = () => {
   const { user } = useSelector((state) => state.user);
-  const { grants } = useSelector((state) => state.grants);
+  // const { grants } = useSelector((state) => state.grants);
+  const [grants, setGrantsLocal] = useState()
 
   const dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ const organisation = () => {
 
       if (response.ok) {
         dispatch(setGrants(json));
+        setGrantsLocal(json)
       }
     };
 

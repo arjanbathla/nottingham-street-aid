@@ -15,7 +15,8 @@ import CryptoJS from "crypto-js";
 
 const admin = () => {
   const { admin } = useSelector((state) => state.admin);
-  const { grants } = useSelector((state) => state.grants);
+  // const { grants } = useSelector((state) => state.grants);
+  const [grants, setGrantsLocal] = useState()
 
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ const admin = () => {
 
       if (response.ok) {
         dispatch(setGrants(json));
+        setGrantsLocal(json)
       }
     };
 
