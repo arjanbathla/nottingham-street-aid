@@ -9,7 +9,7 @@ import Button from "../../components/button/button";
 import Loader from "../../components/loader/loader";
 
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
-import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
+// import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
 import { EighteenLim } from "../../config";
 
@@ -88,16 +88,16 @@ const GrantApplication = () => {
   const [grantDetails, setGrantDetails] = useState("");
   const [benStory, setBenStory] = useState("");
 
-  const [grantAmountTotal, setGrantAmountTotal] = useState("");
-  const [grantItemCost1, setGrantItemCost1] = useState("");
+  const [grantAmountTotal, setGrantAmountTotal] = useState(0);
+  const [grantItemCost1, setGrantItemCost1] = useState(0);
   const [grantItemDetails1, setGrantItemDetails1] = useState("");
-  const [grantItemCost2, setGrantItemCost2] = useState("");
+  const [grantItemCost2, setGrantItemCost2] = useState(0);
   const [grantItemDetails2, setGrantItemDetails2] = useState("");
-  const [grantItemCost3, setGrantItemCost3] = useState("");
+  const [grantItemCost3, setGrantItemCost3] = useState(0);
   const [grantItemDetails3, setGrantItemDetails3] = useState("");
-  const [grantItemCost4, setGrantItemCost4] = useState("");
+  const [grantItemCost4, setGrantItemCost4] = useState(0);
   const [grantItemDetails4, setGrantItemDetails4] = useState("");
-  const [grantItemCost5, setGrantItemCost5] = useState("");
+  const [grantItemCost5, setGrantItemCost5] = useState(0);
   const [grantItemDetails5, setGrantItemDetails5] = useState("");
   const [grantQuoteLink, setGrantQuoteLink] = useState("");
 
@@ -289,8 +289,7 @@ const GrantApplication = () => {
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
     // for limiter
-    setLatestSection(currentSection)
-
+    setLatestSection(currentSection);
     // setLatestSection(section);
     if (latestSection >= section) {
       setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
@@ -332,98 +331,117 @@ const GrantApplication = () => {
     return sectionButtons;
   };
 
+  const [costError, setCostError] = useState(false);
+
+  useEffect(() => {
+    setGrantAmountTotal(
+      Number(grantItemCost1) +
+        Number(grantItemCost2) +
+        Number(grantItemCost3) +
+        Number(grantItemCost4) +
+        Number(grantItemCost5)
+    );
+    if (grantAmountTotal > 750) {
+      setCostError("Total Items Cost Is Over £750");
+    } else {
+      setCostError(false);
+    }
+  });
+
   const navigate = useNavigate();
 
   const submitForm = async (e) => {
-    e.preventDefault();
-    if (otherBenTitle) {
-      setBenTitle(otherBenTitle);
-    }
-    if (otherAltTitle) {
-      setAltTitle(otherAltTitle);
-    }
-    if (otherAltRole) {
-      setAltRole(otherAltRole);
-    }
-    if (otherBenGen) {
-      setBenGen(otherBenGen);
-    }
-    if (otherBenSex) {
-      setBenSex(otherBenSex);
-    }
-    if (otherCurrentAccom) {
-      setBenTitle(otherCurrentAccom);
-    }
-    if (otherBenGrantReason) {
-      setBenGrantReason(otherBenGrantReason);
-    }
-    await apply(
-      benTitle,
-      benFirstName,
-      benLastName,
-      benEmail,
-      benTelephone,
-      declaration,
-      benNotts,
-      benAbode,
-      benAddressLine1,
-      benAddressLine2,
-      benTown,
-      altTitle,
-      altFirstName,
-      altLastName,
-      altRole,
-      altEmail,
-      altTelephone,
-      altAddressLine1,
-      altAddressLine2,
-      altCounty,
-      altPostcode,
-      sharedSignedLink,
-      benConsent,
-      prefContactMethod,
-      prefCommunication,
-      prefDataSharing,
-      benAgeRange,
-      benDob,
-      benGen,
-      benSex,
-      benEthnicity,
-      benReligion,
-      benDisability,
-      benDisabilityExtra,
-      benMarital,
-      benPregnancy,
-      benDependants,
-      numOfDependants,
-      ageOfDependants,
-      currentAccom,
-      benCurrentAccomLength,
-      benHistOfHomelessness,
-      benHistDetails,
-      benTimeInNottingham,
-      benLinkToNottingham,
-      benLinkDetails,
-      benGrantReason,
-      grantDetails,
-      benStory,
-      grantAmountTotal,
-      grantItemCost1,
-      grantItemDetails1,
-      grantItemCost2,
-      grantItemDetails2,
-      grantItemCost3,
-      grantItemDetails3,
-      grantItemCost4,
-      grantItemDetails4,
-      grantItemCost5,
-      grantItemDetails5,
-      grantQuoteLink,
-      confirmApplication
-    );
-    setCurrentSection(1);
-    if (!isLoadingGrant && errorGrant===null) {
-      navigate("/Organisation");
+    if (costError == false) {
+      e.preventDefault();
+      if (otherBenTitle) {
+        setBenTitle(otherBenTitle);
+      }
+      if (otherAltTitle) {
+        setAltTitle(otherAltTitle);
+      }
+      if (otherAltRole) {
+        setAltRole(otherAltRole);
+      }
+      if (otherBenGen) {
+        setBenGen(otherBenGen);
+      }
+      if (otherBenSex) {
+        setBenSex(otherBenSex);
+      }
+      if (otherCurrentAccom) {
+        setBenTitle(otherCurrentAccom);
+      }
+      if (otherBenGrantReason) {
+        setBenGrantReason(otherBenGrantReason);
+      }
+      await apply(
+        benTitle,
+        benFirstName,
+        benLastName,
+        benEmail,
+        benTelephone,
+        declaration,
+        benNotts,
+        benAbode,
+        benAddressLine1,
+        benAddressLine2,
+        benTown,
+        altTitle,
+        altFirstName,
+        altLastName,
+        altRole,
+        altEmail,
+        altTelephone,
+        altAddressLine1,
+        altAddressLine2,
+        altCounty,
+        altPostcode,
+        sharedSignedLink,
+        benConsent,
+        prefContactMethod,
+        prefCommunication,
+        prefDataSharing,
+        benAgeRange,
+        benDob,
+        benGen,
+        benSex,
+        benEthnicity,
+        benReligion,
+        benDisability,
+        benDisabilityExtra,
+        benMarital,
+        benPregnancy,
+        benDependants,
+        numOfDependants,
+        ageOfDependants,
+        currentAccom,
+        benCurrentAccomLength,
+        benHistOfHomelessness,
+        benHistDetails,
+        benTimeInNottingham,
+        benLinkToNottingham,
+        benLinkDetails,
+        benGrantReason,
+        grantDetails,
+        benStory,
+        grantAmountTotal,
+        grantItemCost1,
+        grantItemDetails1,
+        grantItemCost2,
+        grantItemDetails2,
+        grantItemCost3,
+        grantItemDetails3,
+        grantItemCost4,
+        grantItemDetails4,
+        grantItemCost5,
+        grantItemDetails5,
+        grantQuoteLink,
+        confirmApplication
+      );
+      setCurrentSection(1);
+      if (!isLoadingGrant && (errorGrant == null)) {
+        navigate("/Organisation");
+      }
     }
   };
 
@@ -513,10 +531,12 @@ const GrantApplication = () => {
                   </div>
                 </div>
               </div>
-              {buttons}
+
               {errorGrant && (
                 <p className={classes.errorMessage}>{errorGrant}</p>
               )}
+
+              {buttons}
             </form>
           )}
 
@@ -593,11 +613,11 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone</label>
                       <input
-                        type="number"
+                        type="tel"
                         value={benTelephone}
                         onChange={(e) => setBenTelephone(e.target.value)}
                         placeholder="Eg. 07654 321 234"
-                        pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                        pattern="(((\+44)? ?(\(0\))? ?)|(0))( ?[0-9]{3,4}){3}"
                       />
                     </div>
                   </div>
@@ -836,11 +856,11 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="number"
+                        type="tel"
                         value={altTelephone}
                         onChange={(e) => setAltTelephone(e.target.value)}
                         placeholder="Eg. 07654 321 234"
-                        pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                        pattern="(((\+44)? ?(\(0\))? ?)|(0))( ?[0-9]{3,4}){3}"
                         required
                       />
                     </div>
@@ -892,7 +912,7 @@ const GrantApplication = () => {
                       value={altPostcode}
                       onChange={(e) => setAltPostcode(e.target.value)}
                       placeholder="Eg. NG1 1AA"
-                      pattern="(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
+                      pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
                       required
                     />
                   </div>
@@ -919,17 +939,13 @@ const GrantApplication = () => {
                       declaration. Handwritten, printed, video or audio files
                       accepted *
                     </label>
-                    {/* <div className={classes.relatedInputBlock}> */}
-                      <input
-                        type="file"
-                        // value={sharedSignedLink}
-                        onChange={(e) => setSharedSignedLink(e.target.value)}
-                        // required
-                      />
-                      {/* <label className={classes.inputLabel}>
-                        {sharedSignedLink}
-                      </label> */}
-                    {/* </div> */}
+                    <input
+                      id="sign"
+                      type="file"
+                      onChange={(e) => setSharedSignedLink(e.target.value)}
+                      required
+                    />
+                    <label htmlFor="sign">{sharedSignedLink}</label>
                   </div>
                 </div>
 
@@ -1593,24 +1609,6 @@ const GrantApplication = () => {
 
               <div className={classes.formContent}>
                 <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>Total Amount Seeking *</h3>
-                  <div className={classes.inputBlock}>
-                    <div className={classes.moneyInputContainer}>
-                      <p className={classes.currencySymbol}>£</p>
-                      <input
-                        type="number"
-                        min="1.00"
-                        max="750.00"
-                        value={grantAmountTotal}
-                        onChange={(e) => setGrantAmountTotal(e.target.value)}
-                        placeholder="750 (maximum per grant)"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Cost Breakdown *</h3>
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
@@ -1625,7 +1623,7 @@ const GrantApplication = () => {
                         <p className={classes.currencySymbol}>£</p>
                         <input
                           type="number"
-                          min="1.00"
+                          min="0.00"
                           max="750.00"
                           value={grantItemCost1}
                           onChange={(e) => setGrantItemCost1(e.target.value)}
@@ -1745,6 +1743,24 @@ const GrantApplication = () => {
                       />
                     </div>
                   </div>
+
+                  <h3 className={classes.subTitle}>Total Amount Seeking *</h3>
+                  <div className={classes.inputBlock}>
+                    <div className={classes.moneyInputContainer}>
+                      <p className={classes.currencySymbol}>£</p>
+                      <input
+                        type="number"
+                        value={grantAmountTotal}
+                        placeholder="750 (maximum per grant)"
+                        disabled={true}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {costError && (
+                    <p className={classes.errorMessage}>{costError}</p>
+                  )}
                 </div>
 
                 <div className={classes.multiInputBlock}>
@@ -1758,17 +1774,12 @@ const GrantApplication = () => {
                       provided.
                     </label>
 
-                    {/* <div className={classes.relatedInputBlock}> */}
-                      <input
-                        type="file"
-                        // value={grantQuoteLink}
-                        onChange={(e) => setGrantQuoteLink(e.target.value)}
-                        // required
-                      />
-                      {/* <label className={classes.inputLabel}>
-                        {grantQuoteLink}
-                      </label> */}
-                    {/* </div> */}
+                    <input
+                      id="quote"
+                      type="file"
+                      onChange={(e) => setGrantQuoteLink(e.target.value)}
+                    />
+                    <label htmlFor="quote">{grantQuoteLink}</label>
                   </div>
                 </div>
 

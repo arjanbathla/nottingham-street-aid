@@ -95,6 +95,7 @@ const Register = () => {
 
   const totalSections = 4;
   const [currentSection, setCurrentSection] = useState(1);
+  const [latestSection, setLatestSection] = useState();
 
   const handleContinue = () => {
     if (currentSection < totalSections) {
@@ -139,10 +140,18 @@ const Register = () => {
   //   );
   // };
 
-  const handleSectionClick = (section) => {
-    setCurrentSection(section);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    // Handle section click to navigate to a specific section
+    const handleSectionClick = (section) => {
+      // for limiter
+      setLatestSection(currentSection)
+  
+      // setLatestSection(section);
+      if (latestSection >= section) {
+        setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
+        //eg. input on page 2 disappears only if go back to 1 not 3
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
 
   const titles = [
     "1. Register",
@@ -404,7 +413,7 @@ const Register = () => {
                       placeholder="Eg. NG1 1AA"
                       value={orgPostcode}
                       onChange={(e) => setOrgPostcode(e.target.value)}
-                      pattern="(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
+                      pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
                       required
                     />
                   </div>
@@ -430,11 +439,11 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="number"
+                        type="tel"
                         placeholder="Eg. 07654 321 234"
                         value={orgPhone}
                         onChange={(e) => setOrgPhone(e.target.value)}
-                        pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                        pattern="(((\+44)? ?(\(0\))? ?)|(0))( ?[0-9]{3,4}){3}"
                         required
                       />
                     </div>
@@ -595,11 +604,11 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        type="number"
+                        type="tel"
                         placeholder="Eg. 07654 321 234"
                         value={contact1Phone}
                         onChange={(e) => setContact1Phone(e.target.value)}
-                        pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                        pattern="(((\+44)? ?(\(0\))? ?)|(0))( ?[0-9]{3,4}){3}"
                         required
                       />
                     </div>
@@ -710,11 +719,11 @@ const Register = () => {
                           Telephone *
                         </label>
                         <input
-                          type="number"
+                          type="tel"
                           placeholder="Eg. 07654 321 234"
                           value={contact2Phone}
                           onChange={(e) => setContact2Phone(e.target.value)}
-                          pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                          pattern="(((\+44)? ?(\(0\))? ?)|(0))( ?[0-9]{3,4}){3}"
                           required
                         />
                       </div>
@@ -826,11 +835,11 @@ const Register = () => {
                           Telephone *
                         </label>
                         <input
-                          type="number"
+                          type="tel"
                           placeholder="Eg. 07654 321 234"
                           value={contact3Phone}
                           onChange={(e) => setContact3Phone(e.target.value)}
-                          pattern="^(((+44\s?\d{4}|(?0\d{4})?)\s?\d{3}\s?\d{3})|((+44\s?\d{3}|(?0\d{3})?)\s?\d{3}\s?\d{4})|((+44\s?\d{2}|(?0\d{2})?)"
+                          pattern="(((\+44)? ?(\(0\))? ?)|(0))( ?[0-9]{3,4}){3}"
                           required
                         />
                       </div>

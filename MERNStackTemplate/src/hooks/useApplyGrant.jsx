@@ -165,7 +165,8 @@ export const applyGrant = () => {
     }
     if (response.ok) {
       setIsLoadingGrant(false);
-      dispatch(setGrants(...grants, json));
+      setErrorGrant(null)
+      dispatch(setGrants(json));
     }
   };
   return { apply, isLoadingGrant, errorGrant };
