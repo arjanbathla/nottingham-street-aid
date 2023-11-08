@@ -1,0 +1,79 @@
+.section {
+    width: 100%;
+    padding: var(--padding-3);
+}
+
+.form {
+    background-color: var(--neutral);
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: var(--padding-1);
+}
+
+.formLayout {
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+}
+
+.formBanner {
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+}
+
+.formContent {
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-3);
+}
+
+.multiInputBlock {
+    background-color: var(--light);
+    padding: var(--padding-3);
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+    color: var(--dark);
+}
+
+.inputBlock {
+    display: flex;
+    flex-flow: column;
+    gap: var(--padding-1);
+}
+
+.passwordBlock {
+    display: flex;
+    flex-flow: row;
+}
+
+.buttonBlock {
+    display: flex;
+    flex-flow: row;
+    gap: var(--padding-1);
+    justify-content: space-between;
+}
+
+.errorMessage {
+    background-color: lightcoral;
+    padding: var(--padding-1);
+    border: 3px solid red;
+    color: var(--light);
+}
+
+.inputBlock input {
+    padding: var(--padding-1);
+    border: 3px solid var(--neutral);
+    width: 100%;
+    transition: 0.33s ease-in-out;
+}
+
+.inputBlock input:active,
+.inputBlock input:focus,
+.inputBlock input:hover{
+    border: 3px solid var(--dark);
+}

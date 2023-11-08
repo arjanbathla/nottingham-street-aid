@@ -9,6 +9,7 @@ import { setGrant } from "../../contextStore/grantStore";
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
 import Button2 from "../../components/button2/button2";
+import Loader from "../../components/loader/loader";
 
 const organisation = () => {
   const { user } = useSelector((state) => state.user);
@@ -66,6 +67,7 @@ const organisation = () => {
           </div>
 
           <div className={classes.dashboardContent}>
+            {!grants && <Loader loading={true} />}
             {grants &&
               grants.map((grant) => (
                 <div className={classes.grantItem} key={grant._id}>

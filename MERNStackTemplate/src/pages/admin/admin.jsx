@@ -9,8 +9,9 @@ import { setGrant } from "../../contextStore/grantStore";
 import { Container } from "@mui/material";
 import Button from "../../components/button/button";
 import Button2 from "../../components/button2/button2";
+import Loader from "../../components/loader/loader";
 
-import CryptoJS from 'crypto-js';
+import CryptoJS from "crypto-js";
 
 const admin = () => {
   const { user } = useSelector((state) => state.user);
@@ -86,11 +87,14 @@ const admin = () => {
 
   // This function encrypts the given 'data' using the AES encryption algorithm
   // with a secret key ('SECRET_KEY') and returns the encrypted data as a string.
-  const encrypt = (data) => {
-    return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
+  function encrypt(data) {
+    if (data != "") {
+      return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
+    }
   }
 
   const handleCsvDownload = () => {
+    // Check if 'grants' data is available
     if (grants) {
       // Map 'grants' data to create a new array of encrypted grant data (encryption applied to personal details)
       const allGrantData = grants.map((grant) => ({
@@ -102,17 +106,17 @@ const admin = () => {
         benAbode: grant.benAbode,
         benAddressLine1: grant.benAddressLine1,
         benAddressLine2: grant.benAddressLine2,
-        benTown: encrypt(grant.benTown),
+        benTown: grant.benTown,
         altTitle: encrypt(grant.altTitle),
         altFirstName: encrypt(grant.altFirstName),
         altLastName: encrypt(grant.altLastName),
         altRole: grant.altRole,
         altEmail: encrypt(grant.altEmail),
-        altTelephone: encrypt(grant.altTelephone),
-        altAddressLine1: encrypt(grant.altAddressLine1),
-        altAddressLine2: encrypt(grant.altAddressLine2),
+        altTelephone: grant.altTelephone,
+        altAddressLine1: grant.altAddressLine1,
+        altAddressLine2: grant.altAddressLine2,
         altCounty: grant.altCounty,
-        altPostcode: encrypt(grant.altPostcode),
+        altPostcode: grant.altPostcode,
         sharedSignedLink: grant.sharedSignedLink,
         prefContactMethod: grant.prefContactMethod,
         prefCommunicationMethod: grant.prefCommunicationMethod,
@@ -156,6 +160,7 @@ const admin = () => {
         grantSupportingDoc: grant.grantSupportingDoc,
         submissionDate: grant.submissionDate,
       }));
+
       // Set the 'downloadData' state with the array of encrypted grant data
       setDownloadData(allGrantData);
     }
@@ -167,8 +172,6 @@ const admin = () => {
         <div className={classes.dashboard}>
           <div className={classes.dashboardHeader}>
             <h2>Admin Dashboard</h2>
-          </div>
-          <div className={classes.dashboardContent}>
             <Button clicked={handleCsvDownload}>Download Data As CSV</Button>
           </div>
         </div>
@@ -179,6 +182,7 @@ const admin = () => {
               <h2>Pending Grants</h2>
             </div>
             <div className={classes.kanbanContent}>
+              {!grants && <Loader loading={true} />}
               {grants &&
                 grants.map(
                   (grant) =>
@@ -213,6 +217,7 @@ const admin = () => {
               <h2>Approved Grants</h2>
             </div>
             <div className={classes.kanbanContent}>
+              {!grants && <Loader loading={true} />}
               {grants &&
                 grants.map(
                   (grant) =>
@@ -225,13 +230,52 @@ const admin = () => {
                         <div>
                           <p>Email - {grant.benEmail}</p>
                           <p>Telephone - {grant.benTelephone}</p>
+                          <br></br>
                           <p>Reason - {grant.benGrantReason}</p>
                           <p>Details - {grant.grantDetails}</p>
                           <p>Amount - £{grant.grantAmountTotal}</p>
-                          <p>Submission Date - {grant.createdAt}</p>
-                          <p>Status: {grant.grantStatus}</p>
+                          <br></br>
+                          <p>{grant.createdAt}</p>
+                          <p>{grant.grantStatus}</p>
                         </div>
-                        <Button2>View More</Button2>
+                        <Button2 clicked={(e) => viewMoreHandler(grant)}>
+                          View More
+                        </Button2>
+                      </div>
+                    )
+                )}
+            </div>
+          </div>
+
+          <div className={classes.dashboard}>
+            <div className={classes.dashboardHeader}>
+              <h2>Rejected Grants</h2>
+            </div>
+            <div className={classes.kanbanContent}>
+              {!grants && <Loader loading={true} />}
+              {grants &&
+                grants.map(
+                  (grant) =>
+                    grant.grantStatus == "Rejected" && (
+                      <div className={classes.grantItem} key={grant._id}>
+                        <h3>
+                          {grant.benTitle} {grant.benFirstName}{" "}
+                          {grant.benLastName}
+                        </h3>
+                        <div>
+                          <p>Email - {grant.benEmail}</p>
+                          <p>Telephone - {grant.benTelephone}</p>
+                          <br></br>
+                          <p>Reason - {grant.benGrantReason}</p>
+                          <p>Details - {grant.grantDetails}</p>
+                          <p>Amount - £{grant.grantAmountTotal}</p>
+                          <br></br>
+                          <p>{grant.createdAt}</p>
+                          <p>{grant.grantStatus}</p>
+                        </div>
+                        <Button2 clicked={(e) => viewMoreHandler(grant)}>
+                          View More
+                        </Button2>
                       </div>
                     )
                 )}

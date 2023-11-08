@@ -28,6 +28,8 @@ export const useUpdateStatus = () => {
       }
     );
 
+    console.log(status)
+
     const json = await response.json();
 
     if (!response.ok) {

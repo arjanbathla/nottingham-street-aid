@@ -18,6 +18,7 @@ import Organisation from "./pages/organisation/organisation";
 import GrantApplication from "./pages/grantApplication/grantApplication";
 import ViewGrant from "./pages/viewGrant/viewGrant";
 
+import AdminLogin from "./pages/adminLogin/adminLogin";
 import Admin from "./pages/admin/admin";
 import ViewAdminGrant from "./pages/viewAdminGrant/viewAdminGrant";
 
@@ -25,10 +26,7 @@ import Layout from "./navigation/layout/layout";
 
 const App = () => {
   const { user } = useSelector((state) => state.user);
-  const { grants } = useSelector((state) => state.grants);
-
-  // console.log(user);
-  // console.log(grants);
+  const { admin } = useSelector((state) => state.admin);
 
   let routes = (
     <Routes>
@@ -52,6 +50,9 @@ const App = () => {
         path="/OurPolicy" 
         element={<OurPolicy />} 
       />
+
+
+
       <Route
         path="/Organisation"
         element={user ? <Organisation /> : <Navigate to="/" />}
@@ -64,13 +65,21 @@ const App = () => {
         path="/ViewGrant"
         element={user ? <ViewGrant /> : <Navigate to="/" />}
       />
+
+
+
+
+      <Route
+        path="/AdminLogin"
+        element={!admin ? <AdminLogin /> : <Navigate to="/Admin" />}
+      />
       <Route
         path="/Admin"
-        element={user ? <Admin /> : <Navigate to="/" />}
+        element={admin ? <Admin /> : <Navigate to="/" />}
       />
       <Route
         path="/ViewAdminGrant"
-        element={user ? <ViewAdminGrant /> : <Navigate to="/" />}
+        element={admin ? <ViewAdminGrant /> : <Navigate to="/" />}
       />
     </Routes>
   );

@@ -13,7 +13,6 @@ const viewAdminGrant = () => {
   const { grant } = useSelector((state) => state.grant);
   const { updateStatus, isLoadingUpdateStatus, errorUpdateStatus } = useUpdateStatus();
 
-  const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
   const handleAccept = async (e) => {
@@ -21,10 +20,9 @@ const viewAdminGrant = () => {
       "Are you sure you want to accept the application?"
     );
     if (confirmation) {
-      setStatus("Approved")
       await updateStatus(
         grant._id,
-        status,
+        "Approved",
       )
       if(errorUpdateStatus == null){navigate("/Admin")}
     }
@@ -34,10 +32,9 @@ const viewAdminGrant = () => {
       "Are you sure you want to reject the application?"
     );
     if (confirmation) {
-      setStatus("Rejected");
       await updateStatus(
         grant._id,
-        status,
+        "Rejected",
       )
       if(errorUpdateStatus == null){navigate("/Admin")}
     }

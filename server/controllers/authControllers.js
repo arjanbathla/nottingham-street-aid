@@ -1,4 +1,5 @@
 const Auth = require("../models/authModel");
+const AdminAuth = require("../models/adminAuthModel");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
@@ -10,6 +11,17 @@ const loginAuth = async (req, res) => {
   const { username, password } = req.body;
   try {
     const auth = await Auth.login(username, password);
+    const token = createToken(auth._id);
+    res.status(200).json({ username, token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const adminLoginAuth = async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const auth = await AdminAuth.signup(username, password);
     const token = createToken(auth._id);
     res.status(200).json({ username, token });
   } catch (error) {
@@ -109,4 +121,5 @@ const signupAuth = async (req, res) => {
 module.exports = {
   loginAuth,
   signupAuth,
+  adminLoginAuth,
 };
