@@ -11,6 +11,8 @@ import Button from "../../components/button/button";
 import Button2 from "../../components/button2/button2";
 import Loader from "../../components/loader/loader";
 
+import GUIDE from "../../assets/NSA_Application_Guide.pdf"
+
 const organisation = () => {
   const { user } = useSelector((state) => state.user);
   // const { grants } = useSelector((state) => state.grants);
@@ -62,7 +64,7 @@ const organisation = () => {
             <h2 className={classes.mainTitle}>Organisation Dashboard</h2>
             <div className={classes.addGrantBlock}>
               <Button clicked={startNewGrant}>Start New Grant</Button>
-              <a href={""} target="_blank">
+              <a href={GUIDE} target="_blank">
                 <Button>Application Guide</Button>
               </a>
             </div>
