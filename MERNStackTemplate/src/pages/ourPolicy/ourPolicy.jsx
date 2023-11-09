@@ -4,6 +4,7 @@ import classes from "./ourPolicy.module.css";
 import Container from "@mui/material/Container";
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf"
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf"
+import GUIDE from "../../assets/NSA_Application_Guide.pdf"
 
 const ourPolicy = () => {
   return (
@@ -25,7 +26,7 @@ const ourPolicy = () => {
             <div className={classes.policyCard}>
               <h3 className={classes.subTitle}>Apply Guide</h3>
               <p>Step by step guide on how to apply for a grant.</p>
-              <a href={""} target="_blank" className={classes.link}>Link To Our Grant Application Guide.</a>
+              <a href={GUIDE} target="_blank" className={classes.link}>Link To Our Grant Application Guide.</a>
             </div>
           </div>
         </div>
