@@ -10,6 +10,7 @@ import Loader from "../../components/loader/loader";
 
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 // import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
+import GUIDE from "../../assets/NSA_Application_Guide.pdf";
 
 import { EighteenLim } from "../../config";
 
@@ -289,8 +290,8 @@ const GrantApplication = () => {
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
     // for limiter
-    setLatestSection(currentSection);
-    // setLatestSection(section);
+    // setLatestSection(currentSection);
+    setLatestSection(section);
     if (latestSection >= section) {
       setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
       //eg. input on page 2 disappears only if go back to 1 not 3
@@ -302,12 +303,12 @@ const GrantApplication = () => {
     "1. Grant",
     "2. Details",
     "3. Contacts",
-    "4. Declaration",
-    "5. Privacy Policy",
-    "6. Characteristics",
-    "7. Situations",
-    "8. Reason",
-    "9. Grant Amount",
+    "4. Characteristics",
+    "5. Situations",
+    "6. Reason",
+    "7. Grant Amount",
+    "8. Preferences",
+    "9. Declaration",
   ];
 
   // Create section buttons for the progress bar
@@ -439,7 +440,7 @@ const GrantApplication = () => {
         confirmApplication
       );
       setCurrentSection(1);
-      if (!isLoadingGrant && (errorGrant == null)) {
+      if (!isLoadingGrant && errorGrant == null) {
         navigate("/Organisation");
       }
     }
@@ -516,7 +517,7 @@ const GrantApplication = () => {
                         For further details on the grant application process,
                         please refer to the{" "}
                         <a
-                          href="[INSERT LINK FOR APPLICATION GUIDELINES]"
+                          href={GUIDE}
                           target="_blank"
                           className={classes.link}
                         >
@@ -566,6 +567,7 @@ const GrantApplication = () => {
                       </select>
                       {benTitle === "Other" && (
                         <input
+                          maxLength={256}
                           type="text"
                           value={otherBenTitle}
                           onChange={(e) => setOtherBenTitle(e.target.value)}
@@ -578,6 +580,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>First Name *</label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={benFirstName}
                         onChange={(e) => setBenFirstName(e.target.value)}
@@ -589,6 +592,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Last Name *</label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={benLastName}
                         onChange={(e) => setBenLastName(e.target.value)}
@@ -602,6 +606,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email</label>
                       <input
+                        maxLength={256}
                         type="email"
                         value={benEmail}
                         onChange={(e) => setBenEmail(e.target.value)}
@@ -613,6 +618,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone</label>
                       <input
+                        maxLength={256}
                         type="tel"
                         value={benTelephone}
                         onChange={(e) => setBenTelephone(e.target.value)}
@@ -700,6 +706,7 @@ const GrantApplication = () => {
                         Address Line 1 *
                       </label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={benAddressLine1}
                         onChange={(e) => setBenAddressLine1(e.target.value)}
@@ -713,6 +720,7 @@ const GrantApplication = () => {
                         Address Line 2
                       </label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={benAddressLine2}
                         onChange={(e) => setBenAddressLine2(e.target.value)}
@@ -723,6 +731,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Town *</label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={benTown}
                         onChange={(e) => setBenTown(e.target.value)}
@@ -772,6 +781,7 @@ const GrantApplication = () => {
                         </select>
                         {altTitle === "Other" && (
                           <input
+                            maxLength={256}
                             type="text"
                             value={otherAltTitle}
                             onChange={(e) => setOtherAltTitle(e.target.value)}
@@ -786,6 +796,7 @@ const GrantApplication = () => {
                           First Name *
                         </label>
                         <input
+                          maxLength={256}
                           type="text"
                           value={altFirstName}
                           onChange={(e) => setAltFirstName(e.target.value)}
@@ -799,6 +810,7 @@ const GrantApplication = () => {
                           Last Name *
                         </label>
                         <input
+                          maxLength={256}
                           type="text"
                           value={altLastName}
                           onChange={(e) => setAltLastName(e.target.value)}
@@ -831,6 +843,7 @@ const GrantApplication = () => {
                     </select>
                     {altRole === "Other" && (
                       <input
+                        maxLength={256}
                         type="text"
                         value={otherAltRole}
                         onChange={(e) => setOtherAltRole(e.target.value)}
@@ -844,6 +857,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email *</label>
                       <input
+                        maxLength={256}
                         type="email"
                         value={altEmail}
                         onChange={(e) => setAltEmail(e.target.value)}
@@ -856,6 +870,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
+                        maxLength={256}
                         type="tel"
                         value={altTelephone}
                         onChange={(e) => setAltTelephone(e.target.value)}
@@ -876,6 +891,7 @@ const GrantApplication = () => {
                       Address Line 1 *
                     </label>
                     <input
+                      maxLength={256}
                       type="text"
                       value={altAddressLine1}
                       onChange={(e) => setAltAddressLine1(e.target.value)}
@@ -887,6 +903,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Address Line 2</label>
                     <input
+                      maxLength={256}
                       type="text"
                       value={altAddressLine2}
                       onChange={(e) => setAltAddressLine2(e.target.value)}
@@ -897,6 +914,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>County *</label>
                     <input
+                      maxLength={256}
                       type="text"
                       value={altCounty}
                       onChange={(e) => setAltCounty(e.target.value)}
@@ -908,6 +926,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Postcode *</label>
                     <input
+                      maxLength={256}
                       type="text"
                       value={altPostcode}
                       onChange={(e) => setAltPostcode(e.target.value)}
@@ -926,157 +945,7 @@ const GrantApplication = () => {
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>
-                  4. Beneficiary Declaration
-                </h2>
-              </div>
-
-              <div className={classes.formContent}>
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>Signed Declaration File</h3>
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
-                      Please provide a copy of the beneficiary's signed
-                      declaration. Handwritten, printed, video or audio files
-                      accepted *
-                    </label>
-                    <input
-                      id="sign"
-                      type="file"
-                      onChange={(e) => setSharedSignedLink(e.target.value)}
-                      required
-                    />
-                    <label htmlFor="sign">{sharedSignedLink}</label>
-                  </div>
-                </div>
-
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>Beneficiary Consent</h3>
-                  <div className={classes.checkboxGroup}>
-                    <input
-                      className={classes.checkbox}
-                      type="checkbox"
-                      id="beneficiary_consent"
-                      checked={benConsent}
-                      onChange={() => setBenConsent(!benConsent)}
-                      required
-                    />
-                    <label htmlFor="beneficiary_consent">
-                      I hereby confirm that the beneficiary is aware of and
-                      supports this application *
-                    </label>
-                  </div>
-                </div>
-              </div>
-              {buttons}
-            </form>
-          )}
-
-          {currentSection === 5 && (
-            <form className={classes.formLayout} onSubmit={handleContinue}>
-              <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>
-                  5. GDPR SETTINGS & PREFERENCES
-                </h2>
-              </div>
-
-              <div className={classes.formContent}>
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    Preferred Contact Method *
-                  </h3>
-                  <div className={classes.inputBlock}>
-                    <select
-                      value={prefContactMethod}
-                      onChange={(e) => setPrefContactMethod(e.target.value)}
-                      required
-                    >
-                      <option value="">Select Preference</option>
-                      <option value="Mobile">Mobile</option>
-                      <option value="Email">Email</option>
-                      <option value="Prefer not to be contacted">
-                        Prefer not to be contacted
-                      </option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    Communication Preference *
-                  </h3>
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>
-                      Please indicate if the beneficiary is happy for us to
-                      contact them for further information relating to their
-                      application or follow-up.
-                    </label>
-                    <div className={classes.radioGroup}>
-                      <div>
-                        <input
-                          type="radio"
-                          checked={prefCommunication}
-                          onChange={(e) => setPrefCommunication(true)}
-                          id="yes_communication"
-                          name="pref_communication"
-                        />
-                        <label htmlFor="yes_communication">Yes</label>
-                      </div>
-                      <div>
-                        <input
-                          type="radio"
-                          checked={!prefCommunication}
-                          onChange={(e) => setPrefCommunication(false)}
-                          id="no_communication"
-                          name="pref_communication"
-                        />
-                        <label htmlFor="no_communication">No</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    GDPR Settings & Data Sharing *
-                  </h3>
-                  <div className={classes.inputBlock}>
-                    <div className={classes.radioGroup}>
-                      <div>
-                        <input
-                          type="radio"
-                          checked={prefDataSharing}
-                          onChange={(e) => setPrefDataSharing(true)}
-                          id="agree_to_gdpr"
-                          name="gdpr_declaration"
-                        />
-                        <label htmlFor="agree_to_gdpr">Yes</label>
-                      </div>
-                      <div>
-                        <input
-                          type="radio"
-                          checked={!prefDataSharing}
-                          onChange={(e) => setPrefDataSharing(false)}
-                          id="deny_gdpr"
-                          name="gdpr_declaration"
-                        />
-                        <label htmlFor="deny_gdpr">No</label>
-                      </div>
-                    </div>
-                    <a href={GDPR_PDF} target="_blank" className={classes.link}>
-                      Click here to read full GDPR Statement.
-                    </a>
-                  </div>
-                </div>
-              </div>
-              {buttons}
-            </form>
-          )}
-
-          {currentSection === 6 && (
-            <form className={classes.formLayout} onSubmit={handleContinue}>
-              <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>
-                  6. Beneficiary's Protected Characteristics
+                  4. Beneficiary's Protected Characteristics
                 </h2>
                 <label className={classes.inputLabel}>
                   We would like to collect the below data for reporting and
@@ -1141,6 +1010,7 @@ const GrantApplication = () => {
                       </select>
                       {benGen === "Other" && (
                         <input
+                          maxLength={256}
                           type="text"
                           value={otherBenGen}
                           onChange={(e) => setOtherBenGen(e.target.value)}
@@ -1166,6 +1036,7 @@ const GrantApplication = () => {
                       </select>
                       {benSex === "Other" && (
                         <input
+                          maxLength={256}
                           type="text"
                           value={otherBenSex}
                           onChange={(e) => setOtherBenSex(e.target.value)}
@@ -1317,6 +1188,7 @@ const GrantApplication = () => {
                         Number of dependents *
                       </label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={numOfDependants}
                         onChange={(e) => setNumOfDependants(e.target.value)}
@@ -1330,6 +1202,7 @@ const GrantApplication = () => {
                         Age of dependents *
                       </label>
                       <input
+                        maxLength={256}
                         type="text"
                         value={ageOfDependants}
                         onChange={(e) => setAgeOfDependants(e.target.value)}
@@ -1344,11 +1217,11 @@ const GrantApplication = () => {
             </form>
           )}
 
-          {currentSection === 7 && (
+          {currentSection === 5 && (
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>
-                  7. Beneficiary's Current Situation
+                  5. Beneficiary's Current Situation
                 </h2>
               </div>
 
@@ -1376,6 +1249,7 @@ const GrantApplication = () => {
                       </select>
                       {currentAccom === "Other" && (
                         <input
+                          maxLength={256}
                           type="text"
                           value={otherCurrentAccom}
                           onChange={(e) => setOtherCurrentAccom(e.target.value)}
@@ -1501,10 +1375,10 @@ const GrantApplication = () => {
             </form>
           )}
 
-          {currentSection === 8 && (
+          {currentSection === 6 && (
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>8. Reason for Application</h2>
+                <h2 className={classes.mainTitle}>6. Reason for Application</h2>
                 <label className={classes.inputLabel}>
                   Please let us know why you are making this application and the
                   impact the grant will have to the beneficiary. Please provide
@@ -1545,6 +1419,7 @@ const GrantApplication = () => {
                     </select>
                     {benGrantReason === "Other" && (
                       <input
+                        maxLength={256}
                         type="text"
                         value={otherBenGrantReason}
                         onChange={(e) => setOtherBenGrantReason(e.target.value)}
@@ -1595,10 +1470,10 @@ const GrantApplication = () => {
             </form>
           )}
 
-          {currentSection === 9 && (
+          {currentSection === 7 && (
             <form className={classes.formLayout} onSubmit={submitForm}>
               <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>9. Grant Amount</h2>
+                <h2 className={classes.mainTitle}>7. Grant Amount</h2>
                 <label className={classes.inputLabel}>
                   Please indicate the grant amount being applied for and where
                   possible provide quotes. The maximum amount is £750 per grant
@@ -1635,6 +1510,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
+                        maxLength={256}
                         type="text"
                         value={grantItemDetails1}
                         onChange={(e) => setGrantItemDetails1(e.target.value)}
@@ -1661,6 +1537,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
+                        maxLength={256}
                         type="text"
                         value={grantItemDetails2}
                         onChange={(e) => setGrantItemDetails2(e.target.value)}
@@ -1686,6 +1563,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
+                        maxLength={256}
                         type="text"
                         value={grantItemDetails3}
                         onChange={(e) => setGrantItemDetails3(e.target.value)}
@@ -1711,6 +1589,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
+                        maxLength={256}
                         type="text"
                         value={grantItemDetails4}
                         onChange={(e) => setGrantItemDetails4(e.target.value)}
@@ -1736,6 +1615,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
+                        maxLength={256}
                         type="text"
                         value={grantItemDetails5}
                         onChange={(e) => setGrantItemDetails5(e.target.value)}
@@ -1779,11 +1659,162 @@ const GrantApplication = () => {
                       type="file"
                       onChange={(e) => setGrantQuoteLink(e.target.value)}
                     />
-                    <label htmlFor="quote">{grantQuoteLink}</label>
+                    {/* <label htmlFor="quote">{grantQuoteLink}</label> */}
+                  </div>
+                </div>
+              </div>
+              {buttons}
+            </form>
+          )}
+
+          {currentSection === 8 && (
+            <form className={classes.formLayout} onSubmit={handleContinue}>
+              <div className={classes.formBanner}>
+                <h2 className={classes.mainTitle}>
+                  8. GDPR Settings & Preferences
+                </h2>
+              </div>
+
+              <div className={classes.formContent}>
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>
+                    Preferred Contact Method *
+                  </h3>
+                  <div className={classes.inputBlock}>
+                    <select
+                      value={prefContactMethod}
+                      onChange={(e) => setPrefContactMethod(e.target.value)}
+                      required
+                    >
+                      <option value="">Select Preference</option>
+                      <option value="Mobile">Mobile</option>
+                      <option value="Email">Email</option>
+                      <option value="Prefer not to be contacted">
+                        Prefer not to be contacted
+                      </option>
+                    </select>
                   </div>
                 </div>
 
                 <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>
+                    Communication Preference *
+                  </h3>
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>
+                      Please indicate if the beneficiary is happy for us to
+                      contact them for further information relating to their
+                      application or follow-up.
+                    </label>
+                    <div className={classes.radioGroup}>
+                      <div>
+                        <input
+                          type="radio"
+                          checked={prefCommunication}
+                          onChange={(e) => setPrefCommunication(true)}
+                          id="yes_communication"
+                          name="pref_communication"
+                        />
+                        <label htmlFor="yes_communication">Yes</label>
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          checked={!prefCommunication}
+                          onChange={(e) => setPrefCommunication(false)}
+                          id="no_communication"
+                          name="pref_communication"
+                        />
+                        <label htmlFor="no_communication">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>
+                    GDPR Settings & Data Sharing *
+                  </h3>
+                  <div className={classes.inputBlock}>
+                    <div className={classes.radioGroup}>
+                      <div>
+                        <input
+                          type="radio"
+                          checked={prefDataSharing}
+                          onChange={(e) => setPrefDataSharing(true)}
+                          id="agree_to_gdpr"
+                          name="gdpr_declaration"
+                        />
+                        <label htmlFor="agree_to_gdpr">Yes</label>
+                      </div>
+                      <div>
+                        <input
+                          type="radio"
+                          checked={!prefDataSharing}
+                          onChange={(e) => setPrefDataSharing(false)}
+                          id="deny_gdpr"
+                          name="gdpr_declaration"
+                        />
+                        <label htmlFor="deny_gdpr">No</label>
+                      </div>
+                    </div>
+                    <a href={GDPR_PDF} target="_blank" className={classes.link}>
+                      Click here to read full GDPR Statement.
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {buttons}
+            </form>
+          )}
+
+          {currentSection === 9 && (
+            <form className={classes.formLayout} onSubmit={handleContinue}>
+              <div className={classes.formBanner}>
+                <h2 className={classes.mainTitle}>
+                  9. Beneficiary Declaration
+                </h2>
+              </div>
+
+              <div className={classes.formContent}>
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>Signed Declaration File</h3>
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>
+                      Please provide a copy of the beneficiary's signed
+                      declaration. Handwritten, printed, video or audio files
+                      accepted *
+                    </label>
+                    <input
+                      id="sign"
+                      type="file"
+                      onChange={(e) => setSharedSignedLink(e.target.value)}
+                      required
+                    />
+                    {/* <label htmlFor="sign">{sharedSignedLink}</label> */}
+                  </div>
+                </div>
+
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>Beneficiary Consent</h3>
+                  <div className={classes.checkboxGroup}>
+                    <input
+                      className={classes.checkbox}
+                      type="checkbox"
+                      id="beneficiary_consent"
+                      checked={benConsent}
+                      onChange={() => setBenConsent(!benConsent)}
+                      required
+                    />
+                    <label htmlFor="beneficiary_consent">
+                      I hereby confirm that the beneficiary is aware of and
+                      supports this application *
+                    </label>
+                  </div>
+                </div>
+
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>Confirm Grant Application</h3>
                   <div className={classes.checkboxGroup}>
                     <input
                       className={classes.checkbox}

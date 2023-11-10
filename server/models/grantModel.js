@@ -11,7 +11,7 @@ const grantSchema = new Schema(
     benFirstName: { type: String, required: true },
     benLastName: { type: String, required: true },
     benEmail: { type: String, required: false },
-    benTelephone: { type: Number, required: false },
+    benTelephone: { type: String, required: false },
 
     declaration: { type: String, required: true },
     benNotts: { type: String, required: true },
@@ -25,7 +25,7 @@ const grantSchema = new Schema(
     altLastName: { type: String, required: true },
     altRole: { type: String, required: true },
     altEmail: { type: String, required: true },
-    altTelephone: { type: Number, required: true },
+    altTelephone: { type: String, required: true },
 
     altAddressLine1: { type: String, required: true },
     altAddressLine2: { type: String, required: false },
@@ -68,15 +68,15 @@ const grantSchema = new Schema(
     benStory: { type: String, required: true },
 
     grantAmountTotal: { type: String, required: true },
-    grantItemCost1: { type: Number, required: true },
+    grantItemCost1: { type: String, required: true },
     grantItemDetails1: { type: String, required: true },
-    grantItemCost2: { type: Number, required: false },
+    grantItemCost2: { type: String, required: false },
     grantItemDetails2: { type: String, required: false },
-    grantItemCost3: { type: Number, required: false },
+    grantItemCost3: { type: String, required: false },
     grantItemDetails3: { type: String, required: false },
-    grantItemCost4: { type: Number, required: false },
+    grantItemCost4: { type: String, required: false },
     grantItemDetails4: { type: String, required: false },
-    grantItemCost5: { type: Number, required: false },
+    grantItemCost5: { type: String, required: false },
     grantItemDetails5: { type: String, required: false },
 
     grantQuoteLink: { type: String, required: false },

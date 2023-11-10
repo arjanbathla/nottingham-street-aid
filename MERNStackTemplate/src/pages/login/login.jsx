@@ -42,6 +42,7 @@ const login = () => {
               <div className={classes.inputBlock}>
                 <label className={classes.inputLabel}>Email *</label>
                 <input
+                  maxLength={256}
                   type="email"
                   placeholder="Eg. JohnDoe@email.com"
                   value={user}
@@ -55,6 +56,7 @@ const login = () => {
                 <label className={classes.inputLabel}>Password *</label>
                 <div className={classes.passwordBlock}>
                   <input
+                    maxLength={256}
                     type={showPass ? "text" : "password"}
                     placeholder="Eg. Password123#"
                     value={pass}
@@ -81,7 +83,7 @@ const login = () => {
                 Login
               </Button>
               {isLoadingLogin && <Loader loading={isLoadingLogin} />}
-              
+
               <div>
                 <p>asd@asd.com</p>
                 <p>ASDasd_123#</p>

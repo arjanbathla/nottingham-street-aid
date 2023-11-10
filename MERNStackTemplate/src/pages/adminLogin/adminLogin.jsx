@@ -35,6 +35,7 @@ const adminAdminLogin = () => {
               <div className={classes.inputBlock}>
                 <label className={classes.inputLabel}>Email *</label>
                 <input
+                  maxLength={256}
                   type="email"
                   placeholder="Eg. JohnDoe@email.com"
                   value={user}
@@ -48,6 +49,7 @@ const adminAdminLogin = () => {
                 <label className={classes.inputLabel}>Password *</label>
                 <div className={classes.passwordBlock}>
                   <input
+                    maxLength={256}
                     type={showPass ? "text" : "password"}
                     placeholder="Eg. Password123#"
                     value={pass}
@@ -71,13 +73,15 @@ const adminAdminLogin = () => {
                 Login
               </Button>
               {isLoadingAdminLogin && <Loader loading={isLoadingAdminLogin} />}
-              
+
               <div>
                 <p>nsa@nsa.com</p>
                 <p>ASDasd_123#</p>
               </div>
             </div>
-            {errorAdminLogin && <p className={classes.errorMessage}>{errorAdminLogin}</p>}
+            {errorAdminLogin && (
+              <p className={classes.errorMessage}>{errorAdminLogin}</p>
+            )}
           </form>
         </div>
       </section>

@@ -92,18 +92,6 @@ const viewAdminGrant = () => {
             </div>
 
             <div className={classes.grant}>
-              <h3>Declaration</h3>
-              <p>Sign: {grant.sharedSignedLink}</p>
-            </div>
-
-            <div className={classes.grant}>
-              <h3>Preferences</h3>
-              <p>Contact: {grant.prefContactMethod}</p>
-              <p>Communication: {grant.prefCommunication}</p>
-              <p>Share Data: {grant.prefDataSharing}</p>
-            </div>
-
-            <div className={classes.grant}>
               <h3>Beneficiary Characteristics</h3>
               <p>Age Range: {grant.benAgeRange}</p>
               <p>Date of Birth: {grant.benDob}</p>
@@ -161,6 +149,18 @@ const viewAdminGrant = () => {
                 Item 5: £{grant.grantItemCost5} - {grant.grantItemDetails5}
               </p>
               <p>Quote: {grant.grantQuoteLink}</p>
+            </div>
+
+            <div className={classes.grant}>
+              <h3>Preferences</h3>
+              <p>Contact: {grant.prefContactMethod}</p>
+              <p>Communication: {grant.prefCommunication}</p>
+              <p>Share Data: {grant.prefDataSharing}</p>
+            </div>
+
+            <div className={classes.grant}>
+              <h3>Declaration</h3>
+              <p>Sign: {grant.sharedSignedLink}</p>
             </div>
 
             <div className={classes.buttonContainer}>

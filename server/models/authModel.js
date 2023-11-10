@@ -18,7 +18,7 @@ const authSchema = new Schema(
     orgPostcode: { type: String, required: true },
 
     orgEmail: { type: String, required: true },
-    orgPhone: { type: Number, required: true },
+    orgPhone: { type: String, required: true },
     orgWebsite: { type: String, required: false },
     orgType: { type: String, required: true },
     orgCharityNumber: { type: String, required: false },
@@ -29,21 +29,21 @@ const authSchema = new Schema(
     contact1Lname: { type: String, required: true },
     contact1Role: { type: String, required: true },
     contact1Email: { type: String, required: true },
-    contact1Phone: { type: Number, required: true },
+    contact1Phone: { type: String, required: true },
 
     contact2Title: { type: String, required: false },
     contact2Fname: { type: String, required: false },
     contact2Lname: { type: String, required: false },
     contact2Role: { type: String, required: false },
     contact2Email: { type: String, required: false },
-    contact2Phone: { type: Number, required: false },
+    contact2Phone: { type: String, required: false },
 
     contact3Title: { type: String, required: false },
     contact3Fname: { type: String, required: false },
     contact3Lname: { type: String, required: false },
     contact3Role: { type: String, required: false },
     contact3Email: { type: String, required: false },
-    contact3Phone: { type: Number, required: false },
+    contact3Phone: { type: String, required: false },
 
     commsPref: { type: String, required: true },
     dataPref: { type: String, required: true },

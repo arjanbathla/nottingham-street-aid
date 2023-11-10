@@ -18,11 +18,11 @@ const viewGrant = () => {
         </div> */}
 
         {!grant && (
-            <section className={classes.section}>
-                <div className={classes.grant}>
-                    <h3>No Grant To Display</h3>
-                </div>
-            </section>
+          <section className={classes.section}>
+            <div className={classes.grant}>
+              <h3>No Grant To Display</h3>
+            </div>
+          </section>
         )}
 
         {grant && (
@@ -63,18 +63,6 @@ const viewGrant = () => {
               <p>Address Line 2: {grant.altAddressLine2}</p>
               <p>County: {grant.altCounty}</p>
               <p>Postcode: {grant.altPostcode}</p>
-            </div>
-
-            <div className={classes.grant}>
-              <h3>Declaration</h3>
-              <p>Sign: {grant.sharedSignedLink}</p>
-            </div>
-
-            <div className={classes.grant}>
-              <h3>Preferences</h3>
-              <p>Contact: {grant.prefContactMethod}</p>
-              <p>Communication: {grant.prefCommunication}</p>
-              <p>Share Data: {grant.prefDataSharing}</p>
             </div>
 
             <div className={classes.grant}>
@@ -135,6 +123,18 @@ const viewGrant = () => {
                 Item 5: £{grant.grantItemCost5} - {grant.grantItemDetails5}
               </p>
               <p>Quote: {grant.grantQuoteLink}</p>
+            </div>
+
+            <div className={classes.grant}>
+              <h3>Preferences</h3>
+              <p>Contact: {grant.prefContactMethod}</p>
+              <p>Communication: {grant.prefCommunication}</p>
+              <p>Share Data: {grant.prefDataSharing}</p>
+            </div>
+
+            <div className={classes.grant}>
+              <h3>Declaration</h3>
+              <p>Sign: {grant.sharedSignedLink}</p>
             </div>
           </section>
         )}
