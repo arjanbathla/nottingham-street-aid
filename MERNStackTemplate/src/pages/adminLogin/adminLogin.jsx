@@ -62,8 +62,7 @@ const adminAdminLogin = () => {
                   </Button>
                 </div>
                 <label className={classes.passwordLabel}>
-                  Atleast 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8
-                  Characters
+                  At least 1 Uppercase, 1 Lowercase, 1 Number and 8 Characters.
                 </label>
               </div>
             </div>
