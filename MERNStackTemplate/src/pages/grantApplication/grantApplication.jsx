@@ -290,8 +290,8 @@ const GrantApplication = () => {
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
     // for limiter
-    // setLatestSection(currentSection);
-    setLatestSection(section);
+    setLatestSection(currentSection);
+    // setLatestSection(section);
     if (latestSection >= section) {
       setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
       //eg. input on page 2 disappears only if go back to 1 not 3
