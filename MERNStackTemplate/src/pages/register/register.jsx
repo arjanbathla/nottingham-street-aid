@@ -310,7 +310,7 @@ const Register = () => {
                         placeholder="Eg. Password123#"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                        pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
                         required
                       />
                       <Button clicked={handleClickShowPassword}>
@@ -318,7 +318,7 @@ const Register = () => {
                       </Button>
                     </div>
                     <label className={classes.passwordLabel}>
-                      At least 1 Uppercase, 1 Lowercase, 1 Number and 8 Characters.
+                      At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
                     </label>
                     <a onClick={handleLogin} className={classes.link}>
                       Already Registered? Click Here To Login.
