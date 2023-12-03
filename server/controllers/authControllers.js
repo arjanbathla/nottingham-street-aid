@@ -29,12 +29,6 @@ const adminLoginAuth = async (req, res) => {
   }
 };
 
-const fetchOrg = async (req, res) => {
-  const { userId } = req.body;
-  const user = await Auth.findOne({_id:userId}).sort({ createdAt: -1 });
-  res.status(200).json(user);
-}
-
 const signupAuth = async (req, res) => {
   const {
     username,
@@ -128,5 +122,4 @@ module.exports = {
   loginAuth,
   signupAuth,
   adminLoginAuth,
-  fetchOrg,
 };

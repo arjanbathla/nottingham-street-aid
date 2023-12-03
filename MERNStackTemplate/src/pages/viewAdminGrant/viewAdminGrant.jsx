@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classes from "./viewAdminGrant.module.css";
 
 import { Container } from "@mui/material";
@@ -10,36 +10,8 @@ import { useUpdateStatus } from "../../hooks/useUpdateStatus";
 import { useNavigate } from "react-router-dom";
 
 const viewAdminGrant = () => {
-  const { admin } = useSelector((state) => state.admin);
   const { grant } = useSelector((state) => state.grant);
   const { updateStatus, isLoadingUpdateStatus, errorUpdateStatus } = useUpdateStatus();
-
-  const { org, setOrg } = useState();
-
-  useEffect(() => {
-    const fetchOrg = async () => {
-      const response = await fetch(
-        "https://notts-street-aid-backend.vercel.app/api/adminGetOrg",
-        {
-          headers: {
-            Authorization: `Bearer ${admin.token}`,
-            body: JSON.stringify({grant})
-          },
-        }
-      );
-      const json = await response.json();
-
-      if (response.ok) {
-        setOrg(json);
-      }
-    };
-
-    if (admin) {
-      fetchOrg();
-    }
-  }, [dispatch, admin]);
-
-
 
   const navigate = useNavigate();
 
@@ -79,16 +51,8 @@ const viewAdminGrant = () => {
             </section>
         )}
 
-        {grant && org && (
+        {grant && (
           <section className={classes.section}>
-            
-            <div className={classes.grant}>
-              <h3>Organisation Details</h3>
-              <p>
-                {org}
-              </p>
-            </div>
-
             <div className={classes.grant}>
               <h3>Beneficiary Details</h3>
               <p>
