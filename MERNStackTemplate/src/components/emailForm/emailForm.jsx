@@ -33,7 +33,7 @@ const EmailForm = () => {
                     <option className={classes.option} value="Grant Application">Grant Application</option>
                     <option className={classes.option} value="Other">Other</option>
                 </select>
-                <textarea className={classes.input} style={{minHeight:'11rem'}} maxLength={256} type='text' name='message' placeholder='Message *' required/>
+                <textarea className={classes.input} style={{minHeight:'11rem'}} maxLength={2000} type='text' name='message' placeholder='Message *' required/>
                 {/* <div className={classes.checkboxBlock}>
                     <input type="checkbox" id="Policy_Check" name="Policy_Check" className={classes.checkbox} required/>
                     <label for="Policy_Check">Share Form Information With Our Admin Team.</label>

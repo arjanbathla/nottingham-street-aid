@@ -42,7 +42,7 @@ const login = () => {
               <div className={classes.inputBlock}>
                 <label className={classes.inputLabel}>Email *</label>
                 <input
-                  maxLength={256}
+                  maxLength={2000}
                   type="email"
                   placeholder="Eg. JohnDoe@email.com"
                   value={user}
@@ -56,12 +56,12 @@ const login = () => {
                 <label className={classes.inputLabel}>Password *</label>
                 <div className={classes.passwordBlock}>
                   <input
-                    maxLength={256}
+                    maxLength={2000}
                     type={showPass ? "text" : "password"}
                     placeholder="Eg. Password123#"
                     value={pass}
                     onChange={(e) => setPass(e.target.value)}
-                    // pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$"
+                    // pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*\W.*).{8,}$"
                     required
                   />
                   <Button clicked={handleClickShowPassword}>

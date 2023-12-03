@@ -11,12 +11,12 @@ import Button from "../../components/button/button";
 import Button2 from "../../components/button2/button2";
 import Loader from "../../components/loader/loader";
 
-import GUIDE from "../../assets/NSA_Application_Guide.pdf"
+import GUIDE from "../../assets/NSA_Application_Guide.pdf";
 
 const organisation = () => {
   const { user } = useSelector((state) => state.user);
   // const { grants } = useSelector((state) => state.grants);
-  const [grants, setGrantsLocal] = useState()
+  const [grants, setGrantsLocal] = useState();
 
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const organisation = () => {
 
       if (response.ok) {
         dispatch(setGrants(json));
-        setGrantsLocal(json)
+        setGrantsLocal(json);
       }
     };
 
@@ -50,9 +50,9 @@ const organisation = () => {
   };
 
   const viewMoreHandler = (grant) => {
-    if(grant){
-      dispatch(setGrant(grant))
-      navigate("/ViewGrant")
+    if (grant) {
+      dispatch(setGrant(grant));
+      navigate("/ViewGrant");
     }
   };
 
@@ -69,21 +69,112 @@ const organisation = () => {
               </a>
             </div>
           </div>
+        </div>
 
-          <div className={classes.dashboardContent}>
-            {!grants && <Loader loading={true} />}
-            {grants &&
-              grants.map((grant) => (
-                <div className={classes.grantItem} key={grant._id}>
-                  <h3 className={classes.subTitle}>
-                    {grant.benTitle} {grant.benFirstName} {grant.benLastName}
-                  </h3>
-                  <p>Status - {grant.grantStatus}</p>
-                  <Button2 clicked={(e) => viewMoreHandler(grant)}>
-                    View More
-                  </Button2>
-                </div>
-              ))}
+        <div className={classes.kanban}>
+          <div className={classes.dashboard}>
+            <div className={classes.dashboardHeader}>
+              <h2>Pending Grants</h2>
+            </div>
+            <div className={classes.kanbanContent}>
+              {!grants && <Loader loading={true} />}
+              {grants &&
+                grants.map(
+                  (grant) =>
+                    grant.grantStatus == "Pending" && (
+                      <div className={classes.grantItem} key={grant._id}>
+                        <h3>
+                          {grant.benTitle} {grant.benFirstName}{" "}
+                          {grant.benLastName}
+                        </h3>
+                        <div>
+                          <p>Email - {grant.benEmail}</p>
+                          <p>Telephone - {grant.benTelephone}</p>
+                          <br></br>
+                          <p>Reason - {grant.benGrantReason}</p>
+                          <p>Details - {grant.grantDetails}</p>
+                          <p>Amount - £{grant.grantAmountTotal}</p>
+                          <br></br>
+                          <p>{grant.createdAt}</p>
+                          <p>{grant.grantStatus}</p>
+                        </div>
+                        <Button2 clicked={(e) => viewMoreHandler(grant)}>
+                          View More
+                        </Button2>
+                      </div>
+                    )
+                )}
+            </div>
+          </div>
+
+          <div className={classes.dashboard}>
+            <div className={classes.dashboardHeader}>
+              <h2>Approved Grants</h2>
+            </div>
+            <div className={classes.kanbanContent}>
+              {!grants && <Loader loading={true} />}
+              {grants &&
+                grants.map(
+                  (grant) =>
+                    grant.grantStatus == "Approved" && (
+                      <div className={classes.grantItem} key={grant._id}>
+                        <h3>
+                          {grant.benTitle} {grant.benFirstName}{" "}
+                          {grant.benLastName}
+                        </h3>
+                        <div>
+                          <p>Email - {grant.benEmail}</p>
+                          <p>Telephone - {grant.benTelephone}</p>
+                          <br></br>
+                          <p>Reason - {grant.benGrantReason}</p>
+                          <p>Details - {grant.grantDetails}</p>
+                          <p>Amount - £{grant.grantAmountTotal}</p>
+                          <br></br>
+                          <p>{grant.createdAt}</p>
+                          <p>{grant.grantStatus}</p>
+                        </div>
+                        <Button2 clicked={(e) => viewMoreHandler(grant)}>
+                          View More
+                        </Button2>
+                      </div>
+                    )
+                )}
+            </div>
+          </div>
+
+          <div className={classes.dashboard}>
+            <div className={classes.dashboardHeader}>
+              <h2>Rejected Grants</h2>
+            </div>
+            <div className={classes.kanbanContent}>
+              {!grants && <Loader loading={true} />}
+              {grants &&
+                grants.map(
+                  (grant) =>
+                    grant.grantStatus == "Rejected" && (
+                      <div className={classes.grantItem} key={grant._id}>
+                        <h3>
+                          {grant.benTitle} {grant.benFirstName}{" "}
+                          {grant.benLastName}
+                        </h3>
+                        <div>
+                          <p>Email - {grant.benEmail}</p>
+                          <p>Telephone - {grant.benTelephone}</p>
+                          <br></br>
+                          <p>Reason - {grant.benGrantReason}</p>
+                          <p>Details - {grant.grantDetails}</p>
+                          <p>Amount - £{grant.grantAmountTotal}</p>
+                          <br></br>
+                          <p>{grant.createdAt}</p>
+                          <p>{grant.grantStatus}</p>
+                        </div>
+                        <Button2 clicked={(e) => viewMoreHandler(grant)}>
+                          View More
+                        </Button2>
+                      </div>
+                    )
+                )}
+            </div>
           </div>
         </div>
       </section>

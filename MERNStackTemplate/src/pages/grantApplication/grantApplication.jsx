@@ -9,7 +9,6 @@ import Button from "../../components/button/button";
 import Loader from "../../components/loader/loader";
 
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
-// import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 import GUIDE from "../../assets/NSA_Application_Guide.pdf";
 
 import { EighteenLim } from "../../config";
@@ -54,9 +53,6 @@ const GrantApplication = () => {
   const [altCounty, setAltCounty] = useState("");
   const [altPostcode, setAltPostcode] = useState("");
 
-  const [sharedSignedLink, setSharedSignedLink] = useState();
-  const [benConsent, setBenConsent] = useState(false);
-
   const [prefContactMethod, setPrefContactMethod] = useState("");
   const [prefCommunication, setPrefCommunication] = useState(false);
   const [prefDataSharing, setPrefDataSharing] = useState(false);
@@ -100,9 +96,13 @@ const GrantApplication = () => {
   const [grantItemDetails4, setGrantItemDetails4] = useState("");
   const [grantItemCost5, setGrantItemCost5] = useState(0);
   const [grantItemDetails5, setGrantItemDetails5] = useState("");
-  const [grantQuoteLink, setGrantQuoteLink] = useState("");
 
+  const [benConsent, setBenConsent] = useState(false);
   const [confirmApplication, setConfirmApplication] = useState(false);
+
+  // add as feature when possible
+  // const [grantQuoteLink, setGrantQuoteLink] = useState("");
+  // const [sharedSignedLink, setSharedSignedLink] = useState("");
 
   const [otherBenTitle, setOtherBenTitle] = useState("");
   const [otherAltTitle, setOtherAltTitle] = useState("");
@@ -112,7 +112,7 @@ const GrantApplication = () => {
   const [otherCurrentAccom, setOtherCurrentAccom] = useState("");
   const [otherBenGrantReason, setOtherBenGrantReason] = useState("");
 
-  // if we every get a list of acceptable towns
+  // if we get a list of towns
   // const [towns, setTowns] = useState([]);
   // useEffect(() => {
   //   fetch("/towns.csv")
@@ -248,7 +248,7 @@ const GrantApplication = () => {
   const [latestSection, setLatestSection] = useState();
 
   const handleContinue = () => {
-    if (currentSection < totalSections) {
+    if (currentSection < totalSections && costError == false) {
       setCurrentSection(currentSection + 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -261,6 +261,7 @@ const GrantApplication = () => {
     }
   };
 
+  // code that allows the local storage of form section state
   //   useEffect(() => {
   //     getLocalCurrentSection();
   //   }, []);
@@ -293,8 +294,7 @@ const GrantApplication = () => {
     setLatestSection(currentSection);
     // setLatestSection(section);
     if (latestSection >= section) {
-      setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
-      //eg. input on page 2 disappears only if go back to 1 not 3
+      setCurrentSection(section);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -567,7 +567,7 @@ const GrantApplication = () => {
                       </select>
                       {benTitle === "Other" && (
                         <input
-                          maxLength={256}
+                          maxLength={2000}
                           type="text"
                           value={otherBenTitle}
                           onChange={(e) => setOtherBenTitle(e.target.value)}
@@ -580,7 +580,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>First Name *</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={benFirstName}
                         onChange={(e) => setBenFirstName(e.target.value)}
@@ -592,7 +592,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Last Name *</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={benLastName}
                         onChange={(e) => setBenLastName(e.target.value)}
@@ -606,7 +606,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="email"
                         value={benEmail}
                         onChange={(e) => setBenEmail(e.target.value)}
@@ -618,7 +618,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="tel"
                         value={benTelephone}
                         onChange={(e) => setBenTelephone(e.target.value)}
@@ -706,7 +706,7 @@ const GrantApplication = () => {
                         Address Line 1 *
                       </label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={benAddressLine1}
                         onChange={(e) => setBenAddressLine1(e.target.value)}
@@ -720,7 +720,7 @@ const GrantApplication = () => {
                         Address Line 2
                       </label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={benAddressLine2}
                         onChange={(e) => setBenAddressLine2(e.target.value)}
@@ -731,7 +731,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Town *</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={benTown}
                         onChange={(e) => setBenTown(e.target.value)}
@@ -781,7 +781,7 @@ const GrantApplication = () => {
                         </select>
                         {altTitle === "Other" && (
                           <input
-                            maxLength={256}
+                            maxLength={2000}
                             type="text"
                             value={otherAltTitle}
                             onChange={(e) => setOtherAltTitle(e.target.value)}
@@ -796,7 +796,7 @@ const GrantApplication = () => {
                           First Name *
                         </label>
                         <input
-                          maxLength={256}
+                          maxLength={2000}
                           type="text"
                           value={altFirstName}
                           onChange={(e) => setAltFirstName(e.target.value)}
@@ -810,7 +810,7 @@ const GrantApplication = () => {
                           Last Name *
                         </label>
                         <input
-                          maxLength={256}
+                          maxLength={2000}
                           type="text"
                           value={altLastName}
                           onChange={(e) => setAltLastName(e.target.value)}
@@ -843,7 +843,7 @@ const GrantApplication = () => {
                     </select>
                     {altRole === "Other" && (
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={otherAltRole}
                         onChange={(e) => setOtherAltRole(e.target.value)}
@@ -857,7 +857,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email *</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="email"
                         value={altEmail}
                         onChange={(e) => setAltEmail(e.target.value)}
@@ -870,7 +870,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="tel"
                         value={altTelephone}
                         onChange={(e) => setAltTelephone(e.target.value)}
@@ -891,7 +891,7 @@ const GrantApplication = () => {
                       Address Line 1 *
                     </label>
                     <input
-                      maxLength={256}
+                      maxLength={2000}
                       type="text"
                       value={altAddressLine1}
                       onChange={(e) => setAltAddressLine1(e.target.value)}
@@ -903,7 +903,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Address Line 2</label>
                     <input
-                      maxLength={256}
+                      maxLength={2000}
                       type="text"
                       value={altAddressLine2}
                       onChange={(e) => setAltAddressLine2(e.target.value)}
@@ -914,7 +914,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>County *</label>
                     <input
-                      maxLength={256}
+                      maxLength={2000}
                       type="text"
                       value={altCounty}
                       onChange={(e) => setAltCounty(e.target.value)}
@@ -926,7 +926,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Postcode *</label>
                     <input
-                      maxLength={256}
+                      maxLength={2000}
                       type="text"
                       value={altPostcode}
                       onChange={(e) => setAltPostcode(e.target.value)}
@@ -1010,7 +1010,7 @@ const GrantApplication = () => {
                       </select>
                       {benGen === "Other" && (
                         <input
-                          maxLength={256}
+                          maxLength={2000}
                           type="text"
                           value={otherBenGen}
                           onChange={(e) => setOtherBenGen(e.target.value)}
@@ -1036,7 +1036,7 @@ const GrantApplication = () => {
                       </select>
                       {benSex === "Other" && (
                         <input
-                          maxLength={256}
+                          maxLength={2000}
                           type="text"
                           value={otherBenSex}
                           onChange={(e) => setOtherBenSex(e.target.value)}
@@ -1188,7 +1188,7 @@ const GrantApplication = () => {
                         Number of dependents *
                       </label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={numOfDependants}
                         onChange={(e) => setNumOfDependants(e.target.value)}
@@ -1202,7 +1202,7 @@ const GrantApplication = () => {
                         Age of dependents *
                       </label>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={ageOfDependants}
                         onChange={(e) => setAgeOfDependants(e.target.value)}
@@ -1249,7 +1249,7 @@ const GrantApplication = () => {
                       </select>
                       {currentAccom === "Other" && (
                         <input
-                          maxLength={256}
+                          maxLength={2000}
                           type="text"
                           value={otherCurrentAccom}
                           onChange={(e) => setOtherCurrentAccom(e.target.value)}
@@ -1335,9 +1335,6 @@ const GrantApplication = () => {
 
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
-                      Link to Nottingham *
-                    </label>
-                    <label className={classes.inputLabel}>
                       Does the beneficiary have links to Nottingham e.g. family?
                     </label>
                     <select
@@ -1419,7 +1416,7 @@ const GrantApplication = () => {
                     </select>
                     {benGrantReason === "Other" && (
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={otherBenGrantReason}
                         onChange={(e) => setOtherBenGrantReason(e.target.value)}
@@ -1471,7 +1468,7 @@ const GrantApplication = () => {
           )}
 
           {currentSection === 7 && (
-            <form className={classes.formLayout} onSubmit={submitForm}>
+            <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>7. Grant Amount</h2>
                 <label className={classes.inputLabel}>
@@ -1510,7 +1507,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={grantItemDetails1}
                         onChange={(e) => setGrantItemDetails1(e.target.value)}
@@ -1537,7 +1534,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={grantItemDetails2}
                         onChange={(e) => setGrantItemDetails2(e.target.value)}
@@ -1563,7 +1560,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={grantItemDetails3}
                         onChange={(e) => setGrantItemDetails3(e.target.value)}
@@ -1589,7 +1586,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={grantItemDetails4}
                         onChange={(e) => setGrantItemDetails4(e.target.value)}
@@ -1615,7 +1612,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={256}
+                        maxLength={2000}
                         type="text"
                         value={grantItemDetails5}
                         onChange={(e) => setGrantItemDetails5(e.target.value)}
@@ -1642,8 +1639,9 @@ const GrantApplication = () => {
                     <p className={classes.errorMessage}>{costError}</p>
                   )}
                 </div>
+                
 
-                <div className={classes.multiInputBlock}>
+                {/* <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>
                     Quotes File for Large Items
                   </h3>
@@ -1659,9 +1657,9 @@ const GrantApplication = () => {
                       type="file"
                       onChange={(e) => setGrantQuoteLink(e.target.value)}
                     />
-                    {/* <label htmlFor="quote">{grantQuoteLink}</label> */}
+                    <label htmlFor="quote">{grantQuoteLink}</label>
                   </div>
-                </div>
+                </div> */}
               </div>
               {buttons}
             </form>
@@ -1769,7 +1767,7 @@ const GrantApplication = () => {
           )}
 
           {currentSection === 9 && (
-            <form className={classes.formLayout} onSubmit={handleContinue}>
+            <form className={classes.formLayout} onSubmit={submitForm}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>
                   9. Beneficiary Declaration
@@ -1777,7 +1775,7 @@ const GrantApplication = () => {
               </div>
 
               <div className={classes.formContent}>
-                <div className={classes.multiInputBlock}>
+                {/* <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Signed Declaration File</h3>
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
@@ -1791,9 +1789,9 @@ const GrantApplication = () => {
                       onChange={(e) => setSharedSignedLink(e.target.value)}
                       required
                     />
-                    {/* <label htmlFor="sign">{sharedSignedLink}</label> */}
+                    <label htmlFor="sign">{sharedSignedLink}</label>
                   </div>
-                </div>
+                </div> */}
 
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Beneficiary Consent</h3>
