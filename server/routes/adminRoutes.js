@@ -1,6 +1,6 @@
 const express = require("express")
 const { fetchAllGrants, updateStatus } = require("../controllers/grantControllers")
-const { fetchOrg } = require("../controllers/authController")
+const { fetchOrg } = require("../controllers/authControllers")
 const requireAuth = require("../middleware/requireAuth")
 
 const router = express.Router()
@@ -9,7 +9,7 @@ router.use(requireAuth)
 // setup routes and controller functions
 router.get('/admin', fetchAllGrants)
 
-router.get('/adminGetOrg', fetchOrg)
+router.fetch('/adminGetOrg', fetchOrg)
 
 router.patch('/admin/updateStatus', updateStatus)
 
