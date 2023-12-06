@@ -122,7 +122,6 @@ const viewGrant = () => {
               <p>
                 Item 5: £{grant.grantItemCost5} - {grant.grantItemDetails5}
               </p>
-              <p>Quote: {grant.grantQuoteLink}</p>
             </div>
 
             <div className={classes.grant}>
@@ -133,8 +132,9 @@ const viewGrant = () => {
             </div>
 
             <div className={classes.grant}>
-              <h3>Declaration</h3>
-              <p>Sign: {grant.sharedSignedLink}</p>
+              <h3>Consent</h3>
+              <p>Beneficiary Consent: {grant.benConsent}</p>
+              <p>Organisation Consent: {grant.confirmApplication}</p>
             </div>
           </section>
         )}

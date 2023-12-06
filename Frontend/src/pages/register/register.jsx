@@ -111,35 +111,6 @@ const Register = () => {
     }
   };
 
-  // optional code to save the current section of the form
-  // so that users can revisit the specific page they left on and continue
-
-  // useEffect(() => {
-  //   getLocalCurrentSection();
-  // }, []);
-
-  // const getLocalCurrentSection = () => {
-  //   if (localStorage.getItem("currentSectionRegForm") === "") {
-  //     localStorage.setItem("currentSectionRegForm", JSON.stringify());
-  //   } else {
-  //     let localCurrentSection = JSON.parse(
-  //       localStorage.getItem("currentSectionRegForm")
-  //     );
-  //     setCurrentSection(localCurrentSection);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   saveLocalCurrentSection(currentSection);
-  // }, [currentSection]);
-
-  // const saveLocalCurrentSection = (currentSection) => {
-  //   localStorage.setItem(
-  //     "currentSectionRegForm",
-  //     JSON.stringify(currentSection)
-  //   );
-  // };
-
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
     // for limiter
@@ -310,7 +281,7 @@ const Register = () => {
                         placeholder="Eg. Password123#"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        pattern="^(?=.*\d.*\d)(?=.*[A-Z])(?=.*\W.*).{8,}$"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$"
                         required
                       />
                       <Button clicked={handleClickShowPassword}>
