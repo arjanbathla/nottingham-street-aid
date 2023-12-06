@@ -32,8 +32,6 @@ export const applyGrant = () => {
     altAddressLine2,
     altCounty,
     altPostcode,
-    sharedSignedLink,
-    benConsent,
     prefContactMethod,
     prefCommunication,
     prefDataSharing,
@@ -71,7 +69,7 @@ export const applyGrant = () => {
     grantItemDetails4,
     grantItemCost5,
     grantItemDetails5,
-    grantQuoteLink,
+    benConsent,
     confirmApplication
   ) => {
     setIsLoadingGrant(true);
@@ -112,8 +110,6 @@ export const applyGrant = () => {
           altAddressLine2,
           altCounty,
           altPostcode,
-          sharedSignedLink,
-          benConsent,
           prefContactMethod,
           prefCommunication,
           prefDataSharing,
@@ -151,8 +147,8 @@ export const applyGrant = () => {
           grantItemDetails4,
           grantItemCost5,
           grantItemDetails5,
-          grantQuoteLink,
-          confirmApplication,
+          benConsent,
+          confirmApplication
         }),
       }
     );

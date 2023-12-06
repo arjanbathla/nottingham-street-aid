@@ -99,11 +99,7 @@ const GrantApplication = () => {
 
   const [benConsent, setBenConsent] = useState(false);
   const [confirmApplication, setConfirmApplication] = useState(false);
-
-  // add as feature when possible
-  // const [grantQuoteLink, setGrantQuoteLink] = useState("");
-  // const [sharedSignedLink, setSharedSignedLink] = useState("");
-
+  
   const [otherBenTitle, setOtherBenTitle] = useState("");
   const [otherAltTitle, setOtherAltTitle] = useState("");
   const [otherAltRole, setOtherAltRole] = useState("");
@@ -111,20 +107,6 @@ const GrantApplication = () => {
   const [otherBenSex, setOtherBenSex] = useState("");
   const [otherCurrentAccom, setOtherCurrentAccom] = useState("");
   const [otherBenGrantReason, setOtherBenGrantReason] = useState("");
-
-  // if we get a list of towns
-  // const [towns, setTowns] = useState([]);
-  // useEffect(() => {
-  //   fetch("/towns.csv")
-  //     .then((response) => response.text())
-  //     .then((csvData) => {
-  //       const townList = csvData.split("\n").map((row) => row.trim());
-  //       setTowns(townList);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching or parsing CSV data", error);
-  //     });
-  // }, []);
 
   const [genders, setGenders] = useState([]);
   useEffect(() => {
@@ -261,38 +243,10 @@ const GrantApplication = () => {
     }
   };
 
-  // code that allows the local storage of form section state
-  //   useEffect(() => {
-  //     getLocalCurrentSection();
-  //   }, []);
-
-  //   const getLocalCurrentSection = () => {
-  //     if (localStorage.getItem("currentSectionGrantForm") === "") {
-  //       localStorage.setItem("currentSectionGrantForm", JSON.stringify());
-  //     } else {
-  //       let localCurrentSection = JSON.parse(
-  //         localStorage.getItem("currentSectionGrantForm")
-  //       );
-  //       setCurrentSection(localCurrentSection);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     saveLocalCurrentSection(currentSection);
-  //   }, [currentSection]);
-
-  //   const saveLocalCurrentSection = (currentSection) => {
-  //     localStorage.setItem(
-  //       "currentSectionGrantForm",
-  //       JSON.stringify(currentSection)
-  //     );
-  //   };
-
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
-    // for limiter
-    setLatestSection(currentSection);
-    // setLatestSection(section);
+    // setLatestSection(currentSection);
+    setLatestSection(section);
     if (latestSection >= section) {
       setCurrentSection(section);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -336,7 +290,7 @@ const GrantApplication = () => {
 
   useEffect(() => {
     setGrantAmountTotal(
-      Number(grantItemCost1) +
+        Number(grantItemCost1) +
         Number(grantItemCost2) +
         Number(grantItemCost3) +
         Number(grantItemCost4) +
@@ -354,27 +308,13 @@ const GrantApplication = () => {
   const submitForm = async (e) => {
     if (costError == false) {
       e.preventDefault();
-      if (otherBenTitle) {
-        setBenTitle(otherBenTitle);
-      }
-      if (otherAltTitle) {
-        setAltTitle(otherAltTitle);
-      }
-      if (otherAltRole) {
-        setAltRole(otherAltRole);
-      }
-      if (otherBenGen) {
-        setBenGen(otherBenGen);
-      }
-      if (otherBenSex) {
-        setBenSex(otherBenSex);
-      }
-      if (otherCurrentAccom) {
-        setBenTitle(otherCurrentAccom);
-      }
-      if (otherBenGrantReason) {
-        setBenGrantReason(otherBenGrantReason);
-      }
+      if (otherBenTitle) {setBenTitle(otherBenTitle);}
+      if (otherAltTitle) {setAltTitle(otherAltTitle);}
+      if (otherAltRole) {setAltRole(otherAltRole);}
+      if (otherBenGen) {setBenGen(otherBenGen);}
+      if (otherBenSex) {setBenSex(otherBenSex);}
+      if (otherCurrentAccom) {setBenTitle(otherCurrentAccom);}
+      if (otherBenGrantReason) {setBenGrantReason(otherBenGrantReason);}
       await apply(
         benTitle,
         benFirstName,
@@ -397,8 +337,6 @@ const GrantApplication = () => {
         altAddressLine2,
         altCounty,
         altPostcode,
-        sharedSignedLink,
-        benConsent,
         prefContactMethod,
         prefCommunication,
         prefDataSharing,
@@ -436,7 +374,7 @@ const GrantApplication = () => {
         grantItemDetails4,
         grantItemCost5,
         grantItemDetails5,
-        grantQuoteLink,
+        benConsent,
         confirmApplication
       );
       setCurrentSection(1);

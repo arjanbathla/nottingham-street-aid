@@ -46,8 +46,6 @@ const createGrant = async (req, res) => {
     altAddressLine2,
     altCounty,
     altPostcode,
-    sharedSignedLink,
-    benConsent,
     prefContactMethod,
     prefCommunication,
     prefDataSharing,
@@ -85,8 +83,8 @@ const createGrant = async (req, res) => {
     grantItemDetails4,
     grantItemCost5,
     grantItemDetails5,
-    grantQuoteLink,
-    confirmApplication,
+    benConsent,
+    confirmApplication
   } = req.body;
   try {
     const userId = req.auth._id;
@@ -115,8 +113,6 @@ const createGrant = async (req, res) => {
       altAddressLine2,
       altCounty,
       altPostcode,
-      sharedSignedLink,
-      benConsent,
       prefContactMethod,
       prefCommunication,
       prefDataSharing,
@@ -154,7 +150,7 @@ const createGrant = async (req, res) => {
       grantItemDetails4,
       grantItemCost5,
       grantItemDetails5,
-      grantQuoteLink,
+      benConsent,
       confirmApplication
     );
     res.status(200).json({ grant });

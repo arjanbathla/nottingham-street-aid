@@ -5,8 +5,6 @@ export const useLogout = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    // localStorage.removeItem("currentSectionGrantForm");
-    // localStorage.removeItem("currentSectionRegForm");
     dispatch(logoutUser());
   };
 

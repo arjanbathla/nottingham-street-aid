@@ -32,9 +32,6 @@ const grantSchema = new Schema(
     altCounty: { type: String, required: true },
     altPostcode: { type: String, required: true },
 
-    sharedSignedLink: { type: String, required: true },
-    benConsent: { type: String, required: true },
-
     prefContactMethod: { type: String, required: true },
     prefCommunication: { type: String, required: true },
     prefDataSharing: { type: String, required: true },
@@ -79,7 +76,7 @@ const grantSchema = new Schema(
     grantItemCost5: { type: String, required: false },
     grantItemDetails5: { type: String, required: false },
 
-    grantQuoteLink: { type: String, required: false },
+    benConsent: { type: String, required: true },
     confirmApplication: { type: String, required: true },
   },
   { timestamps: true }
@@ -110,8 +107,6 @@ grantSchema.statics.applyGrant = async function (
   altAddressLine2,
   altCounty,
   altPostcode,
-  sharedSignedLink,
-  benConsent,
   prefContactMethod,
   prefCommunication,
   prefDataSharing,
@@ -149,7 +144,7 @@ grantSchema.statics.applyGrant = async function (
   grantItemDetails4,
   grantItemCost5,
   grantItemDetails5,
-  grantQuoteLink,
+  benConsent,
   confirmApplication
 ) {
   if (
@@ -167,7 +162,6 @@ grantSchema.statics.applyGrant = async function (
     !altAddressLine1 ||
     !altCounty ||
     !altPostcode ||
-    !sharedSignedLink ||
     !prefContactMethod ||
     !benAgeRange ||
     !benDob ||
@@ -219,8 +213,6 @@ grantSchema.statics.applyGrant = async function (
     altAddressLine2,
     altCounty,
     altPostcode,
-    sharedSignedLink,
-    benConsent,
     prefContactMethod,
     prefCommunication,
     prefDataSharing,
@@ -258,7 +250,7 @@ grantSchema.statics.applyGrant = async function (
     grantItemDetails4,
     grantItemCost5,
     grantItemDetails5,
-    grantQuoteLink,
+    benConsent,
     confirmApplication
   });
 
