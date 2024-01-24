@@ -73,10 +73,10 @@ const adminAdminLogin = () => {
               </Button>
               {isLoadingAdminLogin && <Loader loading={isLoadingAdminLogin} />}
 
-              <div>
+              {/* <div>
                 <p>nsa@nsa.com</p>
                 <p>ASDasd_123#</p>
-              </div>
+              </div> */}
             </div>
             {errorAdminLogin && (
               <p className={classes.errorMessage}>{errorAdminLogin}</p>

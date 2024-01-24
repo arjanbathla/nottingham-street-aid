@@ -83,10 +83,10 @@ const login = () => {
               </Button>
               {isLoadingLogin && <Loader loading={isLoadingLogin} />}
 
-              <div>
+              {/* <div>
                 <p>asd@asd.com</p>
                 <p>ASDasd_123#</p>
-              </div>
+              </div> */}
             </div>
             {errorLogin && <p className={classes.errorMessage}>{errorLogin}</p>}
           </form>
