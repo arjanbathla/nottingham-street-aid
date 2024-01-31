@@ -22,8 +22,12 @@ const organisation = () => {
 
   useEffect(() => {
     const fetchGrants = async () => {
+      const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
+      const apiEndpoint = "/api/organisation";
+      const apiUrl = apiHost + apiEndpoint;
+
       const response = await fetch(
-        "https://notts-street-aid-backend.vercel.app/api/organisation",
+        apiUrl,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
