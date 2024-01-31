@@ -11,7 +11,7 @@ import Loader from "../../components/loader/loader";
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
-import Cookies from 'js-cookie';
+import useLocalStorageState from 'use-local-storage-state';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,59 +28,59 @@ const Register = () => {
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
 
-  const [username, setUsername] = useCookieState('username', '');
+  const [username, setUsername] = useLocalStorageState('username', '');
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
 
-  const [orgName, setOrgName] = useCookieState('orgName', '');
-  const [orgAdr1, setOrgAdr1] = useCookieState('orgAdr1', '');
-  const [orgAdr2, setOrgAdr2] = useCookieState('orgAdr2', '');
-  const [orgTown, setOrgTown] = useCookieState('orgTown', '');
-  const [orgCounty, setOrgCounty] = useCookieState('orgCounty', '');
-  const [orgPostcode, setOrgPostcode] = useCookieState('orgPostcode', '');
+  const [orgName, setOrgName] = useLocalStorageState('orgName', '');
+  const [orgAdr1, setOrgAdr1] = useLocalStorageState('orgAdr1', '');
+  const [orgAdr2, setOrgAdr2] = useLocalStorageState('orgAdr2', '');
+  const [orgTown, setOrgTown] = useLocalStorageState('orgTown', '');
+  const [orgCounty, setOrgCounty] = useLocalStorageState('orgCounty', '');
+  const [orgPostcode, setOrgPostcode] = useLocalStorageState('orgPostcode', '');
 
-  const [orgEmail, setOrgEmail] = useCookieState('orgEmail', '');
-  const [orgPhone, setOrgPhone] = useCookieState('orgPhone', '');
-  const [orgWebsite, setOrgWebsite] = useCookieState('orgWebsite', '');
+  const [orgEmail, setOrgEmail] = useLocalStorageState('orgEmail', '');
+  const [orgPhone, setOrgPhone] = useLocalStorageState('orgPhone', '');
+  const [orgWebsite, setOrgWebsite] = useLocalStorageState('orgWebsite', '');
 
-  const [orgType, setOrgType] = useCookieState('orgType', '');
-  const [orgCharityNumber, setOrgCharityNumber] = useCookieState('orgCharityNumber', '');
-  const [orgHouseNumber, setOrgHouseNumber] = useCookieState('orgHouseNumber', '');
+  const [orgType, setOrgType] = useLocalStorageState('orgType', '');
+  const [orgCharityNumber, setOrgCharityNumber] = useLocalStorageState('orgCharityNumber', '');
+  const [orgHouseNumber, setOrgHouseNumber] = useLocalStorageState('orgHouseNumber', '');
 
-  const [contact1Title, setContact1Title] = useCookieState('contact1Title', '');
-  const [contact1Fname, setContact1Fname] = useCookieState('contact1Fname', '');
-  const [contact1Lname, setContact1Lname] = useCookieState('contact1Lname', '');
-  const [contact1Role, setContact1Role] = useCookieState('contact1Role', '');
-  const [contact1Email, setContact1Email] = useCookieState('contact1Email', '');
-  const [contact1Phone, setContact1Phone] = useCookieState('contact1Phone', '');
+  const [contact1Title, setContact1Title] = useLocalStorageState('contact1Title', '');
+  const [contact1Fname, setContact1Fname] = useLocalStorageState('contact1Fname', '');
+  const [contact1Lname, setContact1Lname] = useLocalStorageState('contact1Lname', '');
+  const [contact1Role, setContact1Role] = useLocalStorageState('contact1Role', '');
+  const [contact1Email, setContact1Email] = useLocalStorageState('contact1Email', '');
+  const [contact1Phone, setContact1Phone] = useLocalStorageState('contact1Phone', '');
 
-  const [financeContact, setFinanceContact] = useCookieState('financeContact', false);
-  const [secondContact, setSecondContact] = useCookieState('secondContact', false);
+  const [financeContact, setFinanceContact] = useLocalStorageState('financeContact', false);
+  const [secondContact, setSecondContact] = useLocalStorageState('secondContact', false);
 
-  const [contact2Title, setContact2Title] = useCookieState('contact2Title', '');
-  const [contact2Fname, setContact2Fname] = useCookieState('contact2Fname', '');
-  const [contact2Lname, setContact2Lname] = useCookieState('contact2Lname', '');
-  const [contact2Role, setContact2Role] = useCookieState('contact2Role', '');
-  const [contact2Email, setContact2Email] = useCookieState('contact2Email', '');
-  const [contact2Phone, setContact2Phone] = useCookieState('contact2Phone', '');
+  const [contact2Title, setContact2Title] = useLocalStorageState('contact2Title', '');
+  const [contact2Fname, setContact2Fname] = useLocalStorageState('contact2Fname', '');
+  const [contact2Lname, setContact2Lname] = useLocalStorageState('contact2Lname', '');
+  const [contact2Role, setContact2Role] = useLocalStorageState('contact2Role', '');
+  const [contact2Email, setContact2Email] = useLocalStorageState('contact2Email', '');
+  const [contact2Phone, setContact2Phone] = useLocalStorageState('contact2Phone', '');
 
-  const [contact3Title, setContact3Title] = useCookieState('contact3Title', '');
-  const [contact3Fname, setContact3Fname] = useCookieState('contact3Fname', '');
-  const [contact3Lname, setContact3Lname] = useCookieState('contact3Lname', '');
-  const [contact3Role, setContact3Role] = useCookieState('contact3Role', '');
-  const [contact3Email, setContact3Email] = useCookieState('contact3Email', '');
-  const [contact3Phone, setContact3Phone] = useCookieState('contact3Phone', '');
+  const [contact3Title, setContact3Title] = useLocalStorageState('contact3Title', '');
+  const [contact3Fname, setContact3Fname] = useLocalStorageState('contact3Fname', '');
+  const [contact3Lname, setContact3Lname] = useLocalStorageState('contact3Lname', '');
+  const [contact3Role, setContact3Role] = useLocalStorageState('contact3Role', '');
+  const [contact3Email, setContact3Email] = useLocalStorageState('contact3Email', '');
+  const [contact3Phone, setContact3Phone] = useLocalStorageState('contact3Phone', '');
 
-  const [commsPref, setCommsPref] = useCookieState('commsPref', false);
-  const [dataPref, setDataPref] = useCookieState('dataPref', false);
-  const [newsletterPref, setNewsletterPref] = useCookieState('newsletterPref', false);
-  const [bulletinPref, setBulletinPref] = useCookieState('bulletinPref', false);
-  const [tsAndCs, setTsAndCs] = useCookieState('tsAndCs', false);
+  const [commsPref, setCommsPref] = useLocalStorageState('commsPref', false);
+  const [dataPref, setDataPref] = useLocalStorageState('dataPref', false);
+  const [newsletterPref, setNewsletterPref] = useLocalStorageState('newsletterPref', false);
+  const [bulletinPref, setBulletinPref] = useLocalStorageState('bulletinPref', false);
+  const [tsAndCs, setTsAndCs] = useLocalStorageState('tsAndCs', false);
 
-  const [otherOrgType, setOtherOrgType] = useCookieState('otherOrgType', '');
-  const [otherContact1Title, setOtherContact1Title] = useCookieState('otherContact1Title', '');
-  const [otherContact2Title, setOtherContact2Title] = useCookieState('otherContact2Title', '');
-  const [otherContact3Title, setOtherContact3Title] = useCookieState('otherContact3Title', '');
+  const [otherOrgType, setOtherOrgType] = useLocalStorageState('otherOrgType', '');
+  const [otherContact1Title, setOtherContact1Title] = useLocalStorageState('otherContact1Title', '');
+  const [otherContact2Title, setOtherContact2Title] = useLocalStorageState('otherContact2Title', '');
+  const [otherContact3Title, setOtherContact3Title] = useLocalStorageState('otherContact3Title', '');
 
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
@@ -216,7 +216,22 @@ const Register = () => {
     );
     setCurrentSection(1);
 
-    // TODO clean up cookie
+    const cookiesToRemove = [
+      'username', 'orgName', 'orgAdr1', 'orgAdr2', 'orgTown',
+      'orgCounty', 'orgPostcode', 'orgEmail', 'orgPhone', 'orgWebsite',
+      'orgType', 'orgCharityNumber', 'orgHouseNumber', 'contact1Title',
+      'contact1Fname', 'contact1Lname', 'contact1Role', 'contact1Email',
+      'contact1Phone', 'secondContact', 'contact2Title', 'contact2Fname',
+      'contact2Lname', 'contact2Role', 'contact2Email', 'contact2Phone',
+      'financeContact', 'contact3Title', 'contact3Fname', 'contact3Lname',
+      'contact3Role', 'contact3Email', 'contact3Phone', 'commsPref',
+      'dataPref', 'newsletterPref', 'bulletinPref', 'tsAndCs',
+      'otherOrgType', 'otherContact1Title', 'otherContact2Title', 'otherContact3Title'
+    ];
+
+    cookiesToRemove.forEach(cookieName => {
+      localStorage.removeItem(cookieName);
+    });
   };
 
   let buttons;
@@ -1027,18 +1042,5 @@ const Register = () => {
     </Container>
   );
 };
-
-function useCookieState(key, defaultValue) {
-  const [state, setState] = useState(() => {
-    const cookieValue = Cookies.get(key);
-    return cookieValue !== undefined ? JSON.parse(cookieValue) : defaultValue;
-  });
-
-  useEffect(() => {
-    Cookies.set(key, JSON.stringify(state), { expires: 7 });
-  }, [key, state]);
-
-  return [state, setState];
-}
 
 export default Register;
