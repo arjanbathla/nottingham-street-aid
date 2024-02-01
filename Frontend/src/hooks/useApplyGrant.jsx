@@ -80,8 +80,12 @@ export const applyGrant = () => {
       return;
     }
 
+    const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
+    const apiEndpoint = "/api/organisation/create";
+    const apiUrl = apiHost + apiEndpoint;
+
     const response = await fetch(
-      "https://notts-street-aid-backend.vercel.app/api/organisation/create",
+      apiUrl,
       {
         method: "POST",
         headers: {
@@ -155,14 +159,11 @@ export const applyGrant = () => {
 
     const json = await response.json();
 
-    if (!response.ok) {
-      setIsLoadingGrant(false);
-      setErrorGrant(json.error);
-    }
+    setIsLoadingGrant(false);
     if (response.ok) {
-      setIsLoadingGrant(false);
-      setErrorGrant(null)
       dispatch(setGrants(json));
+    } else {
+      setErrorGrant(json.error);
     }
   };
   return { apply, isLoadingGrant, errorGrant };

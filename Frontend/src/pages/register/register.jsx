@@ -174,7 +174,7 @@ const Register = () => {
     if (otherContact3Title) {
       setContact3Title(otherContact3Title);
     }
-    const signupResult = await signup(
+    await signup(
       username,
       password,
       orgName,
@@ -215,7 +215,7 @@ const Register = () => {
     );
     setCurrentSection(1);
 
-    if (signupResult) {
+    if (errorSignup == null) {
         deleteLocalStorageItemsStartingWith('Register')
     }
   };
