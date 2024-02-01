@@ -486,7 +486,7 @@ const Register = () => {
                         value={orgCharityNumber}
                         onChange={(e) => setOrgCharityNumber(e.target.value)}
                         placeholder="Eg. AB12345"
-                        pattern="^[A-Z]{2}\d{5}$"
+                        pattern="^[A-Za-z0-9]{7,8}$"
                         required
                       />
                     </div>
