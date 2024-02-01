@@ -103,13 +103,13 @@ export const useSignup = () => {
 
     const json = await response.json();
 
-    if (!response.ok) {
-      setIsLoadingSignup(false);
-      setErrorSignup(json.error);
-    }
+    setIsLoadingSignup(false);
     if (response.ok) {
-      setIsLoadingSignup(false);
       dispatch(loginUser(json));
+      return true;
+    } else {
+      setErrorSignup(json.error);
+      return false;
     }
   };
   return { signup, isLoadingSignup, errorSignup };
