@@ -3,6 +3,7 @@ import classes from "./grantApplication.module.css";
 
 import { applyGrant } from "../../hooks/useApplyGrant";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorageState, deleteLocalStorageItemsStartingWith } from "../../hooks/useLocalStorageStateWithBoolean";
 
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
@@ -27,86 +28,86 @@ const GrantApplication = () => {
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
 
-  const [benTitle, setBenTitle] = useState("");
-  const [benFirstName, setBenFirstName] = useState("");
-  const [benLastName, setBenLastName] = useState("");
-  const [benEmail, setBenEmail] = useState("");
-  const [benTelephone, setBenTelephone] = useState("");
+  const [benTitle, setBenTitle] = useLocalStorageState('benTitle', 'GrantApplication', '');
+  const [benFirstName, setBenFirstName] = useLocalStorageState('benFirstName', 'GrantApplication', '');
+  const [benLastName, setBenLastName] = useLocalStorageState('benLastName', 'GrantApplication', '');
+  const [benEmail, setBenEmail] = useLocalStorageState('benEmail', 'GrantApplication', '');
+  const [benTelephone, setBenTelephone] = useLocalStorageState('benTelephone', 'GrantApplication', '');
 
-  const [declaration, setDeclaration] = useState(false);
-  const [benNotts, setBenNotts] = useState(false);
-  const [benAbode, setBenAbode] = useState(false);
+  const [declaration, setDeclaration] = useLocalStorageState('declaration', 'GrantApplication', false);
+  const [benNotts, setBenNotts] = useLocalStorageState('benNotts', 'GrantApplication', false);
+  const [benAbode, setBenAbode] = useLocalStorageState('benAbode', 'GrantApplication', false);
 
-  const [benAddressLine1, setBenAddressLine1] = useState("");
-  const [benAddressLine2, setBenAddressLine2] = useState("");
-  const [benTown, setBenTown] = useState("");
+  const [benAddressLine1, setBenAddressLine1] = useLocalStorageState('benAddressLine1', 'GrantApplication', '');
+  const [benAddressLine2, setBenAddressLine2] = useLocalStorageState('benAddressLine2', 'GrantApplication', '');
+  const [benTown, setBenTown] = useLocalStorageState('benTown', 'GrantApplication', '');
 
-  const [altTitle, setAltTitle] = useState("");
-  const [altFirstName, setAltFirstName] = useState("");
-  const [altLastName, setAltLastName] = useState("");
-  const [altRole, setAltRole] = useState("");
-  const [altEmail, setAltEmail] = useState("");
-  const [altTelephone, setAltTelephone] = useState("");
+  const [altTitle, setAltTitle] = useLocalStorageState('altTitle', 'GrantApplication', '');
+  const [altFirstName, setAltFirstName] = useLocalStorageState('altFirstName', 'GrantApplication', '');
+  const [altLastName, setAltLastName] = useLocalStorageState('altLastName', 'GrantApplication', '');
+  const [altRole, setAltRole] = useLocalStorageState('altRole', 'GrantApplication', '');
+  const [altEmail, setAltEmail] = useLocalStorageState('altEmail', 'GrantApplication', '');
+  const [altTelephone, setAltTelephone] = useLocalStorageState('altTelephone', 'GrantApplication', '');
 
-  const [altAddressLine1, setAltAddressLine1] = useState("");
-  const [altAddressLine2, setAltAddressLine2] = useState("");
-  const [altCounty, setAltCounty] = useState("");
-  const [altPostcode, setAltPostcode] = useState("");
+  const [altAddressLine1, setAltAddressLine1] = useLocalStorageState('altAddressLine1', 'GrantApplication', '');
+  const [altAddressLine2, setAltAddressLine2] = useLocalStorageState('altAddressLine2', 'GrantApplication', '');
+  const [altCounty, setAltCounty] = useLocalStorageState('altCounty', 'GrantApplication', '');
+  const [altPostcode, setAltPostcode] = useLocalStorageState('altPostcode', 'GrantApplication', '');
 
-  const [prefContactMethod, setPrefContactMethod] = useState("");
-  const [prefCommunication, setPrefCommunication] = useState(false);
-  const [prefDataSharing, setPrefDataSharing] = useState(false);
+  const [prefContactMethod, setPrefContactMethod] = useLocalStorageState('prefContactMethod', 'GrantApplication', '');
+  const [prefCommunication, setPrefCommunication] = useLocalStorageState('prefCommunication', 'GrantApplication', false);
+  const [prefDataSharing, setPrefDataSharing] = useLocalStorageState('prefDataSharing', 'GrantApplication', false);
 
-  const [benAgeRange, setBenAgeRange] = useState("");
-  const [benDob, setBenDob] = useState("");
-  const [benGen, setBenGen] = useState("");
-  const [benSex, setBenSex] = useState("");
-  const [benEthnicity, setBenEthnicity] = useState("");
-  const [benReligion, setBenReligion] = useState("");
-  const [benDisability, setBenDisability] = useState("");
-  const [benDisabilityExtra, setBenDisabilityExtra] = useState("");
-  const [benMarital, setBenMarital] = useState("");
-  const [benPregnancy, setBenPregnancy] = useState("");
-  const [benDependants, setBenDependants] = useState("");
+  const [benAgeRange, setBenAgeRange] = useLocalStorageState('benAgeRange', 'GrantApplication', '');
+  const [benDob, setBenDob] = useLocalStorageState('benDob', 'GrantApplication', '');
+  const [benGen, setBenGen] = useLocalStorageState('benGen', 'GrantApplication', '');
+  const [benSex, setBenSex] = useLocalStorageState('benSex', 'GrantApplication', '');
+  const [benEthnicity, setBenEthnicity] = useLocalStorageState('benEthnicity', 'GrantApplication', '');
+  const [benReligion, setBenReligion] = useLocalStorageState('benReligion', 'GrantApplication', '');
+  const [benDisability, setBenDisability] = useLocalStorageState('benDisability', 'GrantApplication', '');
+  const [benDisabilityExtra, setBenDisabilityExtra] = useLocalStorageState('benDisabilityExtra', 'GrantApplication', '');
+  const [benMarital, setBenMarital] = useLocalStorageState('benMarital', 'GrantApplication', '');
+  const [benPregnancy, setBenPregnancy] = useLocalStorageState('benPregnancy', 'GrantApplication', '');
+  const [benDependants, setBenDependants] = useLocalStorageState('benDependants', 'GrantApplication', '');
 
-  const [numOfDependants, setNumOfDependants] = useState("");
-  const [ageOfDependants, setAgeOfDependants] = useState("");
+  const [numOfDependants, setNumOfDependants] = useLocalStorageState('numOfDependants', 'GrantApplication', '');
+  const [ageOfDependants, setAgeOfDependants] = useLocalStorageState('ageOfDependants', 'GrantApplication', '');
 
-  const [currentAccom, setCurrentAccom] = useState("");
-  const [benCurrentAccomLength, setBenCurrentAccomLength] = useState("");
+  const [currentAccom, setCurrentAccom] = useLocalStorageState('currentAccom', 'GrantApplication', '');
+  const [benCurrentAccomLength, setBenCurrentAccomLength] = useLocalStorageState('benCurrentAccomLength', 'GrantApplication', '');
 
-  const [benHistOfHomelessness, setBenHistOfHomelessness] = useState("");
-  const [benHistDetails, setBenHistDetails] = useState("");
-  const [benTimeInNottingham, setBenTimeInNottingham] = useState("");
-  const [benLinkToNottingham, setBenLinkToNottingham] = useState("");
-  const [benLinkDetails, setBenLinkDetails] = useState("");
+  const [benHistOfHomelessness, setBenHistOfHomelessness] = useLocalStorageState('benHistOfHomelessness', 'GrantApplication', '');
+  const [benHistDetails, setBenHistDetails] = useLocalStorageState('benHistDetails', 'GrantApplication', '');
+  const [benTimeInNottingham, setBenTimeInNottingham] = useLocalStorageState('benTimeInNottingham', 'GrantApplication', '');
+  const [benLinkToNottingham, setBenLinkToNottingham] = useLocalStorageState('benLinkToNottingham', 'GrantApplication', '');
+  const [benLinkDetails, setBenLinkDetails] = useLocalStorageState('benLinkDetails', 'GrantApplication', '');
 
-  const [benGrantReason, setBenGrantReason] = useState("");
-  const [grantDetails, setGrantDetails] = useState("");
-  const [benStory, setBenStory] = useState("");
+  const [benGrantReason, setBenGrantReason] = useLocalStorageState('benGrantReason', 'GrantApplication', '');
+  const [grantDetails, setGrantDetails] = useLocalStorageState('grantDetails', 'GrantApplication', '');
+  const [benStory, setBenStory] = useLocalStorageState('benStory', 'GrantApplication', '');
 
-  const [grantAmountTotal, setGrantAmountTotal] = useState(0);
-  const [grantItemCost1, setGrantItemCost1] = useState(0);
-  const [grantItemDetails1, setGrantItemDetails1] = useState("");
-  const [grantItemCost2, setGrantItemCost2] = useState(0);
-  const [grantItemDetails2, setGrantItemDetails2] = useState("");
-  const [grantItemCost3, setGrantItemCost3] = useState(0);
-  const [grantItemDetails3, setGrantItemDetails3] = useState("");
-  const [grantItemCost4, setGrantItemCost4] = useState(0);
-  const [grantItemDetails4, setGrantItemDetails4] = useState("");
-  const [grantItemCost5, setGrantItemCost5] = useState(0);
-  const [grantItemDetails5, setGrantItemDetails5] = useState("");
+  const [grantAmountTotal, setGrantAmountTotal] = useLocalStorageState('grantAmountTotal', 'GrantApplication', 0);
+  const [grantItemCost1, setGrantItemCost1] = useLocalStorageState('grantItemCost1', 'GrantApplication', 0);
+  const [grantItemDetails1, setGrantItemDetails1] = useLocalStorageState('grantItemDetails1', 'GrantApplication', '');
+  const [grantItemCost2, setGrantItemCost2] = useLocalStorageState('grantItemCost2', 'GrantApplication', 0);
+  const [grantItemDetails2, setGrantItemDetails2] = useLocalStorageState('grantItemDetails2', 'GrantApplication', '');
+  const [grantItemCost3, setGrantItemCost3] = useLocalStorageState('grantItemCost3', 'GrantApplication', 0);
+  const [grantItemDetails3, setGrantItemDetails3] = useLocalStorageState('grantItemDetails3', 'GrantApplication', '');
+  const [grantItemCost4, setGrantItemCost4] = useLocalStorageState('grantItemCost4', 'GrantApplication', 0);
+  const [grantItemDetails4, setGrantItemDetails4] = useLocalStorageState('grantItemDetails4', 'GrantApplication', '');
+  const [grantItemCost5, setGrantItemCost5] = useLocalStorageState('grantItemCost5', 'GrantApplication', 0);
+  const [grantItemDetails5, setGrantItemDetails5] = useLocalStorageState('grantItemDetails5', 'GrantApplication', '');
 
-  const [benConsent, setBenConsent] = useState(false);
-  const [confirmApplication, setConfirmApplication] = useState(false);
+  const [benConsent, setBenConsent] = useLocalStorageState('benConsent', 'GrantApplication', false);
+  const [confirmApplication, setConfirmApplication] = useLocalStorageState('confirmApplication', 'GrantApplication', false);
   
-  const [otherBenTitle, setOtherBenTitle] = useState("");
-  const [otherAltTitle, setOtherAltTitle] = useState("");
-  const [otherAltRole, setOtherAltRole] = useState("");
-  const [otherBenGen, setOtherBenGen] = useState("");
-  const [otherBenSex, setOtherBenSex] = useState("");
-  const [otherCurrentAccom, setOtherCurrentAccom] = useState("");
-  const [otherBenGrantReason, setOtherBenGrantReason] = useState("");
+  const [otherBenTitle, setOtherBenTitle] = useLocalStorageState('otherBenTitle', 'GrantApplication', '');
+  const [otherAltTitle, setOtherAltTitle] = useLocalStorageState('otherAltTitle', 'GrantApplication', '');
+  const [otherAltRole, setOtherAltRole] = useLocalStorageState('otherAltRole', 'GrantApplication', '');
+  const [otherBenGen, setOtherBenGen] = useLocalStorageState('otherBenGen', 'GrantApplication', '');
+  const [otherBenSex, setOtherBenSex] = useLocalStorageState('otherBenSex', 'GrantApplication', '');
+  const [otherCurrentAccom, setOtherCurrentAccom] = useLocalStorageState('otherCurrentAccom', 'GrantApplication', '');
+  const [otherBenGrantReason, setOtherBenGrantReason] = useLocalStorageState('otherBenGrantReason', 'GrantApplication', '');
 
   const [genders, setGenders] = useState([]);
   useEffect(() => {
@@ -379,6 +380,7 @@ const GrantApplication = () => {
       );
       setCurrentSection(1);
       if (!isLoadingGrant && errorGrant == null) {
+        deleteLocalStorageItemsStartingWith('GrantApplication')
         navigate("/Organisation");
       }
     }

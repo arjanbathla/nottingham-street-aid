@@ -3,6 +3,7 @@ import classes from "./register.module.css";
 
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
+import { useLocalStorageState, deleteLocalStorageItemsStartingWith } from "../../hooks/useLocalStorageStateWithBoolean";
 
 import Container from "@mui/material/Container";
 import Button from "../../components/button/button";
@@ -26,59 +27,59 @@ const Register = () => {
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
 
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useLocalStorageState('username', 'Register', '');
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
 
-  const [orgName, setOrgName] = useState("");
-  const [orgAdr1, setOrgAdr1] = useState("");
-  const [orgAdr2, setOrgAdr2] = useState("");
-  const [orgTown, setOrgTown] = useState("");
-  const [orgCounty, setOrgCounty] = useState("");
-  const [orgPostcode, setOrgPostcode] = useState("");
+  const [orgName, setOrgName] = useLocalStorageState('orgName', 'Register', '');
+  const [orgAdr1, setOrgAdr1] = useLocalStorageState('orgAdr1', 'Register', '');
+  const [orgAdr2, setOrgAdr2] = useLocalStorageState('orgAdr2', 'Register', '');
+  const [orgTown, setOrgTown] = useLocalStorageState('orgTown', 'Register', '');
+  const [orgCounty, setOrgCounty] = useLocalStorageState('orgCounty', 'Register', '');
+  const [orgPostcode, setOrgPostcode] = useLocalStorageState('orgPostcode', 'Register', '');
 
-  const [orgEmail, setOrgEmail] = useState("");
-  const [orgPhone, setOrgPhone] = useState("");
-  const [orgWebsite, setOrgWebsite] = useState("");
+  const [orgEmail, setOrgEmail] = useLocalStorageState('orgEmail', 'Register', '');
+  const [orgPhone, setOrgPhone] = useLocalStorageState('orgPhone', 'Register', '');
+  const [orgWebsite, setOrgWebsite] = useLocalStorageState('orgWebsite', 'Register', '');
 
-  const [orgType, setOrgType] = useState("");
-  const [orgCharityNumber, setOrgCharityNumber] = useState("");
-  const [orgHouseNumber, setOrgHouseNumber] = useState("");
+  const [orgType, setOrgType] = useLocalStorageState('orgType', 'Register', '');
+  const [orgCharityNumber, setOrgCharityNumber] = useLocalStorageState('orgCharityNumber', 'Register', '');
+  const [orgHouseNumber, setOrgHouseNumber] = useLocalStorageState('orgHouseNumber', 'Register', '');
 
-  const [contact1Title, setContact1Title] = useState("");
-  const [contact1Fname, setContact1Fname] = useState("");
-  const [contact1Lname, setContact1Lname] = useState("");
-  const [contact1Role, setContact1Role] = useState("");
-  const [contact1Email, setContact1Email] = useState("");
-  const [contact1Phone, setContact1Phone] = useState("");
+  const [contact1Title, setContact1Title] = useLocalStorageState('contact1Title', 'Register', '');
+  const [contact1Fname, setContact1Fname] = useLocalStorageState('contact1Fname', 'Register', '');
+  const [contact1Lname, setContact1Lname] = useLocalStorageState('contact1Lname', 'Register', '');
+  const [contact1Role, setContact1Role] = useLocalStorageState('contact1Role', 'Register', '');
+  const [contact1Email, setContact1Email] = useLocalStorageState('contact1Email', 'Register', '');
+  const [contact1Phone, setContact1Phone] = useLocalStorageState('contact1Phone', 'Register', '');
 
-  const [financeContact, setFinanceContact] = useState(false);
-  const [secondContact, setSecondContact] = useState(false);
+  const [financeContact, setFinanceContact] = useLocalStorageState('financeContact', 'Register', false);
+  const [secondContact, setSecondContact] = useLocalStorageState('secondContact', 'Register', false);
 
-  const [contact2Title, setContact2Title] = useState("");
-  const [contact2Fname, setContact2Fname] = useState("");
-  const [contact2Lname, setContact2Lname] = useState("");
-  const [contact2Role, setContact2Role] = useState("");
-  const [contact2Email, setContact2Email] = useState("");
-  const [contact2Phone, setContact2Phone] = useState("");
+  const [contact2Title, setContact2Title] = useLocalStorageState('contact2Title', 'Register', '');
+  const [contact2Fname, setContact2Fname] = useLocalStorageState('contact2Fname', 'Register', '');
+  const [contact2Lname, setContact2Lname] = useLocalStorageState('contact2Lname', 'Register', '');
+  const [contact2Role, setContact2Role] = useLocalStorageState('contact2Role', 'Register', '');
+  const [contact2Email, setContact2Email] = useLocalStorageState('contact2Email', 'Register', '');
+  const [contact2Phone, setContact2Phone] = useLocalStorageState('contact2Phone', 'Register', '');
 
-  const [contact3Title, setContact3Title] = useState("");
-  const [contact3Fname, setContact3Fname] = useState("");
-  const [contact3Lname, setContact3Lname] = useState("");
-  const [contact3Role, setContact3Role] = useState("");
-  const [contact3Email, setContact3Email] = useState("");
-  const [contact3Phone, setContact3Phone] = useState("");
+  const [contact3Title, setContact3Title] = useLocalStorageState('contact3Title', 'Register', '');
+  const [contact3Fname, setContact3Fname] = useLocalStorageState('contact3Fname', 'Register', '');
+  const [contact3Lname, setContact3Lname] = useLocalStorageState('contact3Lname', 'Register', '');
+  const [contact3Role, setContact3Role] = useLocalStorageState('contact3Role', 'Register', '');
+  const [contact3Email, setContact3Email] = useLocalStorageState('contact3Email', 'Register', '');
+  const [contact3Phone, setContact3Phone] = useLocalStorageState('contact3Phone', 'Register', '');
 
-  const [commsPref, setCommsPref] = useState(false);
-  const [dataPref, setDataPref] = useState(false);
-  const [newsletterPref, setNewsletterPref] = useState(false);
-  const [bulletinPref, setBulletinPref] = useState(false);
-  const [tsAndCs, setTsAndCs] = useState(false);
+  const [commsPref, setCommsPref] = useLocalStorageState('commsPref', 'Register', false);
+  const [dataPref, setDataPref] = useLocalStorageState('dataPref', 'Register', false);
+  const [newsletterPref, setNewsletterPref] = useLocalStorageState('newsletterPref', 'Register', false);
+  const [bulletinPref, setBulletinPref] = useLocalStorageState('bulletinPref', 'Register', false);
+  const [tsAndCs, setTsAndCs] = useLocalStorageState('tsAndCs', 'Register', false);
 
-  const [otherOrgType, setOtherOrgType] = useState("");
-  const [otherContact1Title, setOtherContact1Title] = useState("");
-  const [otherContact2Title, setOtherContact2Title] = useState("");
-  const [otherContact3Title, setOtherContact3Title] = useState("");
+  const [otherOrgType, setOtherOrgType] = useLocalStorageState('otherOrgType', 'Register', '');
+  const [otherContact1Title, setOtherContact1Title] = useLocalStorageState('otherContact1Title', 'Register', '');
+  const [otherContact2Title, setOtherContact2Title] = useLocalStorageState('otherContact2Title', 'Register', '');
+  const [otherContact3Title, setOtherContact3Title] = useLocalStorageState('otherContact3Title', 'Register', '');
 
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
@@ -194,18 +195,18 @@ const Register = () => {
       contact1Role,
       contact1Email,
       contact1Phone,
-      contact2Title,
-      contact2Fname,
-      contact2Lname,
-      contact2Role,
-      contact2Email,
-      contact2Phone,
-      contact3Title,
-      contact3Fname,
-      contact3Lname,
-      contact3Role,
-      contact3Email,
-      contact3Phone,
+      secondContact ? contact2Title : '',
+      secondContact ? contact2Fname : '',
+      secondContact ? contact2Lname : '',
+      secondContact ? contact2Role : '',
+      secondContact ? contact2Email : '',
+      secondContact ? contact2Phone : '',
+      financeContact ? contact3Title : '',
+      financeContact ? contact3Fname : '',
+      financeContact ? contact3Lname : '',
+      financeContact ? contact3Role : '',
+      financeContact ? contact3Email : '',
+      financeContact ? contact3Phone : '',
       commsPref,
       dataPref,
       newsletterPref,
@@ -213,6 +214,10 @@ const Register = () => {
       tsAndCs
     );
     setCurrentSection(1);
+
+    if (errorSignup == null) {
+        deleteLocalStorageItemsStartingWith('Register')
+    }
   };
 
   let buttons;
@@ -481,7 +486,7 @@ const Register = () => {
                         value={orgCharityNumber}
                         onChange={(e) => setOrgCharityNumber(e.target.value)}
                         placeholder="Eg. AB12345"
-                        pattern="^[A-Z]{2}\d{5}$"
+                        pattern="^[A-Za-z0-9]{7,8}$"
                         required
                       />
                     </div>
