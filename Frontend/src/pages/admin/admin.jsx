@@ -12,10 +12,10 @@ import Button2 from "../../components/button2/button2";
 import Loader from "../../components/loader/loader";
 
 import CryptoJS from "crypto-js";
+import Papa from 'papaparse';
 
 const admin = () => {
   const { admin } = useSelector((state) => state.admin);
-  // const { grants } = useSelector((state) => state.grants);
   const [grants, setGrantsLocal] = useState()
 
   const dispatch = useDispatch();
@@ -56,36 +56,6 @@ const admin = () => {
     }
   };
 
-  // Initialize 'downloadData' state with a default value of null
-  const [downloadData, setDownloadData] = useState(null);
-
-  useEffect(() => {
-    if (!downloadData) return;
-
-    // Helper function to escape and quote individual field values
-    const escapeCsvField = (field) => {
-      if (field == null) return '';
-      const stringField = String(field);
-      // Escape double quotes by doubling them, then wrap field in double quotes
-      return `"${stringField.replace(/"/g, '""')}"`;
-    };
-
-    const header = Object.keys(downloadData[0]).map(escapeCsvField).join(",");
-    const csvRows = downloadData.map(item =>
-      Object.values(item).map(escapeCsvField).join(",")
-    );
-    const csvContent = [header, ...csvRows].join("\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "grant_data.csv";
-    a.click();
-    window.URL.revokeObjectURL(url);
-    setDownloadData(null);
-  }, [downloadData]);
-
   //For future devs i would advise you create a function that generates a secret key for extra security, this is just a placeholder
   const SECRET_KEY = "your-secret-key";
 
@@ -99,70 +69,14 @@ const admin = () => {
 
   const handleCsvDownload = () => {
     if (grants) {
-      const allGrantData = grants.map((grant) => ({
-        benTitle: grant.benTitle,
-        benFirstName: grant.benFirstName,
-        benLastName: grant.benLastName,
-        benEmail: grant.benEmail,
-        benTelephone: grant.benTelephone,
-        benAbode: grant.benAbode,
-        benAddressLine1: grant.benAddressLine1,
-        benAddressLine2: grant.benAddressLine2,
-        benTown: grant.benTown,
-        altTitle: grant.altTitle,
-        altFirstName: grant.altFirstName,
-        altLastName: grant.altLastName,
-        altRole: grant.altRole,
-        altEmail: grant.altEmail,
-        altTelephone: grant.altTelephone,
-        altAddressLine1: grant.altAddressLine1,
-        altAddressLine2: grant.altAddressLine2,
-        altCounty: grant.altCounty,
-        altPostcode: grant.altPostcode,
-        prefContactMethod: grant.prefContactMethod,
-        prefCommunicationMethod: grant.prefCommunicationMethod,
-        prefDataSharing: grant.prefDataSharing,
-        benAgeRange: grant.benAgeRange,
-        benDob: grant.benDob,
-        benGen: grant.benGen,
-        benSex: grant.benSex,
-        benEthnicity: grant.benEthnicity,
-        benReligion: grant.benReligion,
-        benDisability: grant.benDisability,
-        benDisabilityExtra: grant.benDisabilityExtra,
-        benMarital: grant.benMarital,
-        benDependants: grant.benDependants,
-        benPregnancy: grant.benPregnancy,
-        numOfDependants: grant.numOfDependants,
-        ageOfDependants: grant.ageOfDependants,
-        dependantInformation: grant.dependantInformation,
-        currentAccom: grant.currentAccom,
-        benCurrentAccomLength: grant.benCurrentAccomLength,
-        benHistOfHomelessness: grant.benHistOfHomelessness,
-        benHistDetails: grant.benHistDetails,
-        benTimeInNottingham: grant.benTimeInNottingham,
-        benLinktoNottingham: grant.benLinktoNottingham,
-        benLinkDetails: grant.benLinkDetails,
-        benGrantReason: grant.benGrantReason,
-        grantDetails: grant.grantDetails,
-        benStory: grant.benStory,
-        grantAmountTotal: grant.grantAmountTotal,
-        grantItemCost1: grant.grantItemCost1,
-        grantItemDetails1: grant.grantItemDetails1,
-        grantItemCost2: grant.grantItemCost2,
-        grantItemDetails2: grant.grantItemDetails2,
-        grantItemCost3: grant.grantItemCost3,
-        grantItemDetails3: grant.grantItemDetails3,
-        grantItemCost4: grant.grantItemCost4,
-        grantItemDetails4: grant.grantItemDetails4,
-        grantItemCost5: grant.grantItemCost5,
-        grantItemDetails5: grant.grantItemDetails5,
-        grantSupportingDoc: grant.grantSupportingDoc,
-        submissionDate: grant.submissionDate,
-      }));
-
-      // Set the 'downloadData' state with the array of encrypted grant data
-      setDownloadData(allGrantData);
+      const csv = Papa.unparse(grants);
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "grant_data.csv";
+      a.click();
+      window.URL.revokeObjectURL(url);
     }
   };
 
