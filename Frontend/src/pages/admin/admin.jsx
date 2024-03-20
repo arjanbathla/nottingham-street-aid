@@ -59,32 +59,30 @@ const admin = () => {
   // Initialize 'downloadData' state with a default value of null
   const [downloadData, setDownloadData] = useState(null);
 
-  // This useEffect generates and triggers a CSV download when 'downloadData' is not null.
   useEffect(() => {
     if (!downloadData) return;
 
-    // Create the CSV content by converting the data into a CSV format
-    const header = Object.keys(downloadData[0]).join(",");
-    const csvContent = [header]
-      .concat(downloadData.map((item) => Object.values(item).join(",")))
-      .join("\n");
+    // Helper function to escape and quote individual field values
+    const escapeCsvField = (field) => {
+      if (field == null) return '';
+      const stringField = String(field);
+      // Escape double quotes by doubling them, then wrap field in double quotes
+      return `"${stringField.replace(/"/g, '""')}"`;
+    };
 
-    // Create a Blob containing the CSV content
+    const header = Object.keys(downloadData[0]).map(escapeCsvField).join(",");
+    const csvRows = downloadData.map(item =>
+      Object.values(item).map(escapeCsvField).join(",")
+    );
+    const csvContent = [header, ...csvRows].join("\n");
+
     const blob = new Blob([csvContent], { type: "text/csv" });
-
-    // Create a URL for the Blob and prepare a download link
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
     a.download = "grant_data.csv";
-
-    // Simulate a click on the download link to trigger the download
     a.click();
-
-    // Revoke the URL to free up resources
     window.URL.revokeObjectURL(url);
-
-    // Reset 'downloadData' to null after the download is triggered
     setDownloadData(null);
   }, [downloadData]);
 
@@ -100,9 +98,7 @@ const admin = () => {
   }
 
   const handleCsvDownload = () => {
-    // Check if 'grants' data is available
     if (grants) {
-      // Map 'grants' data to create a new array of encrypted grant data (encryption applied to personal details)
       const allGrantData = grants.map((grant) => ({
         benTitle: grant.benTitle,
         benFirstName: grant.benFirstName,
