@@ -1,4 +1,4 @@
-# NottStreetAid
+# NottsStreetAid
 
 ## Development Setup
 
