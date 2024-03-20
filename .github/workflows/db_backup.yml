@@ -1,0 +1,31 @@
+name: Backup MongoDB Database
+
+on:
+  schedule:
+    # Runs every day at 2 AM UTC. Change this cron schedule according to your needs.
+    - cron:  '0 2 * * *'
+
+jobs:
+  backup-and-restore:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup MongoDB tooling
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mongodb-org-tools
+
+    - name: Backup Production Database
+      env:
+        PROD_DB_URI: ${{ secrets.PROD_DB_URI }}
+      run: |
+        mongodump --uri="$PROD_DB_URI" --archive=prodBackup.archive
+
+    - name: Restore to Backup Database
+      env:
+        BACKUP_DB_URI: ${{ secrets.BACKUP_DB_URI }}
+      run: |
+        mongorestore --uri="$BACKUP_DB_URI" --archive=prodBackup.archive
