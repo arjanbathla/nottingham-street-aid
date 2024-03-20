@@ -10,7 +10,7 @@ mongod --dbpath db
 
 ### 2. Mongo Atlas
 ```bash
-mongodump --uri mongodb+srv://nsacluster.mmxfvp1.mongodb.net/test --username=nsadevs --password=same -vvvvv
+mongodump --uri mongodb+srv://nsacluster.mmxfvp1.mongodb.net/test --username=nsadevs --password=removeQvo5iCU2pi7yPqjM -vvvvv
 mongorestore --db test dump/test
 ```
 
