@@ -40,6 +40,7 @@
 .grantItem {
     display: flex;
     flex-flow: column;
+    overflow-y: auto;
     gap: var(--padding-1);
     padding: var(--padding-1);
     background-color: var(--light);
