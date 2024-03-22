@@ -18,7 +18,7 @@ mongorestore --db test dump/test
 ```bash
 export SECRET=xxxx
 export PORT=8999
-export MONGO_URI=mongodb://localhost:27017/test
+export MONGO_URI=mongodb://localhost:27017/dev
 npm run dev
 ```
 
