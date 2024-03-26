@@ -14,7 +14,5 @@ const app = (
   </Provider>
 );
 
-console.log('VITE', import.meta.env.VITE_API_HOST)
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(app);

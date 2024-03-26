@@ -49,7 +49,7 @@ const admin = () => {
 
   useEffect(() => {
     const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
-    const apiEndpoint = "/api/lee";
+    const apiEndpoint = "/api/admin/auths";
     const apiUrl = apiHost + apiEndpoint;
 
     const fetchAuths = async () => {
