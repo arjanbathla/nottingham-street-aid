@@ -17,6 +17,7 @@ import Papa from 'papaparse';
 const admin = () => {
   const { admin } = useSelector((state) => state.admin);
   const [grants, setGrantsLocal] = useState()
+  const [auths, setAuthsLocal] = useState()
 
   const dispatch = useDispatch();
 
@@ -65,7 +66,7 @@ const admin = () => {
 
       if (response.ok) {
 //         dispatch(setGrants(json));
-//         setGrantsLocal(json)
+        setAuthsLocal(json)
         console.log(json)
       }
     };
@@ -221,6 +222,31 @@ const admin = () => {
                       </div>
                     )
                 )}
+            </div>
+          </div>
+
+          <div className={classes.dashboard}>
+            <div className={classes.dashboardHeader}>
+              <h2>Organisations</h2>
+            </div>
+            <div className={classes.kanbanContent}>
+              {!auths && <Loader loading={true} />}
+              {auths &&
+                auths.map(
+                  (auth) =>
+                      <div className={classes.grantItem} key={auth._id}>
+                        <h3>
+                          {auth.orgName}
+                        </h3>
+                        <div>
+                          <p>Name - {auth.orgName}</p>
+                        </div>
+                        <Button2 clicked={(e) => viewMoreHandler(auth)}>
+                          View More
+                        </Button2>
+                      </div>
+                    )
+                }
             </div>
           </div>
         </div>
