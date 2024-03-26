@@ -438,7 +438,7 @@ const Register = () => {
                     <input
                       maxLength={2000}
                       type="url"
-                      placeholder="Eg. www.NottinghamStreetOrg.com"
+                      placeholder="Eg. https://www.NottinghamStreetOrg.com"
                       value={orgWebsite}
                       onChange={(e) => setOrgWebsite(e.target.value)}
                     />
