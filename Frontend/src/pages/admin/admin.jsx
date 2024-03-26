@@ -48,6 +48,8 @@ const admin = () => {
   }, [dispatch, admin]);
 
   useEffect(() => {
+    console.log('VITE', import.meta.env.VITE_API_HOST)
+    console.log('REACT', process.env.REACT_APP_BACKEND_URL)
     const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
     const apiEndpoint = "/api/lee";
     const apiUrl = apiHost + apiEndpoint;
