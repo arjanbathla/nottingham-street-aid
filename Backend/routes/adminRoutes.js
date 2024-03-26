@@ -1,6 +1,5 @@
 const express = require("express")
-const { fetchAllGrants, updateStatus } = require("../controllers/grantControllers")
-const { fetchAllAuths } = require("../controllers/authControllers")
+const { fetchAllAuths, fetchAllGrants, updateStatus } = require("../controllers/grantControllers")
 
 const requireAuth = require("../middleware/requireAuth")
 
