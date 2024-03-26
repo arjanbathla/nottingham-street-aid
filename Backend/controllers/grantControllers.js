@@ -164,11 +164,11 @@ const createGrant = async (req, res) => {
 };
 
 const fetchAllAuths = async (req, res) => {
-//  console.log("Fetching all auths...");
-//  const auths = await Auth.find({}).sort({ createdAt: -1 });
-//  console.log("Found ${auths.length} auths.");
-//  console.log(auths);
-  res.status(200).json({});
+  console.log("Fetching all auths...");
+  const auths = await Auth.find({}).sort({ createdAt: -1 });
+  console.log("Found ${auths.length} auths.");
+  console.log(auths);
+  res.status(200).json(auths);
 };
 
 module.exports = {
