@@ -118,8 +118,14 @@ const signupAuth = async (req, res) => {
   }
 };
 
+const fetchAllAuths = async (req, res) => {
+  const grants = await Auth.find({  }).sort({ createdAt: -1 });
+  res.status(200).json(grants);
+};
+
 module.exports = {
   loginAuth,
   signupAuth,
   adminLoginAuth,
+  fetchAllAuths,
 };

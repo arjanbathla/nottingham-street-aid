@@ -47,6 +47,34 @@ const admin = () => {
     }
   }, [dispatch, admin]);
 
+  useEffect(() => {
+    const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
+    const apiEndpoint = "/api/auth";
+    const apiUrl = apiHost + apiEndpoint;
+
+    const fetchAuths = async () => {
+      const response = await fetch(
+        apiUrl,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        }
+      );
+      const json = await response.json();
+
+      if (response.ok) {
+//         dispatch(setGrants(json));
+//         setGrantsLocal(json)
+        console.log(json)
+      }
+    };
+
+    if (admin) {
+      fetchAuths();
+    }
+  }, [dispatch, admin]);
+
   const navigate = useNavigate();
 
   const viewMoreHandler = (grant) => {
