@@ -17,6 +17,10 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+app.get('/api/lee', (req, res) => {
+  res.status(200).json({ message: "Temporary /api/lee route" });
+});
+
 app.use("/api", authRoutes, organisationRoutes, adminRoutes)
 
 // connect the app to a database

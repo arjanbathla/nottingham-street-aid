@@ -10,7 +10,7 @@ router.use(requireAuth)
 router.get('/admin', fetchAllGrants)
 
 // this needs to be here to do auth and cast to json
-router.get("/lee", fetchAllAuths);
+//router.get("/lee", fetchAllAuths);
 
 router.patch('/admin/updateStatus', updateStatus)
 
