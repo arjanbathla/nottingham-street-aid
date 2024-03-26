@@ -10,7 +10,10 @@ const fetchGrants = async (req, res) => {
 
 //get grants
 const fetchAllGrants = async (req, res) => {
-  const grants = await Grant.find({  }).sort({ createdAt: -1 });
+  console.log("Fetching all grants...");
+  const grants = await Grant.find({}).sort({ createdAt: -1 });
+  console.log(`Found ${grants.length} grants:`, grants);
+  console.log(grants);
   res.status(200).json(grants);
 };
 

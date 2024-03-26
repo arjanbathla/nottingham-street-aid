@@ -119,8 +119,11 @@ const signupAuth = async (req, res) => {
 };
 
 const fetchAllAuths = async (req, res) => {
-  const grants = await Auth.find({  }).sort({ createdAt: -1 });
-  res.status(200).json(grants);
+  console.log("Fetching all auths...");
+  const auths = await Auth.find({}).sort({ createdAt: -1 });
+  console.log("Found ${auths.length} auths.");
+  console.log(auths);
+  res.status(200).json(auths);
 };
 
 module.exports = {
