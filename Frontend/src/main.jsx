@@ -15,7 +15,6 @@ const app = (
 );
 
 console.log('VITE', import.meta.env.VITE_API_HOST)
-console.log('REACT', process.env.REACT_APP_BACKEND_URL)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(app);
