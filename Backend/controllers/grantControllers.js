@@ -169,6 +169,7 @@ const fetchAllAuths = async (req, res) => {
 //  console.log(auths);
   res.status(200).json({});
 };
+
 module.exports = {
   fetchGrants,
   fetchAllGrants,
