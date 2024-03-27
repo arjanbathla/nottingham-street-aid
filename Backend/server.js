@@ -17,6 +17,7 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+
 app.use("/api", authRoutes, organisationRoutes, adminRoutes)
 
 // connect the app to a database

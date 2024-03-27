@@ -1,4 +1,5 @@
 const Grant = require("../models/grantModel");
+const Auth = require("../models/authModel");
 const mongoose = require("mongoose");
 
 //get grants
@@ -10,7 +11,10 @@ const fetchGrants = async (req, res) => {
 
 //get grants
 const fetchAllGrants = async (req, res) => {
-  const grants = await Grant.find({  }).sort({ createdAt: -1 });
+  console.log("Fetching all grants...");
+  const grants = await Grant.find({}).sort({ createdAt: -1 });
+  console.log(`Found ${grants.length} grants:`, grants);
+  console.log(grants);
   res.status(200).json(grants);
 };
 
@@ -159,9 +163,18 @@ const createGrant = async (req, res) => {
   }
 };
 
+const fetchAllAuths = async (req, res) => {
+  console.log("Fetching all auths...");
+  const auths = await Auth.find({}).sort({ createdAt: -1 });
+  console.log("Found ${auths.length} auths.");
+  console.log(auths);
+  res.status(200).json(auths);
+};
+
 module.exports = {
   fetchGrants,
   fetchAllGrants,
   updateStatus,
   createGrant,
+  fetchAllAuths,
 };

@@ -12,6 +12,7 @@ import Layout from "./navigation/layout/layout";
 
 import Home from "./pages/home/home";
 import Register from "./pages/register/register";
+import RegisterEdit from "./pages/register/register_edit";
 import Login from "./pages/login/login";
 import ContactUs from "./pages/contactUs/contactUs";
 import OurPolicy from "./pages/ourPolicy/ourPolicy";
@@ -84,6 +85,7 @@ const App = () => {
       <Route path="/OurPolicy" element={<OurPolicy />} />
 
       <Route path="/Organisation" element={user ? <Organisation /> : <Navigate to="/" />}/>
+      <Route path="/Register/:id" element={<RegisterEdit />} />
       <Route path="/GrantApplication" element={user ? <GrantApplication /> : <Navigate to="/" />}/>
       <Route path="/ViewGrant" element={user ? <ViewGrant /> : <Navigate to="/" />}/>
 

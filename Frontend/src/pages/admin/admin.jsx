@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setGrants } from "../../contextStore/grantsStore";
+import { setAuths } from "../../contextStore/authsStore";
 import { setGrant } from "../../contextStore/grantStore";
 
 import { Container } from "@mui/material";
@@ -17,17 +18,14 @@ import Papa from 'papaparse';
 const admin = () => {
   const { admin } = useSelector((state) => state.admin);
   const [grants, setGrantsLocal] = useState()
+  const [auths, setAuthsLocal] = useState()
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
-    const apiEndpoint = "/api/admin";
-    const apiUrl = apiHost + apiEndpoint;
-
     const fetchGrants = async () => {
       const response = await fetch(
-        apiUrl,
+        import.meta.env.VITE_API_HOST + "/api/admin",
         {
           headers: {
             Authorization: `Bearer ${admin.token}`,
@@ -47,12 +45,42 @@ const admin = () => {
     }
   }, [dispatch, admin]);
 
+  useEffect(() => {
+    const fetchAuths = async () => {
+      const response = await fetch(
+        import.meta.env.VITE_API_HOST + "/api/admin/auths",
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        }
+      );
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch(setAuths(json));
+        setAuthsLocal(json)
+      }
+    };
+
+    if (admin) {
+      fetchAuths();
+    }
+  }, [dispatch, admin]);
+
   const navigate = useNavigate();
 
   const viewMoreHandler = (grant) => {
     if (grant) {
       dispatch(setGrant(grant));
       navigate("/ViewAdminGrant");
+    }
+  };
+
+  const viewMoreOrgHandler = (auth) => {
+    if (auth) {
+      //dispatch(setGrant(grant));
+      navigate(`/Register/${auth._id}`);
     }
   };
 
@@ -193,6 +221,33 @@ const admin = () => {
                       </div>
                     )
                 )}
+            </div>
+          </div>
+
+          <div className={classes.dashboard}>
+            <div className={classes.dashboardHeader}>
+              <h2>Organisations</h2>
+            </div>
+            <div className={classes.kanbanContent}>
+              {!auths && <Loader loading={true} />}
+              {auths &&
+                auths.map(
+                  (auth) =>
+                      <div className={classes.grantItem} key={auth._id}>
+                        <h3>
+                          {auth.orgName}
+                        </h3>
+                        <div>
+                          <p>Telephone - {auth.orgPhone}</p>
+                          <p>Email - {auth.orgEmail}</p>
+                          <p>Type - {auth.orgType}</p>
+                        </div>
+                        <Button2 clicked={(e) => viewMoreOrgHandler(auth)}>
+                          View More
+                        </Button2>
+                      </div>
+                    )
+                }
             </div>
           </div>
         </div>

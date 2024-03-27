@@ -3,6 +3,7 @@ import userReducer from "./userStore";
 import grantsReducer from "./grantsStore";
 import grantReducer from "./grantStore";
 import adminReducer from "./adminStore";
+import authsReducer from "./authsStore";
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     grants: grantsReducer,
     grant: grantReducer,
     admin: adminReducer,
+    auths: authsReducer,
   }
 });
