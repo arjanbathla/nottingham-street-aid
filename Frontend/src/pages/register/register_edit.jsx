@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import classes from "./register.module.css";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
 import { useLocalStorageState, deleteLocalStorageItemsStartingWith } from "../../hooks/useLocalStorageStateWithBoolean";
 
@@ -12,9 +12,17 @@ import Loader from "../../components/loader/loader";
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
+import { useSelector } from 'react-redux';
+import { selectAuths } from "../../contextStore/authsStore";
+
 const Register = () => {
   const navigate = useNavigate();
   const { signup, isLoadingSignup, errorSignup } = useSignup();
+
+  const { id } = useParams();
+  console.log(id);
+
+  console.log(useSelector(selectAuths))
 
   useEffect(() => {
     const unloadCallback = (event) => {

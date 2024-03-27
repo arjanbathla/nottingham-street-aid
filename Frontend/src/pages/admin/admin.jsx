@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setGrants } from "../../contextStore/grantsStore";
+import { setAuths } from "../../contextStore/authsStore";
 import { setGrant } from "../../contextStore/grantStore";
 
 import { Container } from "@mui/material";
@@ -22,13 +23,9 @@ const admin = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
-    const apiEndpoint = "/api/admin";
-    const apiUrl = apiHost + apiEndpoint;
-
     const fetchGrants = async () => {
       const response = await fetch(
-        apiUrl,
+        import.meta.env.VITE_API_HOST + "/api/admin",
         {
           headers: {
             Authorization: `Bearer ${admin.token}`,
@@ -49,13 +46,9 @@ const admin = () => {
   }, [dispatch, admin]);
 
   useEffect(() => {
-    const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
-    const apiEndpoint = "/api/admin/auths";
-    const apiUrl = apiHost + apiEndpoint;
-
     const fetchAuths = async () => {
       const response = await fetch(
-        apiUrl,
+        import.meta.env.VITE_API_HOST + "/api/admin/auths",
         {
           headers: {
             Authorization: `Bearer ${admin.token}`,
@@ -65,9 +58,8 @@ const admin = () => {
       const json = await response.json();
 
       if (response.ok) {
-//         dispatch(setGrants(json));
+        dispatch(setAuths(json));
         setAuthsLocal(json)
-//        console.log(json)
       }
     };
 
