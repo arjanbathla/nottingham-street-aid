@@ -853,9 +853,11 @@ const Register = () => {
                     Click here to read full terms and conditions.
                   </a>
                 </div>
-//                <div className={classes.buttonBlock}>
-//                    <Button type="submit">Submit</Button>
-//                </div>
+                {/*
+                <div className={classes.buttonBlock}>
+                    <Button type="submit">Submit</Button>
+                </div>
+                */}
               </div>
             </form>
         </div>
