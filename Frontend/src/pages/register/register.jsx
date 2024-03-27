@@ -395,7 +395,6 @@ const Register = () => {
                       placeholder="Eg. NG1 1AA"
                       value={orgPostcode}
                       onChange={(e) => setOrgPostcode(e.target.value)}
-                      pattern="^(GIR ?0AA|((([A-PR-UWYZa-pr-uwyz][0-9][0-9]?)|(([A-PR-UWYZa-pr-uwyz][A-HK-Ya-hk-y][0-9][0-9]?)|(([A-PR-UWYZa-pr-uwyz][0-9][A-HJKSTUWa-hjkstuw])|([A-PR-UWYZa-pr-uwyz][A-HK-Ya-hk-y][0-9][ABEHMNPRV-Yabehmnprv-y])))) ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2})$"
                       required
                     />
                   </div>
