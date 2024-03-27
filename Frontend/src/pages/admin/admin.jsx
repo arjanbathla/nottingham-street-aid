@@ -67,7 +67,7 @@ const admin = () => {
       if (response.ok) {
 //         dispatch(setGrants(json));
         setAuthsLocal(json)
-        console.log(json)
+//        console.log(json)
       }
     };
 
@@ -82,6 +82,13 @@ const admin = () => {
     if (grant) {
       dispatch(setGrant(grant));
       navigate("/ViewAdminGrant");
+    }
+  };
+
+  const viewMoreOrgHandler = (auth) => {
+    if (auth) {
+      //dispatch(setGrant(grant));
+      navigate("/Register");
     }
   };
 
@@ -239,9 +246,11 @@ const admin = () => {
                           {auth.orgName}
                         </h3>
                         <div>
-                          <p>Name - {auth.orgName}</p>
+                          <p>Telephone - {auth.orgPhone}</p>
+                          <p>Email - {auth.orgEmail}</p>
+                          <p>Type - {auth.orgType}</p>
                         </div>
-                        <Button2 clicked={(e) => viewMoreHandler(auth)}>
+                        <Button2 clicked={(e) => viewMoreOrgHandler(auth)}>
                           View More
                         </Button2>
                       </div>
