@@ -88,7 +88,7 @@ const admin = () => {
   const viewMoreOrgHandler = (auth) => {
     if (auth) {
       //dispatch(setGrant(grant));
-      navigate("/Register");
+      navigate("/Organisation");
     }
   };
 
