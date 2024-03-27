@@ -227,43 +227,13 @@ const Register = () => {
     }
   };
 
-  let buttons;
-
-  if (currentSection !== 1) {
-    buttons = (
-      <div className={classes.buttonBlock}>
-        <Button clicked={handlePrevious}>Previous</Button>
-
-        {isLoadingSignup && <Loader loading={isLoadingSignup} />}
-
-        {currentSection === 4 ? (
-          <Button type="submit" disabled={isLoadingSignup}>
-            Submit Registration
-          </Button>
-        ) : (
-          <Button type="submit">Continue</Button>
-        )}
-      </div>
-    );
-  } else {
-    buttons = (
-      <div className={classes.buttonBlock}>
-        <Button type="submit">Continue</Button>
-      </div>
-    );
-  }
-
   return (
     <Container maxWidth="lg">
       <div className={classes.section}>
         <div className={classes.form}>
-          <div className={classes.progressBar}>
-            <div className={classes.progressFill}>{renderSectionButtons()}</div>
-          </div>
-
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>2. Organisation Details</h2>
+                <h2 className={classes.mainTitle}>Organisation Details</h2>
               </div>
 
               <div className={classes.formContent}>
@@ -460,7 +430,7 @@ const Register = () => {
                 </div>
               </div>
               <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>3. Contact Details</h2>
+                <h2 className={classes.mainTitle}>Contact Details</h2>
               </div>
 
               <div className={classes.formContent}>
@@ -812,7 +782,7 @@ const Register = () => {
 
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>
-                  4. GDPR SETTINGS & PREFERENCES
+                  GDPR SETTINGS & PREFERENCES
                 </h2>
               </div>
 
@@ -955,10 +925,11 @@ const Register = () => {
                     Click here to read full terms and conditions.
                   </a>
                 </div>
-                {buttons}
+                <div className={classes.buttonBlock}>
+                    <Button type="submit">Submit</Button>
+                </div>
               </div>
             </form>
-          )}
         </div>
       </div>
     </Container>
