@@ -34,59 +34,55 @@ const Register = () => {
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
 
-  const [username, setUsername] = useLocalStorageState('username', 'Register', '');
-  const [password, setPassword] = useState("");
-  const [showPass, setShowPass] = useState(false);
+  const [orgName, setOrgName] = useState(foundAuth.orgName || '');
+  const [orgAdr1, setOrgAdr1] = useState(foundAuth.orgAdr1 || '');
+  const [orgAdr2, setOrgAdr2] = useState(foundAuth.orgAdr2 || '');
+  const [orgTown, setOrgTown] = useState(foundAuth.orgTown || '');
+  const [orgCounty, setOrgCounty] = useState(foundAuth.orgCounty || '');
+  const [orgPostcode, setOrgPostcode] = useState(foundAuth.orgPostcode || '');
 
-  const [orgName, setOrgName] = useState(foundAuth.orgName);
-  const [orgAdr1, setOrgAdr1] = useLocalStorageState('orgAdr1', 'Register', '');
-  const [orgAdr2, setOrgAdr2] = useLocalStorageState('orgAdr2', 'Register', '');
-  const [orgTown, setOrgTown] = useLocalStorageState('orgTown', 'Register', '');
-  const [orgCounty, setOrgCounty] = useLocalStorageState('orgCounty', 'Register', '');
-  const [orgPostcode, setOrgPostcode] = useLocalStorageState('orgPostcode', 'Register', '');
+  const [orgEmail, setOrgEmail] = useState(foundAuth.orgEmail || '');
+  const [orgPhone, setOrgPhone] = useState(foundAuth.orgPhone || '');
+  const [orgWebsite, setOrgWebsite] = useState(foundAuth.orgWebsite || '');
 
-  const [orgEmail, setOrgEmail] = useLocalStorageState('orgEmail', 'Register', '');
-  const [orgPhone, setOrgPhone] = useLocalStorageState('orgPhone', 'Register', '');
-  const [orgWebsite, setOrgWebsite] = useLocalStorageState('orgWebsite', 'Register', '');
+  const [orgType, setOrgType] = useState(foundAuth.orgType || '');
+  const [orgCharityNumber, setOrgCharityNumber] = useState(foundAuth.orgCharityNumber || '');
+  const [orgHouseNumber, setOrgHouseNumber] = useState(foundAuth.orgHouseNumber || '');
 
-  const [orgType, setOrgType] = useLocalStorageState('orgType', 'Register', '');
-  const [orgCharityNumber, setOrgCharityNumber] = useLocalStorageState('orgCharityNumber', 'Register', '');
-  const [orgHouseNumber, setOrgHouseNumber] = useLocalStorageState('orgHouseNumber', 'Register', '');
+  const [contact1Title, setContact1Title] = useState(foundAuth.contact1Title || '');
+  const [contact1Fname, setContact1Fname] = useState(foundAuth.contact1Fname || '');
+  const [contact1Lname, setContact1Lname] = useState(foundAuth.contact1Lname || '');
+  const [contact1Role, setContact1Role] = useState(foundAuth.contact1Role || '');
+  const [contact1Email, setContact1Email] = useState(foundAuth.contact1Email || '');
+  const [contact1Phone, setContact1Phone] = useState(foundAuth.contact1Phone || '');
 
-  const [contact1Title, setContact1Title] = useLocalStorageState('contact1Title', 'Register', '');
-  const [contact1Fname, setContact1Fname] = useLocalStorageState('contact1Fname', 'Register', '');
-  const [contact1Lname, setContact1Lname] = useLocalStorageState('contact1Lname', 'Register', '');
-  const [contact1Role, setContact1Role] = useLocalStorageState('contact1Role', 'Register', '');
-  const [contact1Email, setContact1Email] = useLocalStorageState('contact1Email', 'Register', '');
-  const [contact1Phone, setContact1Phone] = useLocalStorageState('contact1Phone', 'Register', '');
+  const [financeContact, setFinanceContact] = useState(foundAuth.financeContact || false);
+  const [secondContact, setSecondContact] = useState(foundAuth.secondContact || false);
 
-  const [financeContact, setFinanceContact] = useLocalStorageState('financeContact', 'Register', false);
-  const [secondContact, setSecondContact] = useLocalStorageState('secondContact', 'Register', false);
+  const [contact2Title, setContact2Title] = useState(foundAuth.contact2Title || '');
+  const [contact2Fname, setContact2Fname] = useState(foundAuth.contact2Fname || '');
+  const [contact2Lname, setContact2Lname] = useState(foundAuth.contact2Lname || '');
+  const [contact2Role, setContact2Role] = useState(foundAuth.contact2Role || '');
+  const [contact2Email, setContact2Email] = useState(foundAuth.contact2Email || '');
+  const [contact2Phone, setContact2Phone] = useState(foundAuth.contact2Phone || '');
 
-  const [contact2Title, setContact2Title] = useLocalStorageState('contact2Title', 'Register', '');
-  const [contact2Fname, setContact2Fname] = useLocalStorageState('contact2Fname', 'Register', '');
-  const [contact2Lname, setContact2Lname] = useLocalStorageState('contact2Lname', 'Register', '');
-  const [contact2Role, setContact2Role] = useLocalStorageState('contact2Role', 'Register', '');
-  const [contact2Email, setContact2Email] = useLocalStorageState('contact2Email', 'Register', '');
-  const [contact2Phone, setContact2Phone] = useLocalStorageState('contact2Phone', 'Register', '');
+  const [contact3Title, setContact3Title] = useState(foundAuth.contact3Title || '');
+  const [contact3Fname, setContact3Fname] = useState(foundAuth.contact3Fname || '');
+  const [contact3Lname, setContact3Lname] = useState(foundAuth.contact3Lname || '');
+  const [contact3Role, setContact3Role] = useState(foundAuth.contact3Role || '');
+  const [contact3Email, setContact3Email] = useState(foundAuth.contact3Email || '');
+  const [contact3Phone, setContact3Phone] = useState(foundAuth.contact3Phone || '');
 
-  const [contact3Title, setContact3Title] = useLocalStorageState('contact3Title', 'Register', '');
-  const [contact3Fname, setContact3Fname] = useLocalStorageState('contact3Fname', 'Register', '');
-  const [contact3Lname, setContact3Lname] = useLocalStorageState('contact3Lname', 'Register', '');
-  const [contact3Role, setContact3Role] = useLocalStorageState('contact3Role', 'Register', '');
-  const [contact3Email, setContact3Email] = useLocalStorageState('contact3Email', 'Register', '');
-  const [contact3Phone, setContact3Phone] = useLocalStorageState('contact3Phone', 'Register', '');
+  const [commsPref, setCommsPref] = useState(foundAuth.commsPref || false);
+  const [dataPref, setDataPref] = useState(foundAuth.dataPref || false);
+  const [newsletterPref, setNewsletterPref] = useState(foundAuth.newsletterPref || false);
+  const [bulletinPref, setBulletinPref] = useState(foundAuth.bulletinPref || false);
+  const [tsAndCs, setTsAndCs] = useState(foundAuth.tsAndCs || false);
 
-  const [commsPref, setCommsPref] = useLocalStorageState('commsPref', 'Register', false);
-  const [dataPref, setDataPref] = useLocalStorageState('dataPref', 'Register', false);
-  const [newsletterPref, setNewsletterPref] = useLocalStorageState('newsletterPref', 'Register', false);
-  const [bulletinPref, setBulletinPref] = useLocalStorageState('bulletinPref', 'Register', false);
-  const [tsAndCs, setTsAndCs] = useLocalStorageState('tsAndCs', 'Register', false);
-
-  const [otherOrgType, setOtherOrgType] = useLocalStorageState('otherOrgType', 'Register', '');
-  const [otherContact1Title, setOtherContact1Title] = useLocalStorageState('otherContact1Title', 'Register', '');
-  const [otherContact2Title, setOtherContact2Title] = useLocalStorageState('otherContact2Title', 'Register', '');
-  const [otherContact3Title, setOtherContact3Title] = useLocalStorageState('otherContact3Title', 'Register', '');
+  const [otherOrgType, setOtherOrgType] = useState(foundAuth.otherOrgType || '');
+  const [otherContact1Title, setOtherContact1Title] = useState(foundAuth.otherContact1Title || '');
+  const [otherContact2Title, setOtherContact2Title] = useState(foundAuth.otherContact2Title || '');
+  const [otherContact3Title, setOtherContact3Title] = useState(foundAuth.otherContact3Title || '');
 
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
@@ -100,24 +96,6 @@ const Register = () => {
         console.error("Error fetching or parsing CSV data", error);
       });
   }, []);
-
-  const totalSections = 4;
-  const [currentSection, setCurrentSection] = useState(1);
-  const [latestSection, setLatestSection] = useState();
-
-  const handleContinue = () => {
-    if (currentSection < totalSections) {
-      setCurrentSection(currentSection + 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentSection > 1) {
-      setCurrentSection(currentSection - 1);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
 
   // Handle section click to navigate to a specific section
   const handleSectionClick = (section) => {
@@ -138,24 +116,6 @@ const Register = () => {
     "3. Contacts",
     "4. Data Privacy",
   ];
-
-  const renderSectionButtons = () => {
-    const sectionButtons = [];
-    for (let i = 1; i <= totalSections; i++) {
-      sectionButtons.push(
-        <button
-          key={i}
-          onClick={() => handleSectionClick(i)}
-          className={
-            currentSection < i ? classes.progressButton : classes.fillButton
-          }
-        >
-          {titles[i - 1]}
-        </button>
-      );
-    }
-    return sectionButtons;
-  };
 
   const handleClickShowPassword = (e) => {
     e.preventDefault();
@@ -231,7 +191,7 @@ const Register = () => {
     <Container maxWidth="lg">
       <div className={classes.section}>
         <div className={classes.form}>
-            <form className={classes.formLayout} onSubmit={handleContinue}>
+            <form className={classes.formLayout} onSubmit={}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>Organisation Details</h2>
               </div>
