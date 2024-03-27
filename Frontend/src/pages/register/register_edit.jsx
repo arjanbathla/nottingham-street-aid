@@ -22,7 +22,11 @@ const Register = () => {
   const { id } = useParams();
   console.log(id);
 
-  console.log(useSelector(selectAuths))
+  const auths = useSelector(selectAuths);
+  console.log(auths)
+
+  const foundAuth = auths.find(auth => auth._id === id);
+  console.log(foundAuth)
 
   useEffect(() => {
     const unloadCallback = (event) => {
