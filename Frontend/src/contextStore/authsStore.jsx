@@ -10,11 +10,11 @@ export const authsSlice = createSlice({
   reducers: {
     setAuths: (state, action) => {
       console.log('action', action)
-      state.auths = action.payload.auths;
+      state.auths = action.payload;
     },
   },
 });
 
-export const selectAuths = (state) => state.auths;
+export const selectAuths = (state) => state.auths.auths;
 export const { setAuths } = authsSlice.actions;
 export default authsSlice.reducer;
