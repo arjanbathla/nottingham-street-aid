@@ -38,7 +38,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
 
-  const [orgName, setOrgName] = useLocalStorageState('orgName', 'Register', '');
+  const [orgName, setOrgName] = useState(foundAuth.orgName);
   const [orgAdr1, setOrgAdr1] = useLocalStorageState('orgAdr1', 'Register', '');
   const [orgAdr2, setOrgAdr2] = useLocalStorageState('orgAdr2', 'Register', '');
   const [orgTown, setOrgTown] = useLocalStorageState('orgTown', 'Register', '');
