@@ -21,7 +21,6 @@ const Register = () => {
 
   const { id } = useParams();
   const foundAuth = useSelector(selectAuths).find(auth => auth._id === id);
-  console.log(foundAuth)
 
   useEffect(() => {
     const unloadCallback = (event) => {
@@ -96,36 +95,6 @@ const Register = () => {
         console.error("Error fetching or parsing CSV data", error);
       });
   }, []);
-
-  // Handle section click to navigate to a specific section
-  const handleSectionClick = (section) => {
-    // for limiter
-    setLatestSection(currentSection);
-
-    // setLatestSection(section);
-    if (latestSection >= section) {
-      setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
-      //eg. input on page 2 disappears only if go back to 1 not 3
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
-
-  const titles = [
-    "1. Register",
-    "2. Organisation",
-    "3. Contacts",
-    "4. Data Privacy",
-  ];
-
-  const handleClickShowPassword = (e) => {
-    e.preventDefault();
-    setShowPass(!showPass);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    navigate("/Login");
-  };
 
   const submitRegistration = async (e) => {
     e.preventDefault();
@@ -272,7 +241,6 @@ const Register = () => {
                       placeholder="Eg. NG1 1AA"
                       value={orgPostcode}
                       onChange={(e) => setOrgPostcode(e.target.value)}
-                      pattern="^(GIR ?0AA|((([A-PR-UWYZa-pr-uwyz][0-9][0-9]?)|(([A-PR-UWYZa-pr-uwyz][A-HK-Ya-hk-y][0-9][0-9]?)|(([A-PR-UWYZa-pr-uwyz][0-9][A-HJKSTUWa-hjkstuw])|([A-PR-UWYZa-pr-uwyz][A-HK-Ya-hk-y][0-9][ABEHMNPRV-Yabehmnprv-y])))) ?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2})$"
                       required
                     />
                   </div>
@@ -885,9 +853,9 @@ const Register = () => {
                     Click here to read full terms and conditions.
                   </a>
                 </div>
-                <div className={classes.buttonBlock}>
-                    <Button type="submit">Submit</Button>
-                </div>
+//                <div className={classes.buttonBlock}>
+//                    <Button type="submit">Submit</Button>
+//                </div>
               </div>
             </form>
         </div>
