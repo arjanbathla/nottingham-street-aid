@@ -12,12 +12,12 @@ import Layout from "./navigation/layout/layout";
 
 import Home from "./pages/home/home";
 import Register from "./pages/register/register";
+import RegisterEdit from "./pages/register/register_edit";
 import Login from "./pages/login/login";
 import ContactUs from "./pages/contactUs/contactUs";
 import OurPolicy from "./pages/ourPolicy/ourPolicy";
 
 import Organisation from "./pages/organisation/organisation";
-import OrganisationEdit from "./pages/organisation/organisation_edit";
 import GrantApplication from "./pages/grantApplication/grantApplication";
 import ViewGrant from "./pages/viewGrant/viewGrant";
 
@@ -85,7 +85,7 @@ const App = () => {
       <Route path="/OurPolicy" element={<OurPolicy />} />
 
       <Route path="/Organisation" element={user ? <Organisation /> : <Navigate to="/" />}/>
-      <Route path="/Organisation/:id" element={<OrganisationEdit />} />
+      <Route path="/Register/:id" element={<RegisterEdit />} />
       <Route path="/GrantApplication" element={user ? <GrantApplication /> : <Navigate to="/" />}/>
       <Route path="/ViewGrant" element={user ? <ViewGrant /> : <Navigate to="/" />}/>
 
