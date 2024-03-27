@@ -9,7 +9,6 @@ export const authsSlice = createSlice({
   initialState,
   reducers: {
     setAuths: (state, action) => {
-      console.log('action', action)
       state.auths = action.payload;
     },
   },

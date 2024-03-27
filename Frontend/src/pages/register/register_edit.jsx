@@ -20,12 +20,7 @@ const Register = () => {
   const { signup, isLoadingSignup, errorSignup } = useSignup();
 
   const { id } = useParams();
-  console.log(id);
-
-  const auths = useSelector(selectAuths);
-  console.log(auths)
-
-  const foundAuth = auths.find(auth => auth._id === id);
+  const foundAuth = useSelector(selectAuths).find(auth => auth._id === id);
   console.log(foundAuth)
 
   useEffect(() => {
@@ -266,66 +261,6 @@ const Register = () => {
             <div className={classes.progressFill}>{renderSectionButtons()}</div>
           </div>
 
-          {currentSection === 1 && (
-            <form className={classes.formLayout} onSubmit={handleContinue}>
-              <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>1. Register</h2>
-              </div>
-              <div className={classes.formContent}>
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    Organisation Registration Details
-                  </h3>
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Email *</label>
-                    <input
-                      maxLength={2000}
-                      type="email"
-                      placeholder="Eg. JohnDoe@email.com"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                      required
-                    />
-                  </div>
-
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Password *</label>
-                    <div className={classes.passwordBlock}>
-                      <input
-                        maxLength={2000}
-                        type={showPass ? "text" : "password"}
-                        placeholder="Eg. Password123#"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$"
-                        required
-                      />
-                      <Button clicked={handleClickShowPassword}>
-                        {showPass ? "Hide" : "Show"}
-                      </Button>
-                    </div>
-                    <label className={classes.passwordLabel}>
-                      At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
-                    </label>
-                    <a onClick={handleLogin} className={classes.link}>
-                      Already Registered? Click Here To Login.
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {errorSignup && (
-                <p className={classes.errorMessage}>{errorSignup}</p>
-              )}
-
-              <div className={classes.buttonBlock}>
-                <Button type="submit">Continue Registration</Button>
-              </div>
-            </form>
-          )}
-
-          {currentSection === 2 && (
             <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>2. Organisation Details</h2>
@@ -523,13 +458,7 @@ const Register = () => {
                     </div>
                   )}
                 </div>
-                {buttons}
               </div>
-            </form>
-          )}
-
-          {currentSection === 3 && (
-            <form className={classes.formLayout} onSubmit={handleContinue}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>3. Contact Details</h2>
               </div>
@@ -879,13 +808,8 @@ const Register = () => {
                     </div>
                   </div>
                 )}
-                {buttons}
               </div>
-            </form>
-          )}
 
-          {currentSection === 4 && (
-            <form className={classes.formLayout} onSubmit={submitRegistration}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>
                   4. GDPR SETTINGS & PREFERENCES
