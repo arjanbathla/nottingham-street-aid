@@ -191,7 +191,7 @@ const Register = () => {
     <Container maxWidth="lg">
       <div className={classes.section}>
         <div className={classes.form}>
-            <form className={classes.formLayout} onSubmit={}>
+            <form className={classes.formLayout}>
               <div className={classes.formBanner}>
                 <h2 className={classes.mainTitle}>Organisation Details</h2>
               </div>
