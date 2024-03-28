@@ -13,6 +13,7 @@ export const authsSlice = createSlice({
     },
     updateAuth: (state, action) => {
       console.log('updateAuth', action.payload)
+      console.log('state', state.auths.auths)
     },
   },
 });
