@@ -290,7 +290,7 @@ const Register = () => {
                       <label className={classes.inputLabel}>Title *</label>
                       <select
                         value={formData.contact1Title}
-                        onChange={(e) => setContact1Title(e.target.value)}
+                        onChange={handleChange}
                         required
                       >
                         <option value="">Select Title</option>
@@ -300,7 +300,7 @@ const Register = () => {
                         <option value="Ms">Ms</option>
                         <option value="Other">Other</option>
                       </select>
-                      {contact1Title === "Other" && (
+                      {formData.contact1Title === "Other" && (
                         <input
                           maxLength={2000}
                           type="text"
@@ -414,7 +414,7 @@ const Register = () => {
                           <option value="Ms">Ms</option>
                           <option value="Other">Other</option>
                         </select>
-                        {contact2Title === "Other" && (
+                        {formData.contact2Title === "Other" && (
                           <input
                             maxLength={2000}
                             type="text"
@@ -535,7 +535,7 @@ const Register = () => {
                           <option value="Ms">Ms</option>
                           <option value="Other">Other</option>
                         </select>
-                        {contact3Title === "Other" && (
+                        {formData.contact3Title === "Other" && (
                           <input
                             maxLength={2000}
                             type="text"
