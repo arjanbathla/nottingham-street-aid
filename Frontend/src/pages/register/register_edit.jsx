@@ -72,6 +72,8 @@ const Register = () => {
   const handleChange = (e) => {
     console.log('handleChange', e)
     const { name, value } = e.target;
+    console.log('name', name)
+    console.log('value', value)
     setFormData({
       ...formData,
       [name]: value
