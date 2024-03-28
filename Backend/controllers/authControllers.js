@@ -121,6 +121,7 @@ const signupAuth = async (req, res) => {
 
 const authUpdate = async (req, res) => {
   const auth = req.body;
+  console.log('auth', auth)
   try {
     res.status(200).json(await Auth.findOneAndUpdate({_id: auth._id}, auth, { new: true }));
   } catch (error) {
