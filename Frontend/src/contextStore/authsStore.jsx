@@ -12,8 +12,9 @@ export const authsSlice = createSlice({
       state.auths = action.payload;
     },
     updateAuth: (state, action) => {
-      console.log('updateAuth', action.payload)
-      console.log('state', state)
+      state.auths = state.auths.map(auth =>
+        auth._id === action.payload._id ? action.payload : auth
+      );
     },
   },
 });
