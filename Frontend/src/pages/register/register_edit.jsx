@@ -36,10 +36,10 @@ const Register = () => {
 
   const [formData, setFormData] = useState(foundAuth);
 
-  console.log('foundAuth', foundAuth)
-  console.log('formData', formData)
-  console.log('foundAuth - stringify', JSON.stringify(foundAuth))
-  console.log('formData - stringify', JSON.stringify(formData))
+//  console.log('foundAuth', foundAuth)
+//  console.log('formData', formData)
+//  console.log('foundAuth - stringify', JSON.stringify(foundAuth))
+//  console.log('formData - stringify', JSON.stringify(formData))
 
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
@@ -74,6 +74,7 @@ const Register = () => {
   };
 
   const handleChange = (e) => {
+    console.log('handleChange', e)
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
