@@ -21,6 +21,7 @@ const Register = () => {
 
   const { id } = useParams();
   const foundAuth = useSelector(selectAuths).find(auth => auth._id === id);
+  console.log('foundAuth', foundAuth)
 
   useEffect(() => {
     const unloadCallback = (event) => {
