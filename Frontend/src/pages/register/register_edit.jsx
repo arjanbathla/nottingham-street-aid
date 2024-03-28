@@ -76,6 +76,7 @@ const Register = () => {
   const handleChange = (e) => {
     console.log('handleChange', e)
     const { name, value, type, checked } = e.target;
+    console.log('values', { name, value, type, checked })
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value
