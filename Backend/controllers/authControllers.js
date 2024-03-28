@@ -123,12 +123,19 @@ const authUpdate = async (req, res) => {
   const auth = req.body;
   console.log('auth', auth)
   try {
-    const auth = await Auth.updateDocument(auth);
-    const token = createToken(auth._id);
-    res.status(200).json({ username, token });
+    const updated = await Auth.findOneAndUpdate({_id: auth._id}, auth)
+    res.status(200).json(updated);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
+};
+
+const updateStatus = async (req, res) => {
+  const {grantId, status} = req.body
+  const grants = await Grant.findOneAndUpdate({_id: grantId},{
+    grantStatus: status
+  })
+  res.status(200).json(grants);
 };
 
 module.exports = {
