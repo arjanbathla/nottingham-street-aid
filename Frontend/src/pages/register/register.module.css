@@ -176,3 +176,10 @@
     transition: background-color 0.5s ease-in-out;
     padding: 0 var(--padding-1);
 }
+
+.button:disabled {
+    background-color: var(--neutral);
+    color: var(--dark);
+    cursor: not-allowed;
+    opacity: 0.6; /* Optional: reduces the button's opacity to visually indicate it's disabled */
+}
