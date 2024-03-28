@@ -229,7 +229,7 @@ const Register = () => {
                         </option>
                       ))}
                     </select>
-                    {orgType === "Other" && (
+                    {formData.orgType === "Other" && (
                       <input
                         maxLength={2000}
                         type="text"
@@ -241,7 +241,7 @@ const Register = () => {
                     )}
                   </div>
 
-                  {orgType === "Charity" && (
+                  {formData.orgType === "Charity" && (
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>
                         Charity Number *
@@ -258,8 +258,8 @@ const Register = () => {
                     </div>
                   )}
 
-                  {(orgType === "Community Interest Company (CIC)" ||
-                    orgType === "Social Enterprise/LTD by Guarantee") && (
+                  {(formData.orgType === "Community Interest Company (CIC)" ||
+                    formData.orgType === "Social Enterprise/LTD by Guarantee") && (
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>
                         CRN Companies House Number *
