@@ -123,7 +123,9 @@ const authUpdate = async (req, res) => {
   const auth = req.body;
   console.log('auth', auth)
   try {
-    res.status(200).json(await Auth.findOneAndUpdate({_id: auth._id}, auth, { new: true }));
+    updated = await Auth.findOneAndUpdate({_id: auth._id}, auth, { new: true })
+    console.log('updated', updated)
+    res.status(200).json(updated);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
