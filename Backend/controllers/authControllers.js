@@ -130,14 +130,6 @@ const authUpdate = async (req, res) => {
   }
 };
 
-const updateStatus = async (req, res) => {
-  const {grantId, status} = req.body
-  const grants = await Grant.findOneAndUpdate({_id: grantId},{
-    grantStatus: status
-  })
-  res.status(200).json(grants);
-};
-
 module.exports = {
   loginAuth,
   signupAuth,
