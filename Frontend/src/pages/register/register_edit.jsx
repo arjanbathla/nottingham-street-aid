@@ -97,6 +97,7 @@ const Register = () => {
   }, []);
 
   const submitRegistration = async (e) => {
+    console.log('onsubmit')
     e.preventDefault();
     if (otherOrgType) {
       setOrgType(otherOrgType);
@@ -853,11 +854,9 @@ const Register = () => {
                     Click here to read full terms and conditions.
                   </a>
                 </div>
-                {/*
                 <div className={classes.buttonBlock}>
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">Update</Button>
                 </div>
-                */}
               </div>
             </form>
         </div>
