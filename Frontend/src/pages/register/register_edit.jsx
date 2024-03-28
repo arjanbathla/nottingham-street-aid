@@ -660,7 +660,7 @@ const Register = () => {
 
               <div className={classes.formContent}>
                 <div className={classes.buttonBlock}>
-                    <Button type="submit">Update</Button>
+                    <Button type="submit" disabled={JSON.stringify(formData) === JSON.stringify(foundAuth)}>Update</Button>
                 </div>
               </div>
             </form>
