@@ -36,6 +36,11 @@ const Register = () => {
 
   const [formData, setFormData] = useState(foundAuth);
 
+  console.log('foundAuth', foundAuth)
+  console.log('formData', formData)
+  console.log('foundAuth - stringify', JSON.stringify(foundAuth))
+  console.log('formData - stringify', JSON.stringify(formData))
+
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
     fetch("/organisations.csv")
