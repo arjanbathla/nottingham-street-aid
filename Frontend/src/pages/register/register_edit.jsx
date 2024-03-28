@@ -99,6 +99,7 @@ const Register = () => {
                       Organisation Name *
                     </label>
                     <input
+                      name="orgName"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. Nottingham Street Organisation"
@@ -113,6 +114,7 @@ const Register = () => {
                       Address Line 1 *
                     </label>
                     <input
+                      name="orgAdr1"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. Building name or number"
@@ -125,6 +127,7 @@ const Register = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Address Line 2</label>
                     <input
+                      name="orgAdr2"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. Street name or number"
@@ -136,6 +139,7 @@ const Register = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Town *</label>
                     <input
+                      name="orgTown"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. Town or city name"
@@ -148,6 +152,7 @@ const Register = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>County *</label>
                     <input
+                      name="orgCounty"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. County name"
@@ -160,6 +165,7 @@ const Register = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Postcode *</label>
                     <input
+                      name="orgPostcode"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. NG1 1AA"
@@ -178,6 +184,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email *</label>
                       <input
+                        name="orgEmail"
                         maxLength={2000}
                         type="email"
                         placeholder="Eg. JohnDoe@email.com"
@@ -191,6 +198,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
+                        name="orgPhone"
                         maxLength={2000}
                         type="tel"
                         placeholder="Eg. 07654 321 234"
@@ -205,6 +213,7 @@ const Register = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Website</label>
                     <input
+                      name="orgWebsite"
                       maxLength={2000}
                       type="url"
                       placeholder="Eg. https://www.NottinghamStreetOrg.com"
@@ -221,6 +230,7 @@ const Register = () => {
                       Organisation Type *
                     </label>
                     <select
+                      name="orgType"
                       value={formData.orgType}
                       onChange={handleChange}
                       required
@@ -234,6 +244,7 @@ const Register = () => {
                     </select>
                     {formData.orgType === "Other" && (
                       <input
+                        name="otherOrgType"
                         maxLength={2000}
                         type="text"
                         value={formData.otherOrgType}
@@ -250,6 +261,7 @@ const Register = () => {
                         Charity Number *
                       </label>
                       <input
+                        name="orgCharityNumber"
                         maxLength={2000}
                         type="text"
                         value={formData.orgCharityNumber}
@@ -268,6 +280,7 @@ const Register = () => {
                         CRN Companies House Number *
                       </label>
                       <input
+                        name="orgHouseNumber"
                         maxLength={2000}
                         type="number"
                         value={formData.orgHouseNumber}
@@ -292,6 +305,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Title *</label>
                       <select
+                        name="contact1Title"
                         value={formData.contact1Title}
                         onChange={handleChange}
                         required
@@ -305,6 +319,7 @@ const Register = () => {
                       </select>
                       {formData.contact1Title === "Other" && (
                         <input
+                          name="otherContact1Title"
                           maxLength={2000}
                           type="text"
                           value={formData.otherContact1Title}
@@ -318,6 +333,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>First Name *</label>
                       <input
+                        name="contact1Fname"
                         maxLength={2000}
                         type="text"
                         placeholder="Eg. John"
@@ -330,6 +346,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Last Name *</label>
                       <input
+                        name="contact1Lname"
                         maxLength={2000}
                         type="text"
                         placeholder="Eg. Doe"
@@ -344,6 +361,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email *</label>
                       <input
+                        name="contact1Email"
                         maxLength={2000}
                         type="email"
                         placeholder="Eg. JohnDoe@email.com"
@@ -357,6 +375,7 @@ const Register = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
+                        name="contact1Phone"
                         maxLength={2000}
                         type="tel"
                         placeholder="Eg. 07654 321 234"
@@ -373,6 +392,7 @@ const Register = () => {
                       Role In Organisation *
                     </label>
                     <input
+                      name="contact1Role"
                       maxLength={2000}
                       type="text"
                       placeholder="Eg. Admin"
@@ -386,6 +406,7 @@ const Register = () => {
                 <div className={classes.multiInputBlock}>
                   <div className={classes.checkboxGroup}>
                     <input
+                      name="secondContact"
                       maxLength={2000}
                       className={classes.checkbox}
                       type="checkbox"
@@ -406,6 +427,7 @@ const Register = () => {
                       <div className={classes.inputBlock}>
                         <label className={classes.inputLabel}>Title *</label>
                         <select
+                          name="contact2Title"
                           value={formData.contact2Title}
                           onChange={handleChange}
                           required
@@ -419,6 +441,7 @@ const Register = () => {
                         </select>
                         {formData.contact2Title === "Other" && (
                           <input
+                            name="otherContact2Title"
                             maxLength={2000}
                             type="text"
                             value={formData.otherContact2Title}
@@ -434,6 +457,7 @@ const Register = () => {
                           First Name *
                         </label>
                         <input
+                          name="contact2Fname"
                           maxLength={2000}
                           type="text"
                           placeholder="Eg. John"
@@ -448,6 +472,7 @@ const Register = () => {
                           Last Name *
                         </label>
                         <input
+                          name="contact2Lname"
                           maxLength={2000}
                           type="text"
                           placeholder="Eg. Doe"
@@ -462,6 +487,7 @@ const Register = () => {
                       <div className={classes.inputBlock}>
                         <label className={classes.inputLabel}>Email *</label>
                         <input
+                          name="contact2Email"
                           maxLength={2000}
                           type="email"
                           placeholder="Eg. JohnDoe@email.com"
@@ -477,6 +503,7 @@ const Register = () => {
                           Telephone *
                         </label>
                         <input
+                          name="contact2Phone"
                           maxLength={2000}
                           type="tel"
                           placeholder="Eg. 07654 321 234"
@@ -493,6 +520,7 @@ const Register = () => {
                         Role In Organisation *
                       </label>
                       <input
+                        name="contact2Role"
                         maxLength={2000}
                         type="text"
                         placeholder="Eg. Management"
@@ -507,6 +535,7 @@ const Register = () => {
                 <div className={classes.multiInputBlock}>
                   <div className={classes.checkboxGroup}>
                     <input
+                      name="financeContact"
                       maxLength={2000}
                       className={classes.checkbox}
                       type="checkbox"
@@ -527,6 +556,7 @@ const Register = () => {
                       <div className={classes.inputBlock}>
                         <label className={classes.inputLabel}>Title *</label>
                         <select
+                          name="contact3Title"
                           value={formData.contact3Title}
                           onChange={handleChange}
                           required
@@ -540,6 +570,7 @@ const Register = () => {
                         </select>
                         {formData.contact3Title === "Other" && (
                           <input
+                            name="otherContact3Title"
                             maxLength={2000}
                             type="text"
                             value={formData.otherContact3Title}
@@ -555,6 +586,7 @@ const Register = () => {
                           First Name *
                         </label>
                         <input
+                          name="contact3Fname"
                           maxLength={2000}
                           type="text"
                           placeholder="Eg. John"
@@ -569,6 +601,7 @@ const Register = () => {
                           Last Name *
                         </label>
                         <input
+                          name="contact3Lname"
                           maxLength={2000}
                           type="text"
                           placeholder="Eg. Doe"
@@ -583,6 +616,7 @@ const Register = () => {
                       <div className={classes.inputBlock}>
                         <label className={classes.inputLabel}>Email *</label>
                         <input
+                          name="contact3Email"
                           maxLength={2000}
                           type="email"
                           placeholder="Eg. JohnDoe@email.com"
@@ -598,6 +632,7 @@ const Register = () => {
                           Telephone *
                         </label>
                         <input
+                          name="contact3Phone"
                           maxLength={2000}
                           type="tel"
                           placeholder="Eg. 07654 321 234"
@@ -614,6 +649,7 @@ const Register = () => {
                         Role In Organisation *
                       </label>
                       <input
+                        name="contact3Role"
                         maxLength={2000}
                         type="text"
                         placeholder="Eg. Finance manager"
