@@ -12,16 +12,16 @@ import Loader from "../../components/loader/loader";
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 
-import { useSelector } from 'react-redux';
-import { selectAuths } from "../../contextStore/authsStore";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAuths, updateAuth } from "../../contextStore/authsStore";
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { signup, isLoadingSignup, errorSignup } = useSignup();
 
   const { id } = useParams();
-  const foundAuth = useSelector(selectAuths).find(auth => auth._id === id);
-  console.log('foundAuth', foundAuth)
+  const [foundAuth, setFoundAuth] = useState(useSelector(selectAuths).find(auth => auth._id === id));
 
   useEffect(() => {
     const unloadCallback = (event) => {
@@ -34,11 +34,7 @@ const Register = () => {
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
 
-  const [formData, setFormData] = useState({
-    ...foundAuth,
-    financeContact: foundAuth.financeContact || false,
-    secondContact: foundAuth.secondContact || false,
-  });
+  const [formData, setFormData] = useState(foundAuth);
 
   const [organisations, setOrganisations] = useState([]);
   useEffect(() => {
@@ -63,20 +59,20 @@ const Register = () => {
         body: JSON.stringify(formData),
       }
     );
-    console.log('response', response)
-//    if (errorSignup == null) {
-//        deleteLocalStorageItemsStartingWith('Register')
-//    }
+    if (response.ok) {
+      const updatedAuth = await response.json();
+      setFoundAuth(updatedAuth);
+      dispatch(updateAuth(updatedAuth));
+    } else {
+      console.error('Failed to update auth');
+    }
   };
 
   const handleChange = (e) => {
-    console.log('handleChange', e)
-    const { name, value } = e.target;
-    console.log('name', name)
-    console.log('value', value)
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
