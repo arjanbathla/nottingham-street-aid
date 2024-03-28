@@ -196,4 +196,29 @@ authSchema.statics.login = async function (username, password) {
   return auth;
 };
 
+authSchema.statics.updateDocument = async function (newData) {
+  const { _id } = newData;
+
+  if (!_id) {
+    throw new Error("_id must be provided within newData");
+  }
+
+  // Prepare the update data by excluding the _id from the newData object
+  // since _id should not be modified and including it in $set could cause confusion or errors
+  const { _id: id, ...updateData } = newData;
+
+  const updateResult = await this.updateOne({ _id: _id }, { $set: updateData });
+
+  if (updateResult.matchedCount === 0) {
+    throw new Error("No document found with the provided _id.");
+  }
+
+  if (updateResult.modifiedCount === 0) {
+    throw new Error("The document was not updated. Provided data may be identical to existing data.");
+  }
+
+  return updateResult;
+};
+
+
 module.exports = mongoose.model("Auth", authSchema);

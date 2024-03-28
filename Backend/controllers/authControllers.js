@@ -30,6 +30,7 @@ const adminLoginAuth = async (req, res) => {
 };
 
 const signupAuth = async (req, res) => {
+
   const {
     username,
     password,
@@ -118,8 +119,21 @@ const signupAuth = async (req, res) => {
   }
 };
 
+const authUpdate = async (req, res) => {
+  const auth = req.body;
+  console.log('auth', auth)
+  try {
+    const auth = await Auth.updateDocument(auth);
+    const token = createToken(auth._id);
+    res.status(200).json({ username, token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   loginAuth,
   signupAuth,
   adminLoginAuth,
+  authUpdate,
 };
