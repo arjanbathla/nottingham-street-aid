@@ -665,7 +665,7 @@ const Register = () => {
 
               <div className={classes.formContent}>
                 <div className={classes.buttonBlock}>
-                    <Button type="submit" disabled={true}>Update</Button>
+                    <Button type="submit" disabled>Update</Button>
                 </div>
               </div>
             </form>
