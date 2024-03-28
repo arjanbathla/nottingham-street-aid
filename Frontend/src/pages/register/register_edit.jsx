@@ -391,12 +391,12 @@ const Register = () => {
                       onChange={handleChange}
                     />
                     <label htmlFor="secondContact">
-                      {secondContact ? "Remove" : "Add"} Second Point Of Contact
+                      {formData.secondContact ? "Remove" : "Add"} Second Point Of Contact
                     </label>
                   </div>
                 </div>
 
-                {secondContact && (
+                {formData.secondContact && (
                   <div className={classes.multiInputBlock}>
                     <h3 className={classes.subTitle}>2nd Point Of Contact</h3>
                     <div className={classes.relatedInputBlock}>
@@ -512,12 +512,12 @@ const Register = () => {
                       onChange={handleChange}
                     />
                     <label htmlFor="financeContact">
-                      {financeContact ? "Remove" : "Add"} Finance Contact
+                      {formData.financeContact ? "Remove" : "Add"} Finance Contact
                     </label>
                   </div>
                 </div>
 
-                {financeContact && (
+                {formData.financeContact && (
                   <div className={classes.multiInputBlock}>
                     <h3 className={classes.subTitle}>Finance Contact</h3>
                     <div className={classes.relatedInputBlock}>
