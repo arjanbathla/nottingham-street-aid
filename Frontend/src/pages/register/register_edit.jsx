@@ -414,7 +414,7 @@ const Register = () => {
                       className={classes.checkbox}
                       type="checkbox"
                       id="secondContact"
-                      checked={formData.secondContact}
+                      checked={formData.secondContact || !('secondContact' in formData) && formData.contact2Fname}
                       onChange={handleChange}
                     />
                     <label htmlFor="secondContact">
@@ -543,7 +543,7 @@ const Register = () => {
                       className={classes.checkbox}
                       type="checkbox"
                       id="financeContact"
-                      checked={formData.financeContact}
+                      checked={formData.financeContact || !('financeContact' in formData) && formData.contact3Fname}
                       onChange={handleChange}
                     />
                     <label htmlFor="financeContact">
