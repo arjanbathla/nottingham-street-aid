@@ -56,6 +56,7 @@ const Register = () => {
 
   const submitRegistration = async (e) => {
     e.preventDefault();
+    console.log('updating t')
     const response = await fetch(
       import.meta.env.VITE_API_HOST + "/api/auth/update",
       {
