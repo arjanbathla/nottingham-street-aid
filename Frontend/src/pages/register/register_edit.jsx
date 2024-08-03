@@ -55,7 +55,6 @@ const Register = () => {
   }, []);
 
   const submitRegistration = async (e) => {
-    console.log('submitting update')
     e.preventDefault();
     const response = await fetch(
       import.meta.env.VITE_API_HOST + "/api/auth/update",
@@ -668,7 +667,7 @@ const Register = () => {
 
               <div className={classes.formContent}>
                 <div className={classes.buttonBlock}>
-                    <Button type="submit">Update</Button>
+                    <Button type="submit" disabled={true}>Update</Button>
                 </div>
               </div>
             </form>
