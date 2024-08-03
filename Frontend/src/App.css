@@ -52,3 +52,9 @@ a:hover{
         --padding-3: 1.5em;
     }
 }
+
+button:disabled {
+    background-color: var(--neutral);
+    color: var(--dark);
+    cursor: not-allowed;
+}
