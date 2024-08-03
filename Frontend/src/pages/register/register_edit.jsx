@@ -23,6 +23,8 @@ const Register = () => {
   const { id } = useParams();
   const [foundAuth, setFoundAuth] = useState(useSelector(selectAuths).find(auth => auth._id === id));
 
+  const [isUpdated, setIsUpdated] = useState(false);
+
   useEffect(() => {
     const unloadCallback = (event) => {
       event.preventDefault();
@@ -74,14 +76,17 @@ const Register = () => {
     }
   };
 
+
+
   const handleChange = (e) => {
-    console.log('handleChange', e)
     const { name, value, type, checked } = e.target;
     console.log('values', { name, value, type, checked })
-    setFormData({
+    const updatedFormData = {
       ...formData,
       [name]: type === 'checkbox' ? checked : value
-    });
+    };
+    setFormData(updatedFormData);
+    setIsUpdated(JSON.stringify(updatedFormData) !== JSON.stringify(foundAuth));
   };
 
   return (
@@ -668,7 +673,7 @@ const Register = () => {
 
               <div className={classes.formContent}>
                 <div className={classes.buttonBlock}>
-                    <Button type="submit" disabled={true}>Update</Button>
+                    <Button type="submit" disabled={!isUpdated}>Update</Button>
                 </div>
               </div>
             </form>

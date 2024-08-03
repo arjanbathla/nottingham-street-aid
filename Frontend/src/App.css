@@ -57,4 +57,5 @@ button:disabled {
     background-color: var(--neutral);
     color: var(--dark);
     cursor: not-allowed;
+    border: 2px solid var(--dark);
 }
