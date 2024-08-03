@@ -70,6 +70,7 @@ const Register = () => {
     if (response.ok) {
       const updatedAuth = await response.json();
       setFoundAuth(updatedAuth);
+      setIsUpdated(false);
       dispatch(updateAuth(updatedAuth));
     } else {
       console.error('Failed to update auth');
