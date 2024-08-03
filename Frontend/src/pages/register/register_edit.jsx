@@ -70,6 +70,7 @@ const Register = () => {
     if (response.ok) {
       const updatedAuth = await response.json();
       setFoundAuth(updatedAuth);
+      setFormData(updatedAuth);
       setIsUpdated(false);
       dispatch(updateAuth(updatedAuth));
     } else {
