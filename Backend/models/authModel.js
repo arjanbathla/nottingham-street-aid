@@ -50,6 +50,10 @@ const authSchema = new Schema(
     newsletterPref: { type: String, required: true },
     bulletinPref: { type: String, required: true },
     tsAndCs: { type: String, required: true },
+
+    secondContact: { type: Boolean, required: false },
+    financeContact: { type: Boolean, required: false },
+    otherOrgType: { type: String, required: false },
   },
   { timestamps: true }
 );

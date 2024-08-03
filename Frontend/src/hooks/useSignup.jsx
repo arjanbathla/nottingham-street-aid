@@ -50,12 +50,8 @@ export const useSignup = () => {
     setIsLoadingSignup(true);
     setErrorSignup(null);
 
-    const apiHost = import.meta.env.VITE_API_HOST || "https://notts-street-aid-backend.vercel.app";
-    const apiEndpoint = "/api/signup";
-    const apiUrl = apiHost + apiEndpoint;
-
     const response = await fetch(
-      apiUrl,
+      import.meta.env.VITE_API_HOST + "/api/signup",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
