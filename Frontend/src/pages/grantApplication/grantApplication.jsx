@@ -110,6 +110,8 @@ const GrantApplication = () => {
   const [otherBenGrantReason, setOtherBenGrantReason] = useLocalStorageState('otherBenGrantReason', 'GrantApplication', '');
 
   const [genders, setGenders] = useState([]);
+  const [dependantDescription, setDependantDescription] = useState("");
+
   useEffect(() => {
     fetch("/genders.csv")
       .then((response) => response.text())
@@ -507,7 +509,7 @@ const GrantApplication = () => {
                       </select>
                       {benTitle === "Other" && (
                         <input
-                          maxLength={2000}
+                          maxLength={10}
                           type="text"
                           value={otherBenTitle}
                           onChange={(e) => setOtherBenTitle(e.target.value)}
@@ -520,7 +522,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>First Name *</label>
                       <input
-                        maxLength={2000}
+                        maxLength={11}
                         type="text"
                         value={benFirstName}
                         onChange={(e) => setBenFirstName(e.target.value)}
@@ -532,7 +534,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Last Name *</label>
                       <input
-                        maxLength={2000}
+                        maxLength={15}
                         type="text"
                         value={benLastName}
                         onChange={(e) => setBenLastName(e.target.value)}
@@ -546,7 +548,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email</label>
                       <input
-                        maxLength={2000}
+                        maxLength={30}
                         type="email"
                         value={benEmail}
                         onChange={(e) => setBenEmail(e.target.value)}
@@ -558,7 +560,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone</label>
                       <input
-                        maxLength={2000}
+                        maxLength={12}
                         type="tel"
                         value={benTelephone}
                         onChange={(e) => setBenTelephone(e.target.value)}
@@ -660,7 +662,7 @@ const GrantApplication = () => {
                         Address Line 2
                       </label>
                       <input
-                        maxLength={2000}
+                        maxLength={30}
                         type="text"
                         value={benAddressLine2}
                         onChange={(e) => setBenAddressLine2(e.target.value)}
@@ -671,7 +673,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Town *</label>
                       <input
-                        maxLength={2000}
+                        maxLength={20}
                         type="text"
                         value={benTown}
                         onChange={(e) => setBenTown(e.target.value)}
@@ -721,7 +723,7 @@ const GrantApplication = () => {
                         </select>
                         {altTitle === "Other" && (
                           <input
-                            maxLength={2000}
+                            maxLength={10}
                             type="text"
                             value={otherAltTitle}
                             onChange={(e) => setOtherAltTitle(e.target.value)}
@@ -736,7 +738,7 @@ const GrantApplication = () => {
                           First Name *
                         </label>
                         <input
-                          maxLength={2000}
+                          maxLength={12}
                           type="text"
                           value={altFirstName}
                           onChange={(e) => setAltFirstName(e.target.value)}
@@ -750,7 +752,7 @@ const GrantApplication = () => {
                           Last Name *
                         </label>
                         <input
-                          maxLength={2000}
+                          maxLength={12}
                           type="text"
                           value={altLastName}
                           onChange={(e) => setAltLastName(e.target.value)}
@@ -783,7 +785,7 @@ const GrantApplication = () => {
                     </select>
                     {altRole === "Other" && (
                       <input
-                        maxLength={2000}
+                        maxLength={12}
                         type="text"
                         value={otherAltRole}
                         onChange={(e) => setOtherAltRole(e.target.value)}
@@ -797,7 +799,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Email *</label>
                       <input
-                        maxLength={2000}
+                        maxLength={30}
                         type="email"
                         value={altEmail}
                         onChange={(e) => setAltEmail(e.target.value)}
@@ -810,7 +812,7 @@ const GrantApplication = () => {
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel}>Telephone *</label>
                       <input
-                        maxLength={2000}
+                        maxLength={11}
                         type="tel"
                         value={altTelephone}
                         onChange={(e) => setAltTelephone(e.target.value)}
@@ -831,7 +833,7 @@ const GrantApplication = () => {
                       Address Line 1 *
                     </label>
                     <input
-                      maxLength={2000}
+                      maxLength={15}
                       type="text"
                       value={altAddressLine1}
                       onChange={(e) => setAltAddressLine1(e.target.value)}
@@ -843,7 +845,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Address Line 2</label>
                     <input
-                      maxLength={2000}
+                      maxLength={15}
                       type="text"
                       value={altAddressLine2}
                       onChange={(e) => setAltAddressLine2(e.target.value)}
@@ -854,7 +856,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>County *</label>
                     <input
-                      maxLength={2000}
+                      maxLength={20}
                       type="text"
                       value={altCounty}
                       onChange={(e) => setAltCounty(e.target.value)}
@@ -866,7 +868,7 @@ const GrantApplication = () => {
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>Postcode *</label>
                     <input
-                      maxLength={2000}
+                      maxLength={15}
                       type="text"
                       value={altPostcode}
                       onChange={(e) => setAltPostcode(e.target.value)}
@@ -950,7 +952,7 @@ const GrantApplication = () => {
                       </select>
                       {benGen === "Other" && (
                         <input
-                          maxLength={2000}
+                          maxLength={11}
                           type="text"
                           value={otherBenGen}
                           onChange={(e) => setOtherBenGen(e.target.value)}
@@ -976,7 +978,7 @@ const GrantApplication = () => {
                       </select>
                       {benSex === "Other" && (
                         <input
-                          maxLength={2000}
+                          maxLength={10}
                           type="text"
                           value={otherBenSex}
                           onChange={(e) => setOtherBenSex(e.target.value)}
@@ -1119,38 +1121,45 @@ const GrantApplication = () => {
                 </div>
 
                 {benDependants === "Yes" && (
-                  <div className={classes.multiInputBlock}>
-                    <h3 className={classes.subTitle}>
-                      More Information On Dependants
-                    </h3>
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>
-                        Number of dependents *
-                      </label>
-                      <input
-                        maxLength={2000}
-                        type="text"
-                        value={numOfDependants}
-                        onChange={(e) => setNumOfDependants(e.target.value)}
-                        placeholder="Eg. 3"
-                        required
-                      />
-                    </div>
+                    <div className={classes.multiInputBlock}>
+                      <h3 className={classes.subTitle}>More Information On Dependants</h3>
 
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>
-                        Age of dependents *
-                      </label>
-                      <input
-                        maxLength={2000}
-                        type="text"
-                        value={ageOfDependants}
-                        onChange={(e) => setAgeOfDependants(e.target.value)}
-                        placeholder="Eg. 10, 7, 5"
-                        required
-                      />
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Number of dependents *</label>
+                        <input
+                            maxLength={4}
+                            type="text"
+                            value={numOfDependants}
+                            onChange={(e) => setNumOfDependants(e.target.value)}
+                            placeholder="Eg. 3"
+                            required
+                        />
+                      </div>
+
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Age of dependents *</label>
+                        <input
+                            maxLength={20}
+                            type="text"
+                            value={ageOfDependants}
+                            onChange={(e) => setAgeOfDependants(e.target.value)}
+                            placeholder="Eg. 10, 7, 5"
+                            required
+                        />
+                      </div>
+
+                      {/* New Description Field */}
+                      <div className={classes.inputBlock}>
+                        <label className={classes.inputLabel}>Dependent Description (Optional)</label>
+                        <textarea
+                            maxLength={256}
+                            rows={3}
+                            value={dependantDescription}
+                            onChange={(e) => setDependantDescription(e.target.value)}
+                            placeholder="E.g., Special needs, medical conditions, school information"
+                        />
+                      </div>
                     </div>
-                  </div>
                 )}
               </div>
               {buttons}
@@ -1189,7 +1198,7 @@ const GrantApplication = () => {
                       </select>
                       {currentAccom === "Other" && (
                         <input
-                          maxLength={2000}
+                          maxLength={20}
                           type="text"
                           value={otherCurrentAccom}
                           onChange={(e) => setOtherCurrentAccom(e.target.value)}
@@ -1339,7 +1348,6 @@ const GrantApplication = () => {
                       Grant Reason *
                     </label>
                     <label className={classes.inputLabel}>
-                      If Multiple Reasons, Select "Other" and Describe.
                     </label>
 
                     <select
@@ -1348,22 +1356,14 @@ const GrantApplication = () => {
                       required
                     >
                       <option value="">Select Reason</option>
-                      {grantReason.map((reason, index) => (
-                        <option key={index} value={reason}>
-                          {reason}
-                        </option>
+                      {grantReason
+                          .filter((reason) => reason !== "Other") // Filter out "Other"
+                          .map((reason, index) => (
+                              <option key={index} value={reason}>
+                                {reason}
+                              </option>
                       ))}
                     </select>
-                    {benGrantReason === "Other" && (
-                      <input
-                        maxLength={2000}
-                        type="text"
-                        value={otherBenGrantReason}
-                        onChange={(e) => setOtherBenGrantReason(e.target.value)}
-                        placeholder="Other Reason(s)"
-                        required
-                      />
-                    )}
                   </div>
 
                   <div className={classes.inputBlock}>
@@ -1447,7 +1447,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={2000}
+                        maxLength={20}
                         type="text"
                         value={grantItemDetails1}
                         onChange={(e) => setGrantItemDetails1(e.target.value)}
@@ -1474,7 +1474,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={2000}
+                        maxLength={20}
                         type="text"
                         value={grantItemDetails2}
                         onChange={(e) => setGrantItemDetails2(e.target.value)}
@@ -1500,7 +1500,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={2000}
+                        maxLength={20}
                         type="text"
                         value={grantItemDetails3}
                         onChange={(e) => setGrantItemDetails3(e.target.value)}
@@ -1526,7 +1526,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={2000}
+                        maxLength={20}
                         type="text"
                         value={grantItemDetails4}
                         onChange={(e) => setGrantItemDetails4(e.target.value)}
@@ -1552,7 +1552,7 @@ const GrantApplication = () => {
 
                     <div className={classes.inputBlock}>
                       <input
-                        maxLength={2000}
+                        maxLength={20}
                         type="text"
                         value={grantItemDetails5}
                         onChange={(e) => setGrantItemDetails5(e.target.value)}
