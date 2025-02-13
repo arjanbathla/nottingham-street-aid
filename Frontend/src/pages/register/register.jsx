@@ -99,11 +99,16 @@ const Register = () => {
   const [latestSection, setLatestSection] = useState();
 
   const handleContinue = () => {
+
+    // Proceed to the next section
     if (currentSection < totalSections) {
       setCurrentSection(currentSection + 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+
+
 
   const handlePrevious = () => {
     if (currentSection > 1) {
@@ -159,6 +164,8 @@ const Register = () => {
     e.preventDefault();
     navigate("/Login");
   };
+
+
 
   const submitRegistration = async (e) => {
     e.preventDefault();
@@ -439,7 +446,23 @@ const Register = () => {
                       type="url"
                       placeholder="Eg. https://www.NottinghamStreetOrg.com"
                       value={orgWebsite}
-                      onChange={(e) => setOrgWebsite(e.target.value)}
+                      onChange={(e) => {
+                        let url = e.target.value.trim();
+
+                        // Ensure it starts with http:// or https://
+                        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                          url = "https://" + url;
+                        }
+
+                        // Validate the final URL
+                        try {
+                          new URL(url); // Throws an error if invalid
+                          setOrgWebsite(url);
+                        } catch {
+                          console.error("Invalid URL format");
+                        }
+                      }}
+
                     />
                   </div>
                 </div>
