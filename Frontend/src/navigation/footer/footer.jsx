@@ -26,6 +26,7 @@ const footer = () => {
             <Navlink link="/Login">Login</Navlink>
             <Navlink link="/OurPolicy">Policies & Guidance</Navlink>
             <Navlink link="/ContactUs">Contact Us</Navlink>
+            <Navlink link="/FAQ">FAQ</Navlink>
           </div>
         )}
 

@@ -17,44 +17,47 @@ const navlinks = () => {
   const { adminLogout } = useAdminLogout();
 
   return (
-    <div>
-      {!user && !admin && (
-        <ul className={classes.navlinks}>
-          <Navlink link="/">Home</Navlink>
-          <Navlink link="/Register">Register</Navlink>
-          <Navlink link="/Login">Login</Navlink>
-          <Navlink link="/OurPolicy">Policies & Guidance</Navlink>
-          <Navlink link="/ContactUs">Contact Us</Navlink>
-        </ul>
-      )}
+      <div>
+        {!user && !admin && (
+            <ul className={classes.navlinks}>
+              <Navlink link="/">Home</Navlink>
+              <Navlink link="/Register">Register</Navlink>
+              <Navlink link="/Login">Login</Navlink>
+              <Navlink link="/OurPolicy">Policies & Guidance</Navlink>
+              <Navlink link="/ContactUs">Contact Us</Navlink>
+              <Navlink link="/FAQ">FAQ</Navlink> {/* No icon here */}
+            </ul>
+        )}
 
-      {user && (
-        <ul className={classes.navlinks}>
-          <Navlink link="/Organisation">
-            <AiOutlineHome /> Dashboard 
-          </Navlink>
-          <Navlink link="/GrantApplication">
-            <AiOutlineFileAdd /> New Grant 
-          </Navlink>
-          <Navlink link="/OurPolicy">
-            <MdOutlinePolicy /> Policies & Guidance 
-          </Navlink>
-          <Button clicked={() => logout()}>Logout - {user.username}</Button>
-        </ul>
-      )}
+        {user && (
+            <ul className={classes.navlinks}>
+              <Navlink link="/Organisation">
+                Dashboard
+              </Navlink>
+              <Navlink link="/GrantApplication">
+                New Grant
+              </Navlink>
+              <Navlink link="/OurPolicy">
+                Policies & Guidance
+              </Navlink>
+              <Navlink link="/FAQ">FAQ</Navlink> {/* No icon here */}
+              <Button clicked={() => logout()}>Logout - {user.username}</Button>
+            </ul>
+        )}
 
-      {admin && (
-        <ul className={classes.navlinks}>
-          <Navlink link="/Admin">
-            <AiOutlineHome /> Dashboard 
-          </Navlink>
-          <Navlink link="/OurPolicy">
-            <MdOutlinePolicy /> Policies & Guidance 
-          </Navlink>
-          <Button clicked={() => adminLogout()}>Logout - {admin.username}</Button>
-        </ul>
-      )}
-    </div>
+        {admin && (
+            <ul className={classes.navlinks}>
+              <Navlink link="/Admin">
+                Dashboard
+              </Navlink>
+              <Navlink link="/OurPolicy">
+                Policies & Guidance
+              </Navlink>
+              <Navlink link="/FAQ">FAQ</Navlink> {/* No icon here */}
+              <Button clicked={() => adminLogout()}>Logout - {admin.username}</Button>
+            </ul>
+        )}
+      </div>
   );
 };
 

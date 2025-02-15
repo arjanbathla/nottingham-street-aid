@@ -16,6 +16,7 @@ import RegisterEdit from "./pages/register/register_edit";
 import Login from "./pages/login/login";
 import ContactUs from "./pages/contactUs/contactUs";
 import OurPolicy from "./pages/ourPolicy/ourPolicy";
+import FAQ from "./pages/FAQ/FAQ.jsx";
 
 import Organisation from "./pages/organisation/organisation";
 import GrantApplication from "./pages/grantApplication/grantApplication";
@@ -83,7 +84,7 @@ const App = () => {
 
       <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/OurPolicy" element={<OurPolicy />} />
-
+        <Route path="/FAQ" element={<FAQ />} />
       <Route path="/Organisation" element={user ? <Organisation /> : <Navigate to="/" />}/>
       <Route path="/Register/:id" element={<RegisterEdit />} />
       <Route path="/GrantApplication" element={user ? <GrantApplication /> : <Navigate to="/" />}/>
