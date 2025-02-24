@@ -109,6 +109,21 @@ const GrantApplication = () => {
   const [otherCurrentAccom, setOtherCurrentAccom] = useLocalStorageState('otherCurrentAccom', 'GrantApplication', '');
   const [otherBenGrantReason, setOtherBenGrantReason] = useLocalStorageState('otherBenGrantReason', 'GrantApplication', '');
 
+  const handleFileChange = (e) => {
+    const selectedFiles = Array.from(e.target.files); // Convert FileList to an array
+
+    // Check if the total files exceed the limit
+    if (selectedFiles.length + otherBenGrantReason.length > 5) {
+      alert("You can upload a maximum of 5 files.");
+      return; // Exit the function if the limit is exceeded
+    }
+
+    // If within limit, update the state with the new file names
+    const updatedFiles = [...otherBenGrantReason, ...selectedFiles.map(file => file.name)];
+    setOtherBenGrantReason(updatedFiles); // Save file names in the state
+  };
+
+
   const [genders, setGenders] = useState([]);
   const [dependantDescription, setDependantDescription] = useState("");
 
@@ -254,6 +269,7 @@ const GrantApplication = () => {
       setCurrentSection(section);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
   };
 
   const titles = [
@@ -648,7 +664,7 @@ const GrantApplication = () => {
                         Address Line 1 *
                       </label>
                       <input
-                        maxLength={2000}
+                        maxLength={50}
                         type="text"
                         value={benAddressLine1}
                         onChange={(e) => setBenAddressLine1(e.target.value)}
@@ -1332,7 +1348,7 @@ const GrantApplication = () => {
                 </label>
                 <label className={classes.inputLabel}>
                   A Street Aid grant can be used for or towards anything, as
-                  long as it's used to fund whatever an individual needs to help
+                  long as it is used to fund whatever an individual needs to help
                   prevent them or gets them off, and stay off, the streets.
                 </label>
               </div>
@@ -1446,14 +1462,22 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <input
-                        maxLength={20}
-                        type="text"
-                        value={grantItemDetails1}
-                        onChange={(e) => setGrantItemDetails1(e.target.value)}
-                        placeholder="Item Description"
-                        required
-                      />
+                      <select
+                          value={grantItemDetails1}
+                          onChange={(e) => setGrantItemDetails1(e.target.value)}
+                          required
+                      >
+                        <option value="" disabled>Select an expense type</option>
+                        <option value="Temporary Accommodation">Temporary Accommodation</option>
+                        <option value="Food & Essentials">Food & Essentials</option>
+                        <option value="Clothing & Shoes">Clothing & Shoes</option>
+                        <option value="Hygiene & Toiletries">Hygiene & Toiletries</option>
+                        <option value="Transport Assistance">Transport Assistance</option>
+                        <option value="Medical Support">Medical Support</option>
+                        <option value="Counseling & Mental Health">Counseling & Mental Health</option>
+                        <option value="Job Training & Education">Job Training & Education</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
                   </div>
 
@@ -1473,13 +1497,22 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <input
-                        maxLength={20}
-                        type="text"
-                        value={grantItemDetails2}
-                        onChange={(e) => setGrantItemDetails2(e.target.value)}
-                        placeholder="Item Description"
-                      />
+                      <select
+                          value={grantItemDetails2}
+                          onChange={(e) => setGrantItemDetails2(e.target.value)}
+                          required
+                      >
+                        <option value="" disabled>Select an expense type</option>
+                        <option value="Temporary Accommodation">Temporary Accommodation</option>
+                        <option value="Food & Essentials">Food & Essentials</option>
+                        <option value="Clothing & Shoes">Clothing & Shoes</option>
+                        <option value="Hygiene & Toiletries">Hygiene & Toiletries</option>
+                        <option value="Transport Assistance">Transport Assistance</option>
+                        <option value="Medical Support">Medical Support</option>
+                        <option value="Counseling & Mental Health">Counseling & Mental Health</option>
+                        <option value="Job Training & Education">Job Training & Education</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
                   </div>
 
@@ -1499,13 +1532,22 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <input
-                        maxLength={20}
-                        type="text"
-                        value={grantItemDetails3}
-                        onChange={(e) => setGrantItemDetails3(e.target.value)}
-                        placeholder="Item Description"
-                      />
+                      <select
+                          value={grantItemDetails3}
+                          onChange={(e) => setGrantItemDetails3(e.target.value)}
+                          required
+                      >
+                        <option value="" disabled>Select an expense type</option>
+                        <option value="Temporary Accommodation">Temporary Accommodation</option>
+                        <option value="Food & Essentials">Food & Essentials</option>
+                        <option value="Clothing & Shoes">Clothing & Shoes</option>
+                        <option value="Hygiene & Toiletries">Hygiene & Toiletries</option>
+                        <option value="Transport Assistance">Transport Assistance</option>
+                        <option value="Medical Support">Medical Support</option>
+                        <option value="Counseling & Mental Health">Counseling & Mental Health</option>
+                        <option value="Job Training & Education">Job Training & Education</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
                   </div>
 
@@ -1525,13 +1567,22 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <input
-                        maxLength={20}
-                        type="text"
-                        value={grantItemDetails4}
-                        onChange={(e) => setGrantItemDetails4(e.target.value)}
-                        placeholder="Item Description"
-                      />
+                      <select
+                          value={grantItemDetails4}
+                          onChange={(e) => setGrantItemDetails4(e.target.value)}
+                          required
+                      >
+                        <option value="" disabled>Select an expense type</option>
+                        <option value="Temporary Accommodation">Temporary Accommodation</option>
+                        <option value="Food & Essentials">Food & Essentials</option>
+                        <option value="Clothing & Shoes">Clothing & Shoes</option>
+                        <option value="Hygiene & Toiletries">Hygiene & Toiletries</option>
+                        <option value="Transport Assistance">Transport Assistance</option>
+                        <option value="Medical Support">Medical Support</option>
+                        <option value="Counseling & Mental Health">Counseling & Mental Health</option>
+                        <option value="Job Training & Education">Job Training & Education</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
                   </div>
 
@@ -1551,13 +1602,22 @@ const GrantApplication = () => {
                     </div>
 
                     <div className={classes.inputBlock}>
-                      <input
-                        maxLength={20}
-                        type="text"
-                        value={grantItemDetails5}
-                        onChange={(e) => setGrantItemDetails5(e.target.value)}
-                        placeholder="Item Description"
-                      />
+                      <select
+                          value={grantItemDetails5}
+                          onChange={(e) => setGrantItemDetails5(e.target.value)}
+                          required
+                      >
+                        <option value="" disabled>Select an expense type</option>
+                        <option value="Temporary Accommodation">Temporary Accommodation</option>
+                        <option value="Food & Essentials">Food & Essentials</option>
+                        <option value="Clothing & Shoes">Clothing & Shoes</option>
+                        <option value="Hygiene & Toiletries">Hygiene & Toiletries</option>
+                        <option value="Transport Assistance">Transport Assistance</option>
+                        <option value="Medical Support">Medical Support</option>
+                        <option value="Counseling & Mental Health">Counseling & Mental Health</option>
+                        <option value="Job Training & Education">Job Training & Education</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
                   </div>
 
@@ -1579,27 +1639,25 @@ const GrantApplication = () => {
                     <p className={classes.errorMessage}>{costError}</p>
                   )}
                 </div>
-                
 
-                {/* <div className={classes.multiInputBlock}>
+
+                <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>
                     Quotes File for Large Items
                   </h3>
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
-                      Please provide quotes for higher cost items, above £xxx
-                      attaching copies where possible. Up to 5 quotes can be
-                      provided.
+                      Please provide quotes for higher cost items. Up to 5 quotes can be provided.
                     </label>
 
                     <input
-                      id="quote"
-                      type="file"
-                      onChange={(e) => setGrantQuoteLink(e.target.value)}
+                        id="quote"
+                        type="file"
+                        multiple // Allow multiple file uploads
+                        onChange={handleFileChange} // Handle file change
                     />
-                    <label htmlFor="quote">{grantQuoteLink}</label>
                   </div>
-                </div> */}
+                </div>
               </div>
               {buttons}
             </form>

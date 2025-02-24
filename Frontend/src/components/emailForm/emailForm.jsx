@@ -9,7 +9,7 @@ const EmailForm = () => {
 
     const sendEmail = (e) => {
         e.preventDefault(); // Prevent default form submission
-        emailjs.sendForm('service_tgfn8vz', 'template_qy1mqql', form.current,"LzeqLN2xlWRg1Z5sd")
+        emailjs.sendForm('service_h2feohr', 'template_bmfymdi', form.current,"irCIHAiikHeGXZj-4")
             .then((result) => {
                 console.log(result.text);
                 setMessage("Thank you! Your message has been sent.");
@@ -33,7 +33,7 @@ const EmailForm = () => {
                     <option className={classes.option} value="Grant Application">Grant Application</option>
                     <option className={classes.option} value="Other">Other</option>
                 </select>
-                <textarea className={classes.input} style={{minHeight:'11rem'}} maxLength={2000} type='text' name='message' placeholder='Message *' required/>
+                <textarea className={classes.input} style={{minHeight:'11rem'}} maxLength={100} type='text' name='message' placeholder='Message *' required/>
                 <Button value="Send">Submit Form</Button>
             </form>
 
