@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react"
 import "./App.css";
-
+import { logoutUser } from "../src/contextStore/userStore";
+import {useSelector, useDispatch } from "react-redux";
+import { Route, Routes, Navigate } from "react-router-dom";
 // import '@fontsource/dela-gothic-one';
 // import '@fontsource/bebas-neue';
 // Supports weights 100-900
 import "@fontsource-variable/jost";
-
-import { useSelector } from "react-redux";
-import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./navigation/layout/layout";
 
 import Home from "./pages/home/home";
@@ -17,6 +16,7 @@ import Login from "./pages/login/login";
 import ContactUs from "./pages/contactUs/contactUs";
 import OurPolicy from "./pages/ourPolicy/ourPolicy";
 import FAQ from "./pages/FAQ/FAQ.jsx";
+import MyProfile from "./pages/myProfile/myProfile";
 
 import Organisation from "./pages/organisation/organisation";
 import GrantApplication from "./pages/grantApplication/grantApplication";
@@ -29,7 +29,41 @@ import ViewAdminGrant from "./pages/viewAdminGrant/viewAdminGrant";
 const App = () => {
   const { user } = useSelector((state) => state.user);
   const { admin } = useSelector((state) => state.admin);
+    const dispatch = useDispatch();
+    let timeoutId = null;
+    useEffect(() => {
+        const handleUserActivity = () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId); // Clear the previous timeout
+            }
+            resetTimer(); // Reset the timer
+        };
 
+        const logoutAfterTimeout = () => {
+            dispatch(logoutUser()); // Dispatch the logout action
+        };
+
+        const resetTimer = () => {
+            timeoutId = setTimeout(logoutAfterTimeout, 300000); // 5 minutes
+        };
+
+        // Listen for user activity events
+        window.addEventListener("mousemove", handleUserActivity);
+        window.addEventListener("keydown", handleUserActivity);
+        window.addEventListener("click", handleUserActivity);
+        window.addEventListener("scroll", handleUserActivity);
+
+        resetTimer(); // Start the timer
+
+        // Cleanup event listeners on unmount
+        return () => {
+            window.removeEventListener("mousemove", handleUserActivity);
+            window.removeEventListener("keydown", handleUserActivity);
+            window.removeEventListener("click", handleUserActivity);
+            window.removeEventListener("scroll", handleUserActivity);
+            clearTimeout(timeoutId); // Clear timeout if component unmounts
+        };
+    }, [dispatch]);
   let routes = (
     <Routes>
       <Route
@@ -89,7 +123,7 @@ const App = () => {
       <Route path="/Register/:id" element={<RegisterEdit />} />
       <Route path="/GrantApplication" element={user ? <GrantApplication /> : <Navigate to="/" />}/>
       <Route path="/ViewGrant" element={user ? <ViewGrant /> : <Navigate to="/" />}/>
-
+        <Route path="/profile" element={<MyProfile />} />
       <Route path="/Admin" element={admin ? <Admin /> : <Navigate to="/" />} />
       <Route path="/ViewAdminGrant" element={admin ? <ViewAdminGrant /> : <Navigate to="/" />}/>
     </Routes>
