@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import "./App.css";
 import { logoutUser } from "../src/contextStore/userStore";
 import {useSelector, useDispatch } from "react-redux";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate,useNavigate } from "react-router-dom";
 // import '@fontsource/dela-gothic-one';
 // import '@fontsource/bebas-neue';
 // Supports weights 100-900
@@ -29,6 +29,7 @@ import ViewAdminGrant from "./pages/viewAdminGrant/viewAdminGrant";
 const App = () => {
   const { user } = useSelector((state) => state.user);
   const { admin } = useSelector((state) => state.admin);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     let timeoutId = null;
     useEffect(() => {
@@ -41,6 +42,7 @@ const App = () => {
 
         const logoutAfterTimeout = () => {
             dispatch(logoutUser()); // Dispatch the logout action
+            navigate("/");
         };
 
         const resetTimer = () => {

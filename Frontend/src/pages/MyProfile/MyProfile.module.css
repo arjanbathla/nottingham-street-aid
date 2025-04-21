@@ -1,0 +1,127 @@
+/* Container for the entire profile page */
+.container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Styling for the header */
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* General paragraph styles */
+p {
+    margin: 0.5rem 0;
+    color: #444;
+    font-size: 1rem;
+}
+
+/* Labels for input fields */
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+/* Styling for the input fields */
+input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+/* Styling for buttons */
+button {
+    padding: 0.6rem 1.2rem;
+    margin: 1rem 0.5rem 0 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover and active states for buttons */
+button:hover {
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Buttons with different colors */
+button:nth-of-type(1) {
+    background-color: #4caf50;
+    color: white;
+}
+
+button:nth-of-type(2) {
+    background-color: #f44336;
+    color: white;
+}
+
+button:nth-of-type(3) {
+    background-color: #2196f3;
+    color: white;
+}
+
+/* Styling for the values (i.e., actual data displayed) */
+.value {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 0.3rem;
+}
+
+/* Additional styling for better visual differentiation */
+.value p {
+    color: #555; /* Darker color for the value text */
+}
+
+.value span {
+    font-weight: bold; /* Make the label part bold */
+    color: #333;
+}
+
+/* Space between labels and values */
+.profile-section {
+    margin-top: 1.5rem;
+}
+
+/* Style for the whole profile information section */
+.profile-section p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #444;
+}
+
+/* Edit mode input fields */
+.edit-section input {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Create clear separation between the "Edit" button and others */
+.edit-button {
+    background-color: #2196f3;
+    color: white;
+    margin-top: 2rem;
+}
+.boldText {
+    font-weight: bold;
+    color: #333; /* Make sure it's dark enough */
+}

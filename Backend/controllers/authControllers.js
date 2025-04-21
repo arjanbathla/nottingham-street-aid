@@ -18,6 +18,22 @@ const loginAuth = async (req, res) => {
   }
 };
 
+const getProfileByUsername = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const user = await Auth.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
 const adminLoginAuth = async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -130,10 +146,30 @@ const authUpdate = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+const updateProfile = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const updated = await Auth.findOneAndUpdate(
+        { username },
+        { $set: req.body },
+        { new: true }
+    );
+
+    if (!updated) return res.status(404).json({ error: "User not found" });
+
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update profile" });
+  }
+};
+
 
 module.exports = {
   loginAuth,
   signupAuth,
   adminLoginAuth,
   authUpdate,
+  getProfileByUsername,
+  updateProfile,
 };
