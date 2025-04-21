@@ -37,6 +37,7 @@ const Register = () => {
   const [orgTown, setOrgTown] = useLocalStorageState('orgTown', 'Register', '');
   const [orgCounty, setOrgCounty] = useLocalStorageState('orgCounty', 'Register', '');
   const [orgPostcode, setOrgPostcode] = useLocalStorageState('orgPostcode', 'Register', '');
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [orgEmail, setOrgEmail] = useLocalStorageState('orgEmail', 'Register', '');
   const [orgPhone, setOrgPhone] = useLocalStorageState('orgPhone', 'Register', '');
@@ -262,62 +263,80 @@ const Register = () => {
           </div>
 
           {currentSection === 1 && (
-            <form className={classes.formLayout} onSubmit={handleContinue}>
-              <div className={classes.formBanner}>
-                <h2 className={classes.mainTitle}>1. Register</h2>
-              </div>
-              <div className={classes.formContent}>
-                <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    Organisation Registration Details
-                  </h3>
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Email *</label>
-                    <input
-                      maxLength={40}
-                      type="email"
-                      placeholder="Eg. JohnDoe@email.com"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                      required
-                    />
-                  </div>
+              <form className={classes.formLayout} onSubmit={handleContinue}>
+                <div className={classes.formBanner}>
+                  <h2 className={classes.mainTitle}>1. Register</h2>
+                </div>
+                <div className={classes.formContent}>
+                  <div className={classes.multiInputBlock}>
+                    <h3 className={classes.subTitle}>
+                      Organisation Registration Details
+                    </h3>
 
-                  <div className={classes.inputBlock}>
-                    <label className={classes.inputLabel}>Password *</label>
-                    <div className={classes.passwordBlock}>
+                    <div className={classes.inputBlock}>
+                      <label className={classes.inputLabel}>Email *</label>
                       <input
-                        maxLength={25}
-                        type={showPass ? "text" : "password"}
-                        placeholder="Eg. Password123#"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$"
-                        required
+                          maxLength={40}
+                          type="email"
+                          placeholder="Eg. JohnDoe@email.com"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                          required
                       />
-                      <Button clicked={handleClickShowPassword}>
-                        {showPass ? "Hide" : "Show"}
-                      </Button>
                     </div>
-                    <label className={classes.passwordLabel}>
-                      At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
-                    </label>
+
+                    <div className={classes.inputBlock}>
+                      <label className={classes.inputLabel}>Password *</label>
+                      <div className={classes.passwordBlock}>
+                        <input
+                            maxLength={25}
+                            type={showPass ? "text" : "password"}
+                            placeholder="Eg. Password123#"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$"
+                            required
+                        />
+                        <Button clicked={handleClickShowPassword}>
+                          {showPass ? "Hide" : "Show"}
+                        </Button>
+                      </div>
+                      <label className={classes.passwordLabel}>
+                        At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
+                      </label>
+                    </div>
+
+                    <div className={classes.inputBlock}>
+                      <label className={classes.inputLabel}>Confirm Password *</label>
+                      <input
+                          type={showPass ? "text" : "password"}
+                          placeholder="Re-type your password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          required
+                      />
+                      {password && confirmPassword && password !== confirmPassword && (
+                          <p className={classes.errorMessage}>Passwords do not match.</p>
+                      )}
+                    </div>
+
                     <a onClick={handleLogin} className={classes.link}>
                       Already Registered? Click Here To Login.
                     </a>
                   </div>
                 </div>
-              </div>
 
-              {errorSignup && (
-                <p className={classes.errorMessage}>{errorSignup}</p>
-              )}
+                {errorSignup && (
+                    <p className={classes.errorMessage}>{errorSignup}</p>
+                )}
 
-              <div className={classes.buttonBlock}>
-                <Button type="submit">Continue Registration</Button>
-              </div>
-            </form>
+                <div className={classes.buttonBlock}>
+                  <Button type="submit" disabled={password !== confirmPassword}>
+                    Continue Registration
+                  </Button>
+                </div>
+              </form>
           )}
 
           {currentSection === 2 && (

@@ -126,7 +126,7 @@ const App = () => {
       <Route path="/GrantApplication" element={user ? <GrantApplication /> : <Navigate to="/" />}/>
       <Route path="/ViewGrant" element={user ? <ViewGrant /> : <Navigate to="/" />}/>
         <Route path="/profile" element={<MyProfile />} />
-      <Route path="/Admin" element={admin ? <Admin /> : <Navigate to="/" />} />
+        <Route path="/Admin" element={admin ? <Admin /> : <Navigate to="/" />} />
       <Route path="/ViewAdminGrant" element={admin ? <ViewAdminGrant /> : <Navigate to="/" />}/>
     </Routes>
   );
