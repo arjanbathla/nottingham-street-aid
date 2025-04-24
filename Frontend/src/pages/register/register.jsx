@@ -30,6 +30,15 @@ const Register = () => {
   const [username, setUsername] = useLocalStorageState('username', 'Register', '');
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
+  const validatePassword = (pass) => {
+    const hasUppercase = /[A-Z]/.test(pass);
+    const hasSymbol = /[^a-zA-Z0-9]/.test(pass);
+    const hasLength = pass.length >= 8;
+    return hasUppercase && hasSymbol && hasLength;
+  };
+  
+  const passwordHelpText = "Password must contain at least one symbol, one uppercase letter, and be 8+ characters long.";
+  
 
   const [orgName, setOrgName] = useLocalStorageState('orgName', 'Register', '');
   const [orgAdr1, setOrgAdr1] = useLocalStorageState('orgAdr1', 'Register', '');
@@ -182,6 +191,11 @@ const Register = () => {
     if (otherContact3Title) {
       setContact3Title(otherContact3Title);
     }
+    if (!validatePassword(password)) {
+      alert("Your password does not meet the required criteria.");
+      return;
+    }
+    
     await signup(
       username,
       password,
@@ -316,6 +330,10 @@ const Register = () => {
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           required
                       />
+                      <p style={{ fontSize: '0.9rem', color: '#888', marginTop: '4px' }}>
+                        {passwordHelpText}
+                        </p>
+
                       {password && confirmPassword && password !== confirmPassword && (
                           <p className={classes.errorMessage}>Passwords do not match.</p>
                       )}
