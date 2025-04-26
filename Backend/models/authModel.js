@@ -9,6 +9,8 @@ const authSchema = new Schema(
     userStatus: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
 
     orgName: { type: String, required: true },
     orgAdr1: { type: String, required: true },

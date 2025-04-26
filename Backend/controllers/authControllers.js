@@ -1,3 +1,6 @@
+import crypto from "crypto";
+import User from "../models/authModel.js";
+
 const Auth = require("../models/authModel");
 const AdminAuth = require("../models/adminAuthModel");
 const mongoose = require("mongoose");
@@ -172,4 +175,39 @@ module.exports = {
   authUpdate,
   getProfileByUsername,
   updateProfile,
+};
+
+
+export const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) return res.status(404).json({ error: "No user with that email" });
+
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  user.passwordResetToken = resetToken;
+  user.passwordResetExpires = Date.now() + 3600_000; // 1 hour
+  await user.save({ validateBeforeSave: false });
+
+  const resetUrl = `${req.protocol}://${req.get("host")}/reset-password/${resetToken}`;
+  // TODO: send `resetUrl` via email to user.email
+  // e.g. await sendEmail(user.email, "Your reset link", resetUrl);
+
+  res.json({ message: "Password reset link sent to email" });
+};
+
+// POST /api/auth/reset-password/:token
+export const resetPassword = async (req, res) => {
+  const { token } = req.params;
+  const user = await User.findOne({
+    passwordResetToken: token,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+  if (!user) return res.status(400).json({ error: "Token invalid or expired" });
+
+  user.password = req.body.password;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
+
+  res.json({ message: "Password has been reset" });
 };
