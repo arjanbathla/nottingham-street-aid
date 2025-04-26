@@ -1,6 +1,6 @@
-import crypto from "crypto";
-import User from "../models/authModel.js";
 
+
+const crypto = require("crypto");
 const Auth = require("../models/authModel");
 const AdminAuth = require("../models/adminAuthModel");
 const mongoose = require("mongoose");
@@ -166,21 +166,9 @@ const updateProfile = async (req, res) => {
     res.status(500).json({ error: "Failed to update profile" });
   }
 };
-
-
-module.exports = {
-  loginAuth,
-  signupAuth,
-  adminLoginAuth,
-  authUpdate,
-  getProfileByUsername,
-  updateProfile,
-};
-
-
-export const forgotPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
   const { email } = req.body;
-  const user = await User.findOne({ email });
+  const user = await Auth.findOne({ email });
   if (!user) return res.status(404).json({ error: "No user with that email" });
 
   const resetToken = crypto.randomBytes(32).toString("hex");
@@ -189,16 +177,13 @@ export const forgotPassword = async (req, res) => {
   await user.save({ validateBeforeSave: false });
 
   const resetUrl = `${req.protocol}://${req.get("host")}/reset-password/${resetToken}`;
-  // TODO: send `resetUrl` via email to user.email
-  // e.g. await sendEmail(user.email, "Your reset link", resetUrl);
-
+  // TODO: actually send the email containing resetUrl
   res.json({ message: "Password reset link sent to email" });
 };
 
-// POST /api/auth/reset-password/:token
-export const resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
   const { token } = req.params;
-  const user = await User.findOne({
+  const user = await Auth.findOne({
     passwordResetToken: token,
     passwordResetExpires: { $gt: Date.now() },
   });
@@ -211,3 +196,22 @@ export const resetPassword = async (req, res) => {
 
   res.json({ message: "Password has been reset" });
 };
+
+
+module.exports = {
+  loginAuth,
+  signupAuth,
+  adminLoginAuth,
+  authUpdate,
+  getProfileByUsername,
+  updateProfile,
+  forgotPassword,
+  resetPassword,
+};
+
+
+
+
+
+
+
