@@ -31,6 +31,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
 
+
   const [orgName, setOrgName] = useLocalStorageState('orgName', 'Register', '');
   const [orgAdr1, setOrgAdr1] = useLocalStorageState('orgAdr1', 'Register', '');
   const [orgAdr2, setOrgAdr2] = useLocalStorageState('orgAdr2', 'Register', '');
@@ -182,6 +183,7 @@ const Register = () => {
     if (otherContact3Title) {
       setContact3Title(otherContact3Title);
     }
+    
     await signup(
       username,
       password,
@@ -303,7 +305,7 @@ const Register = () => {
                         </Button>
                       </div>
                       <label className={classes.passwordLabel}>
-                        At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
+                      Password must contain at least one symbol, one uppercase letter, and be 8+ characters long.
                       </label>
                     </div>
 
