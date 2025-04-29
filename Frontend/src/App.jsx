@@ -25,6 +25,11 @@ import ViewGrant from "./pages/viewGrant/viewGrant";
 import AdminLogin from "./pages/adminLogin/adminLogin";
 import Admin from "./pages/admin/admin";
 import ViewAdminGrant from "./pages/viewAdminGrant/viewAdminGrant";
+import ForgotPassword from './pages/ForgotPassword';
+import VerifyCode from './pages/VerifyCode';
+import ResetPassword from './pages/ResetPassword';
+
+
 
 const App = () => {
     const { user } = useSelector((state) => state.user);
@@ -104,6 +109,12 @@ const App = () => {
                     )
                 }
             />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/verify-code" element={<VerifyCode />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+
+
+
 
             <Route
                 path="/AdminLogin"
