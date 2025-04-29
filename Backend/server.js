@@ -6,6 +6,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes")
 const organisationRoutes = require("./routes/organisationRoutes")
 const adminRoutes = require("./routes/adminRoutes")
+const {deleteGrant} = require("./controllers/grantControllers");
 // init express node app
 const app = express();
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+app.delete("/api/grant/:grantId", deleteGrant);
 
 app.use("/api", authRoutes, organisationRoutes, adminRoutes)
 // connect the app to a database

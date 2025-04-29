@@ -171,10 +171,33 @@ const fetchAllAuths = async (req, res) => {
   res.status(200).json(auths);
 };
 
+// Delete grant by ID
+const deleteGrant = async (req, res) => {
+  const { grantId } = req.params; // Access grantId from the URL
+
+  try {
+    console.log("Attempting to delete grant with ID:", grantId);
+
+    const grant = await Grant.findByIdAndDelete(grantId);
+
+    if (!grant) {
+      return res.status(404).json({ message: "Grant not found" });
+    }
+
+    console.log("Grant deleted successfully:", grantId);
+    res.status(200).json({ message: "Grant deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting grant:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
 module.exports = {
   fetchGrants,
   fetchAllGrants,
   updateStatus,
   createGrant,
   fetchAllAuths,
+  deleteGrant,
 };

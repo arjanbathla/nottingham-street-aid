@@ -20,6 +20,8 @@ const authSchema = new Schema(
       },
     },
     password: { type: String, required: true },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
 
     orgName: { type: String, required: true },
     orgAdr1: { type: String, required: true },
