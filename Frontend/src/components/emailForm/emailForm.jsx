@@ -9,7 +9,7 @@ const EmailForm = () => {
 
     const sendEmail = (e) => {
         e.preventDefault(); // Prevent default form submission
-        emailjs.sendForm('service_h2feohr', 'template_bmfymdi', form.current,"irCIHAiikHeGXZj-4")
+        emailjs.sendForm('service_h2feohr', 'template_bmfymdi', form.current,"irCIHAiikHeGXZj-4") //Change here
             .then((result) => {
                 console.log(result.text);
                 setMessage("Thank you! Your message has been sent.");
