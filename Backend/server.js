@@ -1,24 +1,27 @@
-// importing required packages
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const authRoutes = require("./routes/authRoutes")
-const organisationRoutes = require("./routes/organisationRoutes")
-const adminRoutes = require("./routes/adminRoutes")
-// init express node app
+const authRoutes = require("./routes/authRoutes");
+const organisationRoutes = require("./routes/organisationRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const passwordResetRoutes = require("./routes/passwordReset"); // added this
+const { deleteGrant } = require("./controllers/grantControllers");
+
 const app = express();
 
-// allow the app to use middleware
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    next()
-})
+    console.log(req.path, req.method);
+    next();
+});
 
-app.use("/api", authRoutes, organisationRoutes, adminRoutes)
-// connect the app to a database
+app.delete("/api/grant/:grantId", deleteGrant);
+
+app.use("/api", passwordResetRoutes); // added this BEFORE auth routes
+app.use("/api", authRoutes, organisationRoutes, adminRoutes);
+
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     app.listen(process.env.PORT, () => {
@@ -26,5 +29,5 @@ mongoose.connect(process.env.MONGO_URI)
     });
 })
 .catch((error) => {
-    console.log("ERR:", error)
-})
+    console.log("ERR:", error);
+});

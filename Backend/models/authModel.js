@@ -1,3 +1,4 @@
+// backend/models/authModel.js
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
@@ -7,8 +8,20 @@ const Schema = mongoose.Schema;
 const authSchema = new Schema(
   {
     userStatus: { type: String, required: true },
-    username: { type: String, required: true, unique: true },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+        validator: function (value) {
+          return validator.isEmail(value);
+        },
+        message: "Invalid email format for username",
+      },
+    },
     password: { type: String, required: true },
+    passwordResetToken: String,
+    passwordResetExpires: Date,
 
     orgName: { type: String, required: true },
     orgAdr1: { type: String, required: true },
@@ -17,7 +30,16 @@ const authSchema = new Schema(
     orgCounty: { type: String, required: true },
     orgPostcode: { type: String, required: true },
 
-    orgEmail: { type: String, required: true },
+    orgEmail: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (value) {
+          return validator.isEmail(value);
+        },
+        message: "Invalid email format for organization email",
+      },
+    },
     orgPhone: { type: String, required: true },
     orgWebsite: { type: String, required: false },
     orgType: { type: String, required: true },
@@ -28,21 +50,48 @@ const authSchema = new Schema(
     contact1Fname: { type: String, required: true },
     contact1Lname: { type: String, required: true },
     contact1Role: { type: String, required: true },
-    contact1Email: { type: String, required: true },
+    contact1Email: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (value) {
+          return validator.isEmail(value);
+        },
+        message: "Invalid email format for primary contact email",
+      },
+    },
     contact1Phone: { type: String, required: true },
 
     contact2Title: { type: String, required: false },
     contact2Fname: { type: String, required: false },
     contact2Lname: { type: String, required: false },
     contact2Role: { type: String, required: false },
-    contact2Email: { type: String, required: false },
+    contact2Email: {
+      type: String,
+      required: false,
+      validate: {
+        validator: function (value) {
+          return !value || validator.isEmail(value);
+        },
+        message: "Invalid email format for secondary contact email",
+      },
+    },
     contact2Phone: { type: String, required: false },
 
     contact3Title: { type: String, required: false },
     contact3Fname: { type: String, required: false },
     contact3Lname: { type: String, required: false },
     contact3Role: { type: String, required: false },
-    contact3Email: { type: String, required: false },
+    contact3Email: {
+      type: String,
+      required: false,
+      validate: {
+        validator: function (value) {
+          return !value || validator.isEmail(value);
+        },
+        message: "Invalid email format for finance contact email",
+      },
+    },
     contact3Phone: { type: String, required: false },
 
     commsPref: { type: String, required: true },
@@ -58,7 +107,7 @@ const authSchema = new Schema(
   { timestamps: true }
 );
 
-//static signup method
+// Static signup method
 authSchema.statics.signup = async function (
   userStatus,
   username,
@@ -120,12 +169,6 @@ authSchema.statics.signup = async function (
   ) {
     throw Error("All fields must be filled");
   }
-  if (!validator.isEmail(username)) {
-    throw Error("Email is not valid");
-  }
-  if (!validator.isStrongPassword(password)) {
-    throw Error("Password is not strong");
-  }
 
   const exists = await this.findOne({ username });
 
@@ -179,7 +222,7 @@ authSchema.statics.signup = async function (
   return auth;
 };
 
-//static login method
+// Static login method
 authSchema.statics.login = async function (username, password) {
   if (!username || !password) {
     throw Error("All fields must be filled");
@@ -193,7 +236,7 @@ authSchema.statics.login = async function (username, password) {
 
   const match = await bcrypt.compare(password, auth.password);
 
-  if (!validator.isStrongPassword(password) && !match) {
+  if (!match) {
     throw Error("Incorrect Password");
   }
 

@@ -88,7 +88,15 @@ const Login = () => {
                 <label>Superuser Login</label>
               </div>
             </div>
-
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/forgot-password");
+              }}
+              className={classes.link}
+            >
+              Forgot Password?
+            </a>           
             <div className={classes.buttonBlock}>
               <Button type="submit" disabled={isLoadingLogin}>
                 Login

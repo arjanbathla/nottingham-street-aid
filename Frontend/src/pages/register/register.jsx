@@ -37,7 +37,6 @@ const Register = () => {
   const [orgTown, setOrgTown] = useLocalStorageState('orgTown', 'Register', '');
   const [orgCounty, setOrgCounty] = useLocalStorageState('orgCounty', 'Register', '');
   const [orgPostcode, setOrgPostcode] = useLocalStorageState('orgPostcode', 'Register', '');
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [orgEmail, setOrgEmail] = useLocalStorageState('orgEmail', 'Register', '');
   const [orgPhone, setOrgPhone] = useLocalStorageState('orgPhone', 'Register', '');
@@ -100,16 +99,12 @@ const Register = () => {
   const [latestSection, setLatestSection] = useState();
 
   const handleContinue = () => {
-
     // Proceed to the next section
     if (currentSection < totalSections) {
       setCurrentSection(currentSection + 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
-
-
-
 
   const handlePrevious = () => {
     if (currentSection > 1) {
@@ -123,10 +118,8 @@ const Register = () => {
     // for limiter
     setLatestSection(currentSection);
 
-    // setLatestSection(section);
     if (latestSection >= section) {
-      setCurrentSection(section); // bug::: inputs disappear when top progress bar used to go behind
-      //eg. input on page 2 disappears only if go back to 1 not 3
+      setCurrentSection(section);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -165,8 +158,6 @@ const Register = () => {
     e.preventDefault();
     navigate("/Login");
   };
-
-
 
   const submitRegistration = async (e) => {
     e.preventDefault();
@@ -224,7 +215,7 @@ const Register = () => {
     setCurrentSection(1);
 
     if (errorSignup == null) {
-        deleteLocalStorageItemsStartingWith('Register')
+      deleteLocalStorageItemsStartingWith('Register');
     }
   };
 
@@ -263,80 +254,62 @@ const Register = () => {
           </div>
 
           {currentSection === 1 && (
-              <form className={classes.formLayout} onSubmit={handleContinue}>
-                <div className={classes.formBanner}>
-                  <h2 className={classes.mainTitle}>1. Register</h2>
-                </div>
-                <div className={classes.formContent}>
-                  <div className={classes.multiInputBlock}>
-                    <h3 className={classes.subTitle}>
-                      Organisation Registration Details
-                    </h3>
+            <form className={classes.formLayout} onSubmit={handleContinue}>
+              <div className={classes.formBanner}>
+                <h2 className={classes.mainTitle}>1. Register</h2>
+              </div>
+              <div className={classes.formContent}>
+                <div className={classes.multiInputBlock}>
+                  <h3 className={classes.subTitle}>
+                    Organisation Registration Details
+                  </h3>
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>Email *</label>
+                    <input
+                      maxLength={40}
+                      type="email"
+                      placeholder="Eg. JohnDoe@email.com"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                      required
+                    />
+                  </div>
 
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Email *</label>
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>Password *</label>
+                    <div className={classes.passwordBlock}>
                       <input
-                          maxLength={40}
-                          type="email"
-                          placeholder="Eg. JohnDoe@email.com"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
-                          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                          required
+                        maxLength={25}
+                        type={showPass ? "text" : "password"}
+                        placeholder="Eg. Password123#"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$"
+                        required
                       />
+                      <Button clicked={handleClickShowPassword}>
+                        {showPass ? "Hide" : "Show"}
+                      </Button>
                     </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Password *</label>
-                      <div className={classes.passwordBlock}>
-                        <input
-                            maxLength={25}
-                            type={showPass ? "text" : "password"}
-                            placeholder="Eg. Password123#"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$"
-                            required
-                        />
-                        <Button clicked={handleClickShowPassword}>
-                          {showPass ? "Hide" : "Show"}
-                        </Button>
-                      </div>
-                      <label className={classes.passwordLabel}>
-                        At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
-                      </label>
-                    </div>
-
-                    <div className={classes.inputBlock}>
-                      <label className={classes.inputLabel}>Confirm Password *</label>
-                      <input
-                          type={showPass ? "text" : "password"}
-                          placeholder="Re-type your password"
-                          value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
-                          required
-                      />
-                      {password && confirmPassword && password !== confirmPassword && (
-                          <p className={classes.errorMessage}>Passwords do not match.</p>
-                      )}
-                    </div>
-
+                    <label className={classes.passwordLabel}>
+                      At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
+                    </label>
                     <a onClick={handleLogin} className={classes.link}>
                       Already Registered? Click Here To Login.
                     </a>
                   </div>
                 </div>
+              </div>
 
-                {errorSignup && (
-                    <p className={classes.errorMessage}>{errorSignup}</p>
-                )}
+              {errorSignup && (
+                <p className={classes.errorMessage}>{errorSignup}</p>
+              )}
 
-                <div className={classes.buttonBlock}>
-                  <Button type="submit" disabled={password !== confirmPassword}>
-                    Continue Registration
-                  </Button>
-                </div>
-              </form>
+              <div className={classes.buttonBlock}>
+                <Button type="submit">Continue Registration</Button>
+              </div>
+            </form>
           )}
 
           {currentSection === 2 && (
@@ -467,24 +440,23 @@ const Register = () => {
                       value={orgWebsite}
                       onChange={(e) => {
                         let url = e.target.value.trim();
-
-                        // Ensure it starts with http:// or https://
                         if (!url.startsWith("http://") && !url.startsWith("https://")) {
                           url = "https://" + url;
                         }
-
-                        // Validate the final URL
                         try {
-                          new URL(url); // Throws an error if invalid
+                          new URL(url);
                           setOrgWebsite(url);
                         } catch {
                           console.error("Invalid URL format");
                         }
                       }}
-
                     />
                   </div>
                 </div>
+
+                {errorSignup && (
+                  <p className={classes.errorMessage}>{errorSignup}</p>
+                )}
 
                 <div className={classes.multiInputBlock}>
                   <h3 className={classes.subTitle}>Organisation Details</h3>
@@ -908,6 +880,10 @@ const Register = () => {
                     </div>
                   </div>
                 )}
+
+                {errorSignup && (
+                  <p className={classes.errorMessage}>{errorSignup}</p>
+                )}
                 {buttons}
               </div>
             </form>
@@ -1032,11 +1008,10 @@ const Register = () => {
                       Click here to read our Data Protection Policy.
                     </a>
                     <a
-                      href="mailtoenquiries.nottingham@streetsupport.net"
+                      href="mailto:enquiries.nottingham@streetsupport.net"
                       className={classes.link}
                     >
-                      Contact enquiries.nottingham@streetsupport.net to revoke
-                      consent
+                      Contact enquiries.nottingham@streetsupport.net to revoke consent
                     </a>
                   </div>
                 </div>
@@ -1060,6 +1035,10 @@ const Register = () => {
                     Click here to read full terms and conditions.
                   </a>
                 </div>
+
+                {errorSignup && (
+                  <p className={classes.errorMessage}>{errorSignup}</p>
+                )}
                 {buttons}
               </div>
             </form>

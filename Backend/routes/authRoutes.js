@@ -20,4 +20,8 @@ router.post('/auth/update', authUpdate);
 router.get("/profile/:username", getProfileByUsername);
 router.patch("/profile/:username", updateProfile);
 
+
 module.exports = router;
+
+module.exports = router
+
