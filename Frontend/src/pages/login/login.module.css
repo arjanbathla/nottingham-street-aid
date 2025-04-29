@@ -74,6 +74,27 @@
 
 .inputBlock input:active,
 .inputBlock input:focus,
-.inputBlock input:hover{
+.inputBlock input:hover {
     border: 3px solid var(--dark);
+}
+
+/* ✨ Superuser Checkbox Style */
+.superuserCheckbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.5rem;
+}
+
+.superuserCheckbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Optional hover effect */
+.superuserCheckbox:hover {
+    background-color: var(--neutral);
+    border-radius: var(--padding-1);
+    padding: 0.2rem;
 }

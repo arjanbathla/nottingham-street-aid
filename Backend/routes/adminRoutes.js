@@ -15,4 +15,4 @@ router.get("/admin/auths", fetchAllAuths);
 router.patch('/admin/updateStatus', updateStatus)
 
 
-module.exports = router
+module.exports = routers

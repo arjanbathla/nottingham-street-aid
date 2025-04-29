@@ -107,23 +107,20 @@ const GrantApplication = () => {
   const [otherBenGen, setOtherBenGen] = useLocalStorageState('otherBenGen', 'GrantApplication', '');
   const [otherBenSex, setOtherBenSex] = useLocalStorageState('otherBenSex', 'GrantApplication', '');
   const [otherCurrentAccom, setOtherCurrentAccom] = useLocalStorageState('otherCurrentAccom', 'GrantApplication', '');
-  const [otherBenGrantReason, setOtherBenGrantReason] = useLocalStorageState('otherBenGrantReason', 'GrantApplication', '');
+  const [uploadedQuotes, setUploadedQuotes] = useState([]);
+
 
   const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files); // Convert FileList to an array
-
-    // Check if the total files exceed the limit
-    if (selectedFiles.length + otherBenGrantReason.length > 5) {
-      alert("You can upload a maximum of 5 files.");
-      return; // Exit the function if the limit is exceeded
+    const selectedFiles = Array.from(e.target.files);
+  
+    if (selectedFiles.length > 5) {
+      alert("You can only upload up to 5 quote files.");
+      return;
     }
-
-    // If within limit, update the state with the new file names
-    const updatedFiles = [...otherBenGrantReason, ...selectedFiles.map(file => file.name)];
-    setOtherBenGrantReason(updatedFiles); // Save file names in the state
+  
+    setUploadedQuotes(selectedFiles); // Save actual File objects
   };
-
-
+  
   const [genders, setGenders] = useState([]);
   const [dependantDescription, setDependantDescription] = useState("");
 
