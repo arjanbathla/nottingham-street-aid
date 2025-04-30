@@ -13,14 +13,14 @@ const VerifyCode = () => {
     e.preventDefault();
     setMessage('');
     try {
-        const res = await axios.post('http://localhost:8999/api/verify-code', { email, code });
-      setMessage(res.data.message);
+      await axios.post('http://localhost:8999/api/verify-code', { email, code });
       localStorage.setItem('resetCode', code);
       navigate('/reset-password');
     } catch (err) {
       setMessage(err.response?.data?.error || 'Something went wrong.');
     }
   };
+  
 
   return (
     <div style={{ maxWidth: '400px', margin: 'auto', marginTop: '100px' }}>

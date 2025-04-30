@@ -10,6 +10,9 @@ const transporter = nodemailer.createTransport({
     user: 'streetaidnottingham@gmail.com',
     pass: 'pucmckappwutsuwr'
   }
+}, {
+  logger: true,
+  debug: true
 });
 
 router.post('/request-reset', async (req, res) => {
@@ -20,11 +23,14 @@ router.post('/request-reset', async (req, res) => {
     if (!user) return res.status(404).json({ error: 'Email not found' });
 
     const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log(`Generated reset code: ${resetCode} for ${email}`);
     const expires = new Date(Date.now() + 10 * 60 * 1000);
 
     user.resetCode = resetCode;
     user.resetCodeExpires = expires;
     await user.save();
+
+    console.log(`Sending code ${resetCode} to ${email}`);
 
     await transporter.sendMail({
       from: '"StreetAid Support" <streetaidnottingham@gmail.com>',

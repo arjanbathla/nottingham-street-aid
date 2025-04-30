@@ -15,6 +15,10 @@ import PN_PDF from "../../assets/NSA_Privacy_Notice.pdf";
 const Register = () => {
   const navigate = useNavigate();
   const { signup, isLoadingSignup, errorSignup } = useSignup();
+  const [websiteError, setWebsiteError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+
 
   useEffect(() => {
     const unloadCallback = (event) => {
@@ -161,6 +165,10 @@ const Register = () => {
 
   const submitRegistration = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setWebsiteError("Passwords do not match.");
+      return;
+    }
     if (otherOrgType) {
       setOrgType(otherOrgType);
     }
@@ -292,25 +300,40 @@ const Register = () => {
                         {showPass ? "Hide" : "Show"}
                       </Button>
                     </div>
-                    <label className={classes.passwordLabel}>
-                      At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
-                    </label>
-                    <a onClick={handleLogin} className={classes.link}>
-                      Already Registered? Click Here To Login.
-                    </a>
+                  </div>
+
+                  <div className={classes.inputBlock}>
+                    <label className={classes.inputLabel}>Confirm Password *</label>
+                    <input
+                      maxLength={25}
+                      type={showPass ? "text" : "password"}
+                      placeholder="Re-enter password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <label className={classes.passwordLabel}>
+                    At least 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol and 8 Characters.
+                  </label>
+
+                  <a onClick={handleLogin} className={classes.link}>
+                    Already Registered? Click Here To Login.
+                  </a>
+
+                  {errorSignup && (
+                    <p className={classes.errorMessage}>{errorSignup}</p>
+                  )}
+
+                  <div className={classes.buttonBlock}>
+                    <Button type="submit">Continue Registration</Button>
                   </div>
                 </div>
               </div>
-
-              {errorSignup && (
-                <p className={classes.errorMessage}>{errorSignup}</p>
-              )}
-
-              <div className={classes.buttonBlock}>
-                <Button type="submit">Continue Registration</Button>
-              </div>
             </form>
           )}
+
 
           {currentSection === 2 && (
             <form className={classes.formLayout} onSubmit={handleContinue}>
