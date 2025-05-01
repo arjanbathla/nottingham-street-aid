@@ -10,15 +10,15 @@ Install Node.js: https://nodejs.org/
 Install MongoDB Community Edition: https://www.mongodb.com/docs/manual/installation/
 
 Which can also be done through terminal by running these lines :
-## * Install Homebrew (if not already installed)
+# * Install Homebrew (if not already installed)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-## * Install Node.js
+# * Install Node.js
 brew install node
 This will install both node and npm (Node Package Manager)
-## * Install MongoDB Community Edition
+# * Install MongoDB Community Edition
 brew tap mongodb/brew
 brew install mongodb-community@7.0
-## * Start MongoDB Service
+# * Start MongoDB Service
 brew services start mongodb-community@7.0
 
 ## 3. Start Local MongoDB Server
