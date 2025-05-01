@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 import classes from "./grantApplication.module.css";
 
 import { applyGrant } from "../../hooks/useApplyGrant";
@@ -11,6 +11,8 @@ import Loader from "../../components/loader/loader";
 
 import GDPR_PDF from "../../assets/NSA_Data_Protection_Policy_GDPR.pdf";
 import GUIDE from "../../assets/NSA_Application_Guide.pdf";
+import { useState, useEffect } from "react";
+
 
 import { EighteenLim } from "../../config";
 
@@ -64,7 +66,7 @@ const GrantApplication = () => {
   const [benSex, setBenSex] = useLocalStorageState('benSex', 'GrantApplication', '');
   const [benEthnicity, setBenEthnicity] = useLocalStorageState('benEthnicity', 'GrantApplication', '');
   const [benReligion, setBenReligion] = useLocalStorageState('benReligion', 'GrantApplication', '');
-  const [benDisability, setBenDisability] = useLocalStorageState('benDisability', 'GrantApplication', '');
+  const [beneficiaryHasDisability, setBenDisability] = useLocalStorageState('benDisability', 'GrantApplication', '');
   const [benDisabilityExtra, setBenDisabilityExtra] = useLocalStorageState('benDisabilityExtra', 'GrantApplication', '');
   const [benMarital, setBenMarital] = useLocalStorageState('benMarital', 'GrantApplication', '');
   const [benPregnancy, setBenPregnancy] = useLocalStorageState('benPregnancy', 'GrantApplication', '');
@@ -76,7 +78,7 @@ const GrantApplication = () => {
   const [currentAccom, setCurrentAccom] = useLocalStorageState('currentAccom', 'GrantApplication', '');
   const [benCurrentAccomLength, setBenCurrentAccomLength] = useLocalStorageState('benCurrentAccomLength', 'GrantApplication', '');
 
-  const [benHistOfHomelessness, setBenHistOfHomelessness] = useLocalStorageState('benHistOfHomelessness', 'GrantApplication', '');
+  const [beneficiaryHomelessHistory, setBenHistOfHomelessness] = useLocalStorageState('benHistOfHomelessness', 'GrantApplication', '');
   const [benHistDetails, setBenHistDetails] = useLocalStorageState('benHistDetails', 'GrantApplication', '');
   const [benTimeInNottingham, setBenTimeInNottingham] = useLocalStorageState('benTimeInNottingham', 'GrantApplication', '');
   const [benLinkToNottingham, setBenLinkToNottingham] = useLocalStorageState('benLinkToNottingham', 'GrantApplication', '');
@@ -107,20 +109,16 @@ const GrantApplication = () => {
   const [otherBenGen, setOtherBenGen] = useLocalStorageState('otherBenGen', 'GrantApplication', '');
   const [otherBenSex, setOtherBenSex] = useLocalStorageState('otherBenSex', 'GrantApplication', '');
   const [otherCurrentAccom, setOtherCurrentAccom] = useLocalStorageState('otherCurrentAccom', 'GrantApplication', '');
-  const [otherBenGrantReason, setOtherBenGrantReason] = useLocalStorageState('otherBenGrantReason', 'GrantApplication', '');
+  const [quoteFiles, setQuoteFiles] = useState([]);
+  
 
-  const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files); // Convert FileList to an array
-
-    // Check if the total files exceed the limit
-    if (selectedFiles.length + otherBenGrantReason.length > 5) {
-      alert("You can upload a maximum of 5 files.");
-      return; // Exit the function if the limit is exceeded
+  const handleQuoteChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length > 5) {
+      alert("You can upload up to 5 quote files only.");
+      return;
     }
-
-    // If within limit, update the state with the new file names
-    const updatedFiles = [...otherBenGrantReason, ...selectedFiles.map(file => file.name)];
-    setOtherBenGrantReason(updatedFiles); // Save file names in the state
+    setQuoteFiles(files);
   };
 
 
@@ -365,7 +363,7 @@ const GrantApplication = () => {
         benSex,
         benEthnicity,
         benReligion,
-        benDisability,
+        beneficiaryHasDisability,
         benDisabilityExtra,
         benMarital,
         benPregnancy,
@@ -374,7 +372,7 @@ const GrantApplication = () => {
         ageOfDependants,
         currentAccom,
         benCurrentAccomLength,
-        benHistOfHomelessness,
+        beneficiaryHomelessHistory,
         benHistDetails,
         benTimeInNottingham,
         benLinkToNottingham,
@@ -1050,7 +1048,7 @@ const GrantApplication = () => {
                       12 months or more.)
                     </label>
                     <select
-                      value={benDisability}
+                      value={beneficiaryHasDisability}
                       onChange={(e) => setBenDisability(e.target.value)}
                       required
                     >
@@ -1063,7 +1061,7 @@ const GrantApplication = () => {
                     </select>
                   </div>
 
-                  {benDisability == "Yes" && (
+                  {beneficiaryHasDisability == "Yes" && (
                     <div className={classes.inputBlock}>
                       <label
                         className={classes.inputLabel}
@@ -1074,6 +1072,7 @@ const GrantApplication = () => {
                       <textarea
                         id="disability"
                         rows="4"
+                        maxLength={50}
                         value={benDisabilityExtra}
                         onChange={(e) => setBenDisabilityExtra(e.target.value)}
                         placeholder="Eg. Brief Description"
@@ -1170,6 +1169,7 @@ const GrantApplication = () => {
                         <textarea
                             maxLength={256}
                             rows={3}
+                            maxLength={50}
                             value={dependantDescription}
                             onChange={(e) => setDependantDescription(e.target.value)}
                             placeholder="E.g., Special needs, medical conditions, school information"
@@ -1250,7 +1250,7 @@ const GrantApplication = () => {
                       History Of Homelessness *
                     </label>
                     <select
-                      value={benHistOfHomelessness}
+                      value={beneficiaryHomelessHistory}
                       onChange={(e) => setBenHistOfHomelessness(e.target.value)}
                       required
                     >
@@ -1260,7 +1260,7 @@ const GrantApplication = () => {
                     </select>
                   </div>
 
-                  {benHistOfHomelessness == "Yes" && (
+                  {beneficiaryHomelessHistory == "Yes" && (
                     <div className={classes.inputBlock}>
                       <label className={classes.inputLabel} htmlFor="History">
                         History *
@@ -1269,6 +1269,7 @@ const GrantApplication = () => {
                       <textarea
                         id="History"
                         rows="4"
+                        maxLength={50}
                         value={benHistDetails}
                         onChange={(e) => setBenHistDetails(e.target.value)}
                         placeholder="Eg. Brief Description, Please provide details e.g. number of times homeless, time period, accommodation status."
@@ -1324,6 +1325,7 @@ const GrantApplication = () => {
                       <textarea
                         id="Link Details"
                         rows="4"
+                        maxLength={50}
                         value={benLinkDetails}
                         onChange={(e) => setBenLinkDetails(e.target.value)}
                         placeholder="Eg. Brief Description, Please provide details of the beneficiaries link to Nottingham e.g. grew up here, family, friends, partner etc."
@@ -1393,6 +1395,7 @@ const GrantApplication = () => {
                     <textarea
                       id="Grant Details"
                       rows="4"
+                      maxLength={50}
                       value={grantDetails}
                       onChange={(e) => setGrantDetails(e.target.value)}
                       placeholder="Eg. Brief Description, Where necessary please provide further details for grant application reason i.e. what it will fund, if it is part funding etc."
@@ -1411,6 +1414,7 @@ const GrantApplication = () => {
                     <textarea
                       id="Beneficiary's Story"
                       rows="4"
+                      maxLength={50}
                       value={benStory}
                       onChange={(e) => setBenStory(e.target.value)}
                       placeholder="Eg. Brief Description, Please explain how the award will help the recipient get off or stay off the street. If the award is part of some larger plan to assist the individual, please explain the part the award will play."
@@ -1639,25 +1643,32 @@ const GrantApplication = () => {
                     <p className={classes.errorMessage}>{costError}</p>
                   )}
                 </div>
-
-
+                              
                 <div className={classes.multiInputBlock}>
-                  <h3 className={classes.subTitle}>
-                    Quotes File for Large Items
-                  </h3>
+                  <h3 className={classes.subTitle}>Quotes (PDF or Image)</h3>
                   <div className={classes.inputBlock}>
                     <label className={classes.inputLabel}>
-                      Please provide quotes for higher cost items. Up to 5 quotes can be provided.
+                      You can upload up to 5 separate quotes.
                     </label>
-
                     <input
-                        id="quote"
-                        type="file"
-                        multiple // Allow multiple file uploads
-                        onChange={handleFileChange} // Handle file change
+                      id="quoteFiles"
+                      type="file"
+                      multiple
+                      accept="application/pdf,image/*"
+                      onChange={handleQuoteChange}
                     />
+
+                    {/* show list of selected file names */}
+                    {quoteFiles.length > 0 && (
+                      <ul className={classes.fileList}>
+                        {quoteFiles.map((file, i) => (
+                          <li key={i}>{file.name}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
+
               </div>
               {buttons}
             </form>

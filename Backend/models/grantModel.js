@@ -44,7 +44,8 @@ const grantSchema = new Schema(
     benReligion: { type: String, required: true },
 
     benDisability: { type: String, required: true },
-    benDisabilityExtra: { type: String, required: false },
+    
+    benDisabilityExtra: { type: String, required: false, maxlength: 500 },
 
     benMarital: { type: String, required: true },
     benPregnancy: { type: String, required: true },
@@ -55,26 +56,29 @@ const grantSchema = new Schema(
     currentAccom: { type: String, required: true },
     benCurrentAccomLength: { type: String, required: true },
     benHistOfHomelessness: { type: String, required: true },
-    benHistDetails: { type: String, required: false },
+    benHistDetails: { type: String, required: false, maxlength: 1000 },
     benTimeInNottingham: { type: String, required: true },
     benLinkToNottingham: { type: String, required: true },
-    benLinkDetails: { type: String, required: false },
+    benLinkDetails: { type: String, required: false, maxlength: 1000 },
+
 
     benGrantReason: { type: String, required: true },
-    grantDetails: { type: String, required: true },
-    benStory: { type: String, required: true },
+   
+    grantDetails: { type: String, required: false, maxlength: 1000 },
+    benStory: { type: String, required: false, maxlength: 1000 },
 
     grantAmountTotal: { type: String, required: true },
     grantItemCost1: { type: String, required: true },
     grantItemDetails1: { type: String, required: true },
+    grantItemDetails1: { type: String, required: true,  maxlength: 500 },
     grantItemCost2: { type: String, required: false },
-    grantItemDetails2: { type: String, required: false },
+    grantItemDetails2: { type: String, required: false, maxlength: 500 },
     grantItemCost3: { type: String, required: false },
-    grantItemDetails3: { type: String, required: false },
+    grantItemDetails3: { type: String, required: false,   maxlength: 500 },
     grantItemCost4: { type: String, required: false },
-    grantItemDetails4: { type: String, required: false },
+    grantItemDetails4: { type: String, required: false,   maxlength: 500 },
     grantItemCost5: { type: String, required: false },
-    grantItemDetails5: { type: String, required: false },
+    grantItemDetails5: { type: String, required: false,   maxlength: 500 },
 
     benConsent: { type: String, required: true },
     confirmApplication: { type: String, required: true },

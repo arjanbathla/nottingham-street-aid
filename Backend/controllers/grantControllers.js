@@ -2,31 +2,40 @@ const Grant = require("../models/grantModel");
 const Auth = require("../models/authModel");
 const mongoose = require("mongoose");
 
-//get grants
+// Character limits to guard against excessively long free-text submissions
+const MAX_SHORT_TEXT = 500;   // e.g. item descriptions
+const MAX_LONG_TEXT  = 1000;  // e.g. full narratives
+
+// Fetch grants for the authenticated user
 const fetchGrants = async (req, res) => {
   const userId = req.auth._id;
   const grants = await Grant.find({ userId }).sort({ createdAt: -1 });
   res.status(200).json(grants);
 };
 
-//get grants
+
+// Fetch all grants (admin)
 const fetchAllGrants = async (req, res) => {
   console.log("Fetching all grants...");
   const grants = await Grant.find({}).sort({ createdAt: -1 });
-  console.log(`Found ${grants.length} grants:`, grants);
-  console.log(grants);
+  console.log(`Found ${grants.length} grants.`);
   res.status(200).json(grants);
 };
 
+
+
+// Update a grant's status
 const updateStatus = async (req, res) => {
-  const {grantId, status} = req.body
-  const grants = await Grant.findOneAndUpdate({_id: grantId},{
-    grantStatus: status
-  })
-  res.status(200).json(grants);
+  const { grantId, status } = req.body;
+  const updated = await Grant.findOneAndUpdate(
+    { _id: grantId },
+    { grantStatus: status },
+    { new: true }
+  );
+  res.status(200).json(updated);
 };
 
-//apply grants
+// Create a new grant application
 const createGrant = async (req, res) => {
   const {
     benTitle,
@@ -64,6 +73,7 @@ const createGrant = async (req, res) => {
     benMarital,
     benPregnancy,
     benDependants,
+    dependantDescription,
     numOfDependants,
     ageOfDependants,
     currentAccom,
@@ -90,6 +100,30 @@ const createGrant = async (req, res) => {
     benConsent,
     confirmApplication
   } = req.body;
+
+  // Validate maximum lengths on free-text fields
+  const textChecks = [
+    { val: benDisabilityExtra,    max: MAX_SHORT_TEXT, name: 'Disability details' },
+    { val: benHistDetails,         max: MAX_LONG_TEXT,  name: 'Homelessness history' },
+    { val: benLinkDetails,         max: MAX_LONG_TEXT,  name: 'Link to Nottingham' },
+    { val: grantDetails,           max: MAX_LONG_TEXT,  name: 'Grant details' },
+    { val: benStory,               max: MAX_LONG_TEXT,  name: 'Beneficiary story' },
+    { val: dependantDescription,   max: MAX_LONG_TEXT,  name: 'Dependants description' },
+    { val: grantItemDetails1,      max: MAX_SHORT_TEXT, name: 'Item 1 details' },
+    { val: grantItemDetails2,      max: MAX_SHORT_TEXT, name: 'Item 2 details' },
+    { val: grantItemDetails3,      max: MAX_SHORT_TEXT, name: 'Item 3 details' },
+    { val: grantItemDetails4,      max: MAX_SHORT_TEXT, name: 'Item 4 details' },
+    { val: grantItemDetails5,      max: MAX_SHORT_TEXT, name: 'Item 5 details' },
+  ];
+
+  for (let { val, max, name } of textChecks) {
+    if (val && val.length > max) {
+      return res
+        .status(400)
+        .json({ error: `${name} cannot exceed ${max} characters.` });
+    }
+  }
+
   try {
     const userId = req.auth._id;
     const grantStatus = "Pending";
@@ -131,6 +165,7 @@ const createGrant = async (req, res) => {
       benMarital,
       benPregnancy,
       benDependants,
+      dependantDescription,
       numOfDependants,
       ageOfDependants,
       currentAccom,
@@ -163,11 +198,11 @@ const createGrant = async (req, res) => {
   }
 };
 
+// Fetch all authenticated users (admin)
 const fetchAllAuths = async (req, res) => {
   console.log("Fetching all auths...");
   const auths = await Auth.find({}).sort({ createdAt: -1 });
-  console.log("Found ${auths.length} auths.");
-  console.log(auths);
+  console.log(`Found ${auths.length} auths.`);
   res.status(200).json(auths);
 };
 
