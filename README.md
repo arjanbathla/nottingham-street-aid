@@ -5,8 +5,9 @@ Recommended Development Setup (macOS)
 Using Visual Studio Code (VS Code) with its integrated terminal for the most reliable development setup on macOS is recommended.
 ## 1. What to download
 Install Visual Studio Code: https://code.visualstudio.com/
-## 2.Ensure you can run mongod and npm in your VS Code terminal
+## 2.Ensure you can run mongodb and npm in your VS Code terminal
 Install Node.js: https://nodejs.org/
+
 Install MongoDB Community Edition: https://www.mongodb.com/docs/manual/installation/
 
 Which can also be done through terminal by running these lines :
